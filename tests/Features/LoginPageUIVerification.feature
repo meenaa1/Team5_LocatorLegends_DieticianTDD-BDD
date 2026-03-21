@@ -1,56 +1,56 @@
-Feature: Login Page UI Verification
+Feature: Login page UI verification
 
-  Scenario: Verify navigation bar text
+  Background: 
     Given User is on the browser
-    When User enters the application URL
-    Then User should see the text "Dietician Project" on the left side of the navigation bar
 
-  Scenario: Verify navigation bar icon
-    Given User is on the login page
-    Then User should see the home icon on the left side of the navigation bar
+  Scenario: Verify Navigation bar text visibility
+    When user enters app url
+    Then User should see the text "Dietician Project" on the navigation bar
 
-  Scenario: Verify navigation bar background color
-    Given User is on the login page
-    Then Navigation bar background should be blue-purple in color
+  Scenario: Navigation bar icon visibility
+    When user enters app url
+    Then User should see the home icon on left side of the navigation bar
 
-  Scenario: Verify page title in login card
-    Given User is on the login page
-    Then User should see the heading "Dietician Application" inside the login card
+  Scenario: Verify Navigation bar background colour
+    When user enters app url
+    Then Navigation bar background should have a blue color
 
-  Scenario: Verify username label
-    Given User is on the login page
+  Scenario: Verify Page title visibility
+    When user enters app url
+    Then Heading "Dietician Application" should be visible
+
+  Scenario: Verify label for first field
+    When user enters app url
     Then User should see the label text "username"
 
-  Scenario: Verify password label
-    Given User is on the login page
+  Scenario: Verify label for second field
+    When user enters app url
     Then User should see the label text "password"
 
-  Scenario: Verify username input field presence
-    Given User is on the login page
+  Scenario: Verify Username input field presence
+    When user enters app url
     Then Username input field should be visible
 
-  Scenario: Verify password input field presence
-    Given User is on the login page
+  Scenario: Verify Password input field presence
+    When user enters app url
     Then Password input field should be visible
 
-  Scenario: Verify login button presence
-    Given User is on the login page
+  Scenario: Verify Login button presence
+    When user enters app url
     Then Login button should be visible
 
-  Scenario: Verify login button styling
-    Given User is on the login page
-    Then Login button should have blue-purple background
-    And Login button text color should be white
+  Scenario: Verify Login button color and styling
+    When user enters app url
+    Then Login button should be displayed with a blue color and white text
 
-  Scenario: Verify input field label alignment
-    Given User is on the login page
-    Then Username label should be left-aligned above the username input field
-    And Password label should be left-aligned above the password input field
+  Scenario: Verify Input field label alignment
+    When user enters app url
+    Then Username and Password labels should be left aligned to the input fields
 
-  Scenario: Verify total number of input fields
-    Given User is on the login page
-    Then User should see exactly 2 input fields
+  Scenario: Verify Total number of input fields
+    When user enters app url
+    Then User should see exactly two input fields
 
-  Scenario: Verify login button enabled state
-    Given User is on the login page
-    Then Login button should be enabled
+  Scenario: Verify Login button enabled state
+    When user enters app url
+    Then User should see login button enabled
