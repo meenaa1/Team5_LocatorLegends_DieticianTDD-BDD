@@ -1,5 +1,5 @@
 // Generated from: tests\Features\LoginPageUIVerification.feature
-import { test } from "playwright-bdd";
+import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Login page UI verification', () => {
 
@@ -7,69 +7,69 @@ test.describe('Login page UI verification', () => {
     await Given('User is on the browser'); 
   });
   
-  test('Verify Navigation bar text visibility', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('User should see the text "Dietician Project" on the navigation bar'); 
+  test('Verify Navigation bar text visibility', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('User should see the text "Dietician Project" on the navigation bar', null, { loginPage }); 
   });
 
-  test('Navigation bar icon visibility', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('User should see the home icon on left side of the navigation bar'); 
+  test('Navigation bar icon visibility', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('User should see the home icon on left side of the navigation bar', null, { loginPage }); 
   });
 
-  test('Verify Navigation bar background colour', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('Navigation bar background should have a blue color'); 
+  test('Verify Navigation bar background colour', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('Navigation bar background should have a blue color', null, { loginPage }); 
   });
 
-  test('Verify Page title visibility', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('Heading "Dietician Application" should be visible'); 
+  test('Verify Page title visibility', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('Heading "Dietician Application" should be visible', null, { loginPage }); 
   });
 
-  test('Verify label for first field', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('User should see the label text "username"'); 
+  test('Verify label for first field', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('User should see the label text "username"', null, { loginPage }); 
   });
 
-  test('Verify label for second field', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('User should see the label text "password"'); 
+  test('Verify label for second field', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('User should see the label text "password"', null, { loginPage }); 
   });
 
-  test('Verify Username input field presence', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('Username input field should be visible'); 
+  test('Verify Username input field presence', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('Username input field should be visible', null, { loginPage }); 
   });
 
-  test('Verify Password input field presence', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('Password input field should be visible'); 
+  test('Verify Password input field presence', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('Password input field should be visible', null, { loginPage }); 
   });
 
-  test('Verify Login button presence', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('Login button should be visible'); 
+  test('Verify Login button presence', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('Login button should be visible', null, { loginPage }); 
   });
 
-  test('Verify Login button color and styling', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('Login button should be displayed with a blue color and white text'); 
+  test('Verify Login button color and styling', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('Login button should be displayed with a blue color and white text', null, { loginPage }); 
   });
 
-  test('Verify Input field label alignment', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('Username and Password labels should be left aligned to the input fields'); 
+  test('Verify Input field label alignment', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('Username and Password labels should be left aligned to the input fields', null, { loginPage }); 
   });
 
-  test('Verify Total number of input fields', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('User should see exactly two input fields'); 
+  test('Verify Total number of input fields', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('User should see exactly two input fields', null, { loginPage }); 
   });
 
-  test('Verify Login button enabled state', async ({ When, Then }) => { 
-    await When('user enters app url'); 
-    await Then('User should see login button enabled'); 
+  test('Verify Login button enabled state', async ({ When, Then, loginPage }) => { 
+    await When('user enters app url', null, { loginPage }); 
+    await Then('User should see login button enabled', null, { loginPage }); 
   });
 
 });
