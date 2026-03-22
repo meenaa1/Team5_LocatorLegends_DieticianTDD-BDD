@@ -66,4 +66,4 @@ class LoginPagePo {
     }
 }
 
-export default LoginPage;
+export default LoginPagePo;

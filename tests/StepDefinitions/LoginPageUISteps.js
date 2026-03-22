@@ -1,5 +1,8 @@
 import { createBdd } from "playwright-bdd";
-const { Given, When, Then } = createBdd();
+import { test } from "../Fixtures/testFixtures.js"; 
+import { expect } from "@playwright/test";
+
+const { Given, When, Then } = createBdd(test);
 
 
 Given('User is on the browser', async ({ }) => {
