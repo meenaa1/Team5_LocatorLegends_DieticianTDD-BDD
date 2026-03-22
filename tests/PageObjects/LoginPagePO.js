@@ -26,7 +26,10 @@ class LoginPagePo {
         this.passwordInput = page.locator('input[name="password"], input[type="password"]')
 
         // Buttons
-        this.loginButton = page.locator('button', { hasText: 'Login' });    
+        this.loginButton = page.locator('button', { hasText: 'Login' }); 
+           
+        // Error messages
+        this.errorMessage = page.locator('.error-message'); 
              
     }
     
