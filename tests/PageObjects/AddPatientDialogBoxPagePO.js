@@ -18,7 +18,6 @@ class AddPatientPage {
     this.dp = page.locator('#dp');
 
     this.dob = page.locator('#dob');
-//dropdowns
     this.allergies = page.locator('#allergies');
     this.foodPreference = page.locator('#foodPreference');
     this.cuisineCategory = page.locator('#cuisineCategory');
