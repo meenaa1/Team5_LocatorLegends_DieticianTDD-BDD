@@ -1,59 +1,171 @@
 import { createBdd } from "playwright-bdd";
-const { Given, When, Then } = createBdd();
+import { test } from "../Fixtures/testFixtures.js"; 
+import { expect } from "@playwright/test";
+import AddPatientDialogBoxPagePO from "../PageObjects/AddPatientDialogBoxPagePO.js";
 
-Given('User is in home page after login', async ({}) => {
-  // Step: Given User is in home page after login
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:4:3
+
+const { Given, When, Then } = createBdd(test);
+let addPatientPage;
+
+
+Given('User is in home page after login', async ({ page }) => {
+    addPatientPage = new AddPatientDialogBoxPagePO(page);
+    await addPatientPage.isHomePageDisplayed(); 
+    logger.info('User is on the home page after login'); 
 });
 
-When('User clicks on New Patient in the header section', async ({}) => {
-  // Step: When User clicks on New Patient in the header section
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:5:3
+When('User clicks on New Patient in the header section', async ({ page }) => {
+    await addPatientPage.clickNewPatient();
+
+    logger.info('User clicked on New Patient in the header section');
 });
 
-Then('User should see Add Patient Details on the dialog box', async ({}) => {
-  // Step: Then User should see Add Patient Details on the dialog box
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:9:3
+Then('User should see Add Patient Details on the dialog box', async ({ page }) => {
+    const title = await addPatientPage.getDialogTitle();
+    expect(title).toBe('Add Patient Details');
+    logger.info('User sees Add Patient Details on the dialog box');
 });
 
-Then('User should see {int} input boxes in the Add Patient Details dialog box', async ({}, arg) => {
-  // Step: Then User should see 9 input boxes in the Add Patient Details dialog box
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:12:3
+Then('User should see {int} input boxes in the Add Patient Details dialog box', async ({ page }, arg)=> {
+    const inputCount = await addPatientPage.getInputCount();
+    expect(inputCount).toBe(arg);
+    logger.info(`User sees ${arg} input boxes in the Add Patient Details dialog box`);
 });
 
-Then('User should see {int} dropdowns in the Add Patient Details dialog box', async ({}, arg) => {
-  // Step: Then User should see 3 dropdowns in the Add Patient Details dialog box
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:15:3
+Then('User should see {int} dropdowns in the Add Patient Details dialog box', async ({page}, arg) => {
+    const dropdownCount = await addPatientPage.getDropdownCount();
+    expect(dropdownCount).toBe(arg);   
+    logger.info(`User sees ${arg} dropdowns in the Add Patient Details dialog box`);
 });
 
-Then('User should see a date picker for DOB field with MM\\/DD\\/YYYY displayed', async ({}) => {
-  // Step: Then User should see a date picker for DOB field with MM/DD/YYYY displayed
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:18:3
+Then('User should see a date picker for DOB field with MM\\/DD\\/YYYY displayed', async ({page}) => {
+    const dobPlaceholder = await addPatientPage.getPlaceholder(addPatientPage.dob);
+    expect(dobPlaceholder).toBe('MM/DD/YYYY');    
+    logger.info('User sees a date picker for DOB field with MM/DD/YYYY displayed');
 });
 
 Then('User should see exactly {int} file upload option in Add Patient Details dialog box', async ({}, arg) => {
-  // Step: Then User should see exactly 1 file upload option in Add Patient Details dialog box
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:21:3
+    const fileUploadCount = await addPatientPage.getFileUploadCount();
+    expect(fileUploadCount).toBe(arg);
+    logger.info(`User sees exactly ${arg} file upload option in Add Patient Details dialog box`);
 });
 
 Then('User should see one Submit button', async ({}) => {
-  // Step: Then User should see one Submit button
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:24:3
+  const issummitVisible = await addPatientPage.submitBtn.isVisible();
+  expect(issummitVisible).toBeTruthy();
+    logger.info('User sees one Submit button');
 });
 
 Then('User should see one Submit button in disabled state', async ({}) => {
-  // Step: Then User should see one Submit button in disabled state
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:27:3
+  const isSubmitDisabled = await addPatientPage.submitBtn.isDisabled();
+  expect(isSubmitDisabled).toBeTruthy();
+  logger.info('User sees one Submit button in disabled state');
 });
 
 Then('User should see one Close button', async ({}) => {
-  // Step: Then User should see one Close button
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:30:3
+    const isCloseVisible = await addPatientPage.closeBtn.isVisible();
+    expect(isCloseVisible).toBeTruthy();
+    logger.info('User sees one Close button');
 });
 
 Then('User should see one Close button in enabled state', async ({}) => {
-  // Step: Then User should see one Close button in enabled state
-  // From: tests\Features\AddPatientDialogBoxValidation.feature:33:3
+    const isCloseEnabled = await addPatientPage.closeBtn.isEnabled();
+    expect(isCloseEnabled).toBeTruthy();    
+    logger.info('User sees one Close button in enabled state');
 }); 
 
+Then('User should see mandatory field with placeholder {string}', async ({}, arg) => {
+  const mandatoryFields = {
+    "First name": addPatientPage.firstName,
+    "Last name": addPatientPage.lastName,
+    "Email": addPatientPage.email,
+    "Contact Number": addPatientPage.contactNumber
+  };
+
+  const locator = mandatoryFields[arg];
+
+  if (!locator) {
+    throw new Error(`Mandatory field not found in mapping: ${arg}`);
+  }
+
+  const actual = await locator.getAttribute('placeholder');
+  expect(actual).toBe(arg);
+  logger.info(`User sees mandatory field with placeholder ${arg}`);
+});
+      
+
+Then('User should see mandatory dropdown with placeholder {string}', async ({}, arg) => {
+    const mandatoryDropdowns = {
+      "Allergies": addPatientPage.allergies,
+      "Food Preference": addPatientPage.foodPreference,
+      "Cusine Category": addPatientPage.cuisineCategory
+    };
+
+    const locator = mandatoryDropdowns[arg];
+
+    if (!locator) {
+      throw new Error(`Mandatory dropdown not found in mapping: ${arg}`);
+    }
+    
+    const actual = await locator.getAttribute('placeholder');
+    expect(actual).toBe(arg);
+    logger.info(`User sees mandatory dropdown with placeholder ${arg}`);
+});
+
+Then('User should see mandatory DOB with placeholder {string}', async ({}, arg) => {
+ 
+
+    const locator = addPatientPage.dob;
+
+    if (!locator) {
+      throw new Error(`Mandatory DOB field not found`);
+    }
+
+    const actual = await locator.getAttribute('placeholder');
+    expect(actual).toBe(arg);
+    logger.info(`User sees mandatory DOB with placeholder ${arg}`);
+});
+
+Then('User should see non-manadatory field placeholder with {string}', async ({}, arg) => {
+    const nonMandatoryFields = {
+      "Weight": addPatientPage.weight,
+      "Height": addPatientPage.height,
+      "Temperature": addPatientPage.temperature,
+      "SP": addPatientPage.sp,
+      "DP": addPatientPage.dp
+    };
+
+    const locator = nonMandatoryFields[arg];
+
+    if (!locator) {
+      throw new Error(`Non-mandatory field not found in mapping: ${arg}`);
+    }
+
+    const actual = await locator.getAttribute('placeholder');
+    expect(actual).toBe(arg);
+    logger.info(`User sees non-mandatory field with placeholder ${arg}`);
+});
+
+Then('User should see text Upload Health Report', async ({}) => {
+    const uploadText = await addPatientPage.getUploadText();
+    expect(uploadText).toBe('Upload Health Report');
+    logger.info('User sees text Upload Health Report');
+});
+
+Then('User should see text No file Chosen', async ({}) => {
+    const noFileChosenText = await addPatientPage.getNoFileText();
+    expect(noFileChosenText).toBe('No file chosen');
+    logger.info('User sees text No file Chosen');
+});
+
+Then('User should see a scroll bar at the right side of dialog box', async ({}) => {
+    const hasScrollBar = await addPatientPage.hasVerticalScrollBar();
+    expect(hasScrollBar).toBeTruthy();
+    logger.info('User sees a scroll bar at the right side of dialog box');
+});
+
+
+
+
+ 
                         
