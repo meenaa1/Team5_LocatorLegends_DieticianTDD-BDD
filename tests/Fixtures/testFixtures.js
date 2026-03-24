@@ -1,5 +1,6 @@
 import { test as base } from 'playwright-bdd';
 import LoginPagePO from '../PageObjects/LoginPagePO.js';
+import AddPatientDialogBoxPagePO from '../PageObjects/AddPatientDialogBoxPagePO.js';
 // import DashboardPagePO from '../PageObjects/DashboardPO.js';
 // import MyPatientsPagePO from '../PageObjects/MyPatientPagePO.js';
 
@@ -16,6 +17,9 @@ export const test = base.extend({
 //   myPatientsPage: async ({ page }, use) => {
 //     await use(new MyPatientsPagePO(page));
 //   },
+   addPatientPage : async ({ page }, use) => {
+    await use(new AddPatientDialogBoxPagePO(page));
+  },
 
   loggedInPage: async ({ loginPage }, use) => {
     await loginPage.navigate();
