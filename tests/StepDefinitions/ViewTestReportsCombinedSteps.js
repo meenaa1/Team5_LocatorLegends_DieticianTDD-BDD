@@ -76,3 +76,51 @@ Then('Pagination controls First, previous, next, last arrows should be displayed
   // Step: Then Pagination controls First, previous, next, last arrows should be displayed
   // From: tests\Features\ViewPatientTestReportsTable.feature:24:5
 });
+
+// Report Table Data Scenarios Stepdefinitions
+
+
+Then('Each report should display a record number', async ({}) => {
+  // Step: Then Each report should display a record number
+  // From: tests\Features\ReportsTableData.feature:9:5
+});
+
+Then('Each report should display View PDF button', async ({}) => {
+  // Step: Then Each report should display View PDF button
+  // From: tests\Features\ReportsTableData.feature:14:5
+});
+
+Then('Each report should display uploaded time', async ({}) => {
+  // Step: Then Each report should display uploaded time
+  // From: tests\Features\ReportsTableData.feature:19:5
+});
+
+Then('Each report should display file or report name', async ({}) => {
+  // Step: Then Each report should display file/report name
+  // From: tests\Features\ReportsTableData.feature:24:5
+});
+
+Then('Each report should display vitals information', async ({}) => {
+  // Step: Then Each report should display vitals information
+  // From: tests\Features\ReportsTableData.feature:29:5
+});
+
+Then('Vitals should be displayed in the order Weight → Height → Temperature → SP → DP', async ({}) => {
+  // Step: Then Vitals should be displayed in the order Weight → Height → Temperature → SP → DP
+  // From: tests\Features\ReportsTableData.feature:34:5
+});
+
+Then('Vitals should be displayed in multilines', async ({}) => {
+  // Step: Then Vitals should be displayed in multilines
+  // From: tests\Features\ReportsTableData.feature:39:5
+});
+
+Then('Each report should display Identified health conditions', async ({}) => {
+  // Step: Then Each report should display Identified health conditions
+  // From: tests\Features\ReportsTableData.feature:44:5
+});
+
+Then('Identified health conditions should be displayed in multilines', async ({}) => {
+  // Step: Then Identified health conditions should be displayed in multilines
+  // From: tests\Features\ReportsTableData.feature:49:5
+});
