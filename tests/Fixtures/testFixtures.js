@@ -10,9 +10,9 @@ export const test = base.extend({
     await use(new LoginPagePO(page));
   },
 
-//   dashboardPage: async ({ page }, use) => {
-//     await use(new DashboardPagePO(page));
-//   },
+  dashboardPage: async ({ page }, use) => {
+    await use(new DashboardPagePO(page));
+  },
 
 //   myPatientsPage: async ({ page }, use) => {
 //     await use(new MyPatientsPagePO(page));
