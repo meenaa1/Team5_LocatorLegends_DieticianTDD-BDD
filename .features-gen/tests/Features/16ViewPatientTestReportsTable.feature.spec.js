@@ -1,4 +1,4 @@
-// Generated from: tests\Features\ViewPatientTestReportsTable.feature
+// Generated from: tests\Features\16ViewPatientTestReportsTable.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('View patient test reports - table', () => {
@@ -40,7 +40,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\ViewPatientTestReportsTable.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\16ViewPatientTestReportsTable.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

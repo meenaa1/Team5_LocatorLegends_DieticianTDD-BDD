@@ -1,4 +1,4 @@
-// Generated from: tests\Features\ViewPDF.feature
+// Generated from: tests\Features\18ViewPDF.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('View PDF', () => {
@@ -22,7 +22,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\ViewPDF.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\18ViewPDF.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

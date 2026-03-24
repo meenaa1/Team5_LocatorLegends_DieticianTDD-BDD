@@ -1,168 +1,168 @@
-// Generated from: tests\Features\EditPatient_DialogBoxValidation.feature
-import { test } from "playwright-bdd";
+// Generated from: tests\Features\23EditPatient_DialogBoxValidation.feature
+import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Edit Patient -Dialog Box Validation', () => {
 
-  test.beforeEach('Background: User logged into the app and patients already exists', async ({ Given, When, Then }, testInfo) => { if (testInfo.error) return;
-    await Given('User is on the dashboard page after login'); 
-    await When('User clicks "My patients" button'); 
-    await Then('User should be navigated to the "My Patients" page and should see the list of existing patients'); 
+  test.beforeEach('Background: User logged into the app and patients already exists', async ({ Given, When, Then, editPage, loggedInPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is on the dashboard page after login', null, { loggedInPage }); 
+    await When('User clicks "My patients" button', null, { editPage }); 
+    await Then('User should be navigated to the "My Patients" page and should see the list of existing patients', null, { editPage }); 
   });
   
-  test('Title of the dialoge box', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see  Edit Patient page on the dialog box'); 
+  test('Title of the dialoge box', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see  Edit Patient page on the dialog box', null, { editPage }); 
   });
 
-  test('Presence of Submit button', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see  submit button'); 
+  test('Presence of Submit button', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see  submit button', null, { editPage }); 
   });
 
-  test('State of submit button', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see submit button in enable mode'); 
+  test('State of submit button', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see submit button in enable mode', null, { editPage }); 
   });
 
-  test('Presence of Close button', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see  close button'); 
+  test('Presence of Close button', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see  close button', null, { editPage }); 
   });
 
-  test('State of  close button', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see close button in enable mode'); 
+  test('State of  close button', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see close button in enable mode', null, { editPage }); 
   });
 
-  test('Presence of 9 Input field', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see 9 input field'); 
+  test('Presence of 9 Input field', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see 9 input field', null, { editPage }); 
   });
 
-  test('Presence of 3 drop down', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see 3 drop down'); 
+  test('Presence of 3 drop down', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see 3 drop down', null, { editPage }); 
   });
 
-  test('Presence of file upload option', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see exactly 1 file upload option'); 
+  test('Presence of file upload option', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see exactly 1 file upload option', null, { editPage }); 
   });
 
-  test('Presence of first name of the patient', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see the ‘First Name’ field populated with the value entered during patient creation.'); 
+  test('Presence of first name of the patient', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see the "First Name" field populated with the value entered during patient creation for first name field.', null, { editPage }); 
   });
 
-  test('Presence of last name of the patient', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see the "Last Name" field populated with the value entered during patient creation'); 
+  test('Presence of last name of the patient', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see the "Last Name" field populated with the value entered during patient creation for last name field.', null, { editPage }); 
   });
 
-  test('Presence of Email of the patient', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see the "Email" field populated with the value entered during patient creation'); 
+  test('Presence of Email of the patient', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see the "Email" field populated with the value entered during patient creation for email field.', null, { editPage }); 
   });
 
-  test('Presence of Contact Number of the patient', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see the "Contact Number" field populated with the value entered during patient creation'); 
+  test('Presence of Contact Number of the patient', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see the "Contact Number" field populated with the value entered during patient creation for contact number field.', null, { editPage }); 
   });
 
-  test('Presence of  allergy info of the patient', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see the "Allergy Info" field populated with the value entered during patient creation'); 
+  test('Presence of  allergy info of the patient', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see the "Allergy Info" field populated with the value entered during patient creation for allergy info field.', null, { editPage }); 
   });
 
-  test('Presence of patients food preference', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see the "Food Preference" field populated with the value entered during patient creation'); 
+  test('Presence of patients food preference', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see the "Food Preference" field populated with the value entered during patient creation for food preference field.', null, { editPage }); 
   });
 
-  test('Presence of patients cuisine preference', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see the "Cuisine Preference" field populated with the value entered during patient creation'); 
+  test('Presence of patients cuisine preference', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see the "Cuisine Preference" field populated with the value entered during patient creation for cuisine preference field.', null, { editPage }); 
   });
 
-  test('Presence of patients DOB info', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see the "DOB" field populated with the value entered during patient creation'); 
+  test('Presence of patients DOB info', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see the "DOB" field populated with the value entered during patient creation for DOB field.', null, { editPage }); 
   });
 
-  test('Presence of sub titleVitals', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see vitals title after DOB field'); 
+  test('Presence of sub titleVitals', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see vitals title after DOB field', null, { editPage }); 
   });
 
-  test('Presence of SP field', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see SP place holder in SP field'); 
+  test('Presence of SP field', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see SP place holder in SP field', null, { editPage }); 
   });
 
-  test('Presence of DP field', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see DP place holder in DP field'); 
+  test('Presence of DP field', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see DP place holder in DP field', null, { editPage }); 
   });
 
-  test('Presence of Weight field', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see Weight place holder in Weight field'); 
+  test('Presence of Weight field', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see Weight place holder in Weight field', null, { editPage }); 
   });
 
-  test('Presence of Height field', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see Height place holder in Height field'); 
+  test('Presence of Height field', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see Height place holder in Height field', null, { editPage }); 
   });
 
-  test('Presence of Tempature field', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see Tempature place holder in Tempature field'); 
+  test('Presence of Tempature field', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see Tempature place holder in Tempature field', null, { editPage }); 
   });
 
-  test('Vitals information fields shouldn\'t have mandatory indicator', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should not see mandatory indicators for Vitals Information fields'); 
+  test('Vitals information fields shouldn\'t have mandatory indicator', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should not see mandatory indicators for Vitals Information fields', null, { editPage }); 
   });
 
-  test('Presence of Label Upload health report', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see Upload health report : text for Upload button'); 
+  test('Presence of Label Upload health report', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see Upload health report : text for Upload button', null, { editPage }); 
   });
 
-  test('Presence of  No File Choosen text when no files uploaded', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('User should see "No File Choosen" text'); 
+  test('Presence of  No File Choosen text when no files uploaded', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('User should see "No File Choosen" text', null, { editPage }); 
   });
 
-  test('Close button color', async ({ Given, When, Then }) => { 
-    await Given('User is in my patient page'); 
-    await When('User clicks edit icon for the particular patient'); 
-    await Then('Close button should have red color'); 
+  test('Close button color', async ({ Given, When, Then, editPage }) => { 
+    await Given('User is in my patient page', null, { editPage }); 
+    await When('User clicks edit icon for the particular patient', null, { editPage }); 
+    await Then('Close button should have red color', null, { editPage }); 
   });
 
 });
@@ -174,7 +174,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\EditPatient_DialogBoxValidation.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\23EditPatient_DialogBoxValidation.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 
@@ -187,14 +187,14 @@ const bddFileData = [ // bdd-data-start
   {"pwTestLine":42,"pickleLine":33,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":43,"gherkinStepLine":34,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":44,"gherkinStepLine":35,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":45,"gherkinStepLine":36,"keywordType":"Outcome","textWithKeyword":"Then User should see 9 input field","stepMatchArguments":[{"group":{"start":16,"value":"9","children":[]},"parameterTypeName":"int"}]}]},
   {"pwTestLine":48,"pickleLine":38,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":49,"gherkinStepLine":39,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":50,"gherkinStepLine":40,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":51,"gherkinStepLine":41,"keywordType":"Outcome","textWithKeyword":"Then User should see 3 drop down","stepMatchArguments":[{"group":{"start":16,"value":"3","children":[]},"parameterTypeName":"int"}]}]},
   {"pwTestLine":54,"pickleLine":43,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":55,"gherkinStepLine":44,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":56,"gherkinStepLine":45,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":57,"gherkinStepLine":46,"keywordType":"Outcome","textWithKeyword":"Then User should see exactly 1 file upload option","stepMatchArguments":[{"group":{"start":24,"value":"1","children":[]},"parameterTypeName":"int"}]}]},
-  {"pwTestLine":60,"pickleLine":48,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":61,"gherkinStepLine":49,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":62,"gherkinStepLine":50,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":63,"gherkinStepLine":51,"keywordType":"Outcome","textWithKeyword":"Then User should see the ‘First Name’ field populated with the value entered during patient creation.","stepMatchArguments":[]}]},
-  {"pwTestLine":66,"pickleLine":53,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":67,"gherkinStepLine":54,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":68,"gherkinStepLine":55,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":69,"gherkinStepLine":56,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Last Name\" field populated with the value entered during patient creation","stepMatchArguments":[{"group":{"start":20,"value":"\"Last Name\"","children":[{"start":21,"value":"Last Name","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
-  {"pwTestLine":72,"pickleLine":58,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":73,"gherkinStepLine":59,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":74,"gherkinStepLine":60,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":75,"gherkinStepLine":61,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Email\" field populated with the value entered during patient creation","stepMatchArguments":[{"group":{"start":20,"value":"\"Email\"","children":[{"start":21,"value":"Email","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
-  {"pwTestLine":78,"pickleLine":63,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":79,"gherkinStepLine":64,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":80,"gherkinStepLine":65,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":81,"gherkinStepLine":66,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Contact Number\" field populated with the value entered during patient creation","stepMatchArguments":[{"group":{"start":20,"value":"\"Contact Number\"","children":[{"start":21,"value":"Contact Number","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
-  {"pwTestLine":84,"pickleLine":68,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":85,"gherkinStepLine":69,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":86,"gherkinStepLine":70,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":87,"gherkinStepLine":71,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Allergy Info\" field populated with the value entered during patient creation","stepMatchArguments":[{"group":{"start":20,"value":"\"Allergy Info\"","children":[{"start":21,"value":"Allergy Info","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
-  {"pwTestLine":90,"pickleLine":73,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":91,"gherkinStepLine":74,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":92,"gherkinStepLine":75,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":93,"gherkinStepLine":76,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Food Preference\" field populated with the value entered during patient creation","stepMatchArguments":[{"group":{"start":20,"value":"\"Food Preference\"","children":[{"start":21,"value":"Food Preference","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
-  {"pwTestLine":96,"pickleLine":78,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":97,"gherkinStepLine":79,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":98,"gherkinStepLine":80,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":99,"gherkinStepLine":81,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Cuisine Preference\" field populated with the value entered during patient creation","stepMatchArguments":[{"group":{"start":20,"value":"\"Cuisine Preference\"","children":[{"start":21,"value":"Cuisine Preference","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
-  {"pwTestLine":102,"pickleLine":83,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":103,"gherkinStepLine":84,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":104,"gherkinStepLine":85,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":105,"gherkinStepLine":86,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"DOB\" field populated with the value entered during patient creation","stepMatchArguments":[{"group":{"start":20,"value":"\"DOB\"","children":[{"start":21,"value":"DOB","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
+  {"pwTestLine":60,"pickleLine":48,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":61,"gherkinStepLine":49,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":62,"gherkinStepLine":50,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":63,"gherkinStepLine":51,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"First Name\" field populated with the value entered during patient creation for first name field.","stepMatchArguments":[{"group":{"start":20,"value":"\"First Name\"","children":[{"start":21,"value":"First Name","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
+  {"pwTestLine":66,"pickleLine":53,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":67,"gherkinStepLine":54,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":68,"gherkinStepLine":55,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":69,"gherkinStepLine":56,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Last Name\" field populated with the value entered during patient creation for last name field.","stepMatchArguments":[{"group":{"start":20,"value":"\"Last Name\"","children":[{"start":21,"value":"Last Name","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
+  {"pwTestLine":72,"pickleLine":58,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":73,"gherkinStepLine":59,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":74,"gherkinStepLine":60,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":75,"gherkinStepLine":61,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Email\" field populated with the value entered during patient creation for email field.","stepMatchArguments":[{"group":{"start":20,"value":"\"Email\"","children":[{"start":21,"value":"Email","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
+  {"pwTestLine":78,"pickleLine":63,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":79,"gherkinStepLine":64,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":80,"gherkinStepLine":65,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":81,"gherkinStepLine":66,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Contact Number\" field populated with the value entered during patient creation for contact number field.","stepMatchArguments":[{"group":{"start":20,"value":"\"Contact Number\"","children":[{"start":21,"value":"Contact Number","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
+  {"pwTestLine":84,"pickleLine":68,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":85,"gherkinStepLine":69,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":86,"gherkinStepLine":70,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":87,"gherkinStepLine":71,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Allergy Info\" field populated with the value entered during patient creation for allergy info field.","stepMatchArguments":[{"group":{"start":20,"value":"\"Allergy Info\"","children":[{"start":21,"value":"Allergy Info","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
+  {"pwTestLine":90,"pickleLine":73,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":91,"gherkinStepLine":74,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":92,"gherkinStepLine":75,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":93,"gherkinStepLine":76,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Food Preference\" field populated with the value entered during patient creation for food preference field.","stepMatchArguments":[{"group":{"start":20,"value":"\"Food Preference\"","children":[{"start":21,"value":"Food Preference","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
+  {"pwTestLine":96,"pickleLine":78,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":97,"gherkinStepLine":79,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":98,"gherkinStepLine":80,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":99,"gherkinStepLine":81,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"Cuisine Preference\" field populated with the value entered during patient creation for cuisine preference field.","stepMatchArguments":[{"group":{"start":20,"value":"\"Cuisine Preference\"","children":[{"start":21,"value":"Cuisine Preference","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
+  {"pwTestLine":102,"pickleLine":83,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":103,"gherkinStepLine":84,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":104,"gherkinStepLine":85,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":105,"gherkinStepLine":86,"keywordType":"Outcome","textWithKeyword":"Then User should see the \"DOB\" field populated with the value entered during patient creation for DOB field.","stepMatchArguments":[{"group":{"start":20,"value":"\"DOB\"","children":[{"start":21,"value":"DOB","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
   {"pwTestLine":108,"pickleLine":88,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":109,"gherkinStepLine":89,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":110,"gherkinStepLine":90,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":111,"gherkinStepLine":91,"keywordType":"Outcome","textWithKeyword":"Then User should see vitals title after DOB field","stepMatchArguments":[]}]},
   {"pwTestLine":114,"pickleLine":93,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":115,"gherkinStepLine":94,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":116,"gherkinStepLine":95,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":117,"gherkinStepLine":96,"keywordType":"Outcome","textWithKeyword":"Then User should see SP place holder in SP field","stepMatchArguments":[]}]},
   {"pwTestLine":120,"pickleLine":98,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is on the dashboard page after login","isBg":true,"stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":5,"keywordType":"Action","textWithKeyword":"When User clicks \"My patients\" button","isBg":true,"stepMatchArguments":[{"group":{"start":12,"value":"\"My patients\"","children":[{"start":13,"value":"My patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":6,"keywordType":"Outcome","textWithKeyword":"Then User should be navigated to the \"My Patients\" page and should see the list of existing patients","isBg":true,"stepMatchArguments":[{"group":{"start":32,"value":"\"My Patients\"","children":[{"start":33,"value":"My Patients","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":121,"gherkinStepLine":99,"keywordType":"Context","textWithKeyword":"Given User is in my patient page","stepMatchArguments":[]},{"pwStepLine":122,"gherkinStepLine":100,"keywordType":"Action","textWithKeyword":"When User clicks edit icon for the particular patient","stepMatchArguments":[]},{"pwStepLine":123,"gherkinStepLine":101,"keywordType":"Outcome","textWithKeyword":"Then User should see DP place holder in DP field","stepMatchArguments":[]}]},

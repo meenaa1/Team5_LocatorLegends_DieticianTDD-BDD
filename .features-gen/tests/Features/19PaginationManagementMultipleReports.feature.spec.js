@@ -1,7 +1,7 @@
-// Generated from: tests\Features\PaginationManagementMultipleReports.feature
+// Generated from: tests\Features\19PaginationManagementMultipleReports.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
-test.describe('Pagination management with multiple records', () => {
+test.describe('Pagination management with multiple records in View Patient Test Reports', () => {
 
   test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
     await Given('User is in View Patient Test Reports page with multiple records already existing in the system for that user'); 
@@ -112,7 +112,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\PaginationManagementMultipleReports.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\19PaginationManagementMultipleReports.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

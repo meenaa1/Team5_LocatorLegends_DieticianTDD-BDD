@@ -1,4 +1,4 @@
-// Generated from: tests\Features\PaginationWithNoDataTestReport.feature
+// Generated from: tests\Features\21PaginationWithNoDataTestReport.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management when no data exists in the table', () => {
@@ -28,7 +28,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\PaginationWithNoDataTestReport.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\21PaginationWithNoDataTestReport.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

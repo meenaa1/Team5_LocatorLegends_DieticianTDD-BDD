@@ -1,6 +1,6 @@
 import { createBdd } from "playwright-bdd";
-import { test } from "../Fixtures/testFixtures.js"; 
-import { expect } from "@playwright/test";
+import { test } from "../Fixtures/testFixtures.js";
+import logger from '../../utils/Logger.js';
 
 const { Given, When, Then } = createBdd(test);
 

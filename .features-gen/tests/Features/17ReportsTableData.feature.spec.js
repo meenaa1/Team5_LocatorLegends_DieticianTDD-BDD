@@ -1,4 +1,4 @@
-// Generated from: tests\Features\ReportsTableData.feature
+// Generated from: tests\Features\17ReportsTableData.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Reports table data scenarios', () => {
@@ -70,7 +70,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\ReportsTableData.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\17ReportsTableData.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 
