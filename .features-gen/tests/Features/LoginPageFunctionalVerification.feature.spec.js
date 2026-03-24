@@ -1,50 +1,50 @@
 // Generated from: tests\Features\LoginPageFunctionalVerification.feature
-import { test } from "playwright-bdd";
+import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Login page Functional Verification', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is on the login page'); 
+  test.beforeEach('Background', async ({ Given, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is on the login page', null, { loginPage }); 
   });
   
-  test('Verify Login with valid credential', async ({ When, Then }) => { 
-    await When('User clicks login button after entering valid credentials'); 
-    await Then('User should be redirected to dashboard page'); 
+  test('Verify Login with valid credential', async ({ When, Then, loginPage }) => { 
+    await When('User clicks login button after entering valid credentials', null, { loginPage }); 
+    await Then('User should be redirected to dashboard page', null, { loginPage }); 
   });
 
-  test('Verify Login with non-existing user', async ({ When, Then }) => { 
-    await When('User clicks login button after entering non existing user'); 
-    await Then('An error message "Invalid username or password" should be displayed'); 
+  test('Verify Login with non-existing user', async ({ When, Then, loginPage }) => { 
+    await When('User clicks login button after entering non existing user', null, { loginPage }); 
+    await Then('An error message "Invalid username or password" should be displayed', null, { loginPage }); 
   });
 
-  test('Verify Login with spl charac in user name', async ({ When, Then }) => { 
-    await When('User clicks login button after entering spl charac in username'); 
-    await Then('An error message "Invalid username or password" should be displayed'); 
+  test('Verify Login with spl charac in user name', async ({ When, Then, loginPage }) => { 
+    await When('User clicks login button after entering spl charac in username', null, { loginPage }); 
+    await Then('An error message "Invalid username or password" should be displayed', null, { loginPage }); 
   });
 
-  test('Verify Login with only few charac of username', async ({ When, Then }) => { 
-    await When('User clicks login button after entering only few charac of username'); 
-    await Then('An error message "Invalid username or password" should be displayed'); 
+  test('Verify Login with only few charac of username', async ({ When, Then, loginPage }) => { 
+    await When('User clicks login button after entering only few charac of username', null, { loginPage }); 
+    await Then('An error message "Invalid username or password" should be displayed', null, { loginPage }); 
   });
 
-  test('Verify Login with wrong password', async ({ When, Then }) => { 
-    await When('User clicks login button after entering wrong password'); 
-    await Then('An error message "Invalid username or password" should be displayed'); 
+  test('Verify Login with wrong password', async ({ When, Then, loginPage }) => { 
+    await When('User clicks login button after entering wrong password', null, { loginPage }); 
+    await Then('An error message "Invalid username or password" should be displayed', null, { loginPage }); 
   });
 
-  test('Verify Login with spl charac in password', async ({ When, Then }) => { 
-    await When('User clicks login button after entering spl charach in password'); 
-    await Then('An error message "Invalid username or password" should be displayed'); 
+  test('Verify Login with spl charac in password', async ({ When, Then, loginPage }) => { 
+    await When('User clicks login button after entering spl charach in password', null, { loginPage }); 
+    await Then('An error message "Invalid username or password" should be displayed', null, { loginPage }); 
   });
 
-  test('Verify Login with empty username field', async ({ When, Then }) => { 
-    await When('User clicks login button after entering only password'); 
-    await Then('An error message Username is Required should be displayed'); 
+  test('Verify Login with empty username field', async ({ When, Then, loginPage }) => { 
+    await When('User clicks login button after entering only password', null, { loginPage }); 
+    await Then('An error message Username is Required should be displayed', null, { loginPage }); 
   });
 
-  test('Verify Login with empty password field', async ({ When, Then }) => { 
-    await When('User clicks login button after entering only username'); 
-    await Then('An error message Password is Required should be displayed'); 
+  test('Verify Login with empty password field', async ({ When, Then, loginPage }) => { 
+    await When('User clicks login button after entering only username', null, { loginPage }); 
+    await Then('An error message Password is Required should be displayed', null, { loginPage }); 
   });
 
 });
