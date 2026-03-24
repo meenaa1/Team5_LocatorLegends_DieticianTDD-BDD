@@ -1,4 +1,4 @@
-Feature: Pagination management with multiple records
+Feature: Pagination management with multiple records in View Patient Test Reports
 
   Background:
     Given User is in View Patient Test Reports page with multiple records already existing in the system for that user

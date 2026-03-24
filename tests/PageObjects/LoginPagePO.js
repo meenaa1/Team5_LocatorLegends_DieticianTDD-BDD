@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const LoginData = require('../TestData/loginTestData.json');
+const LoginData = require('../TestData/LoginTestData.json');
 
 class LoginPagePo {
     constructor(page) {
