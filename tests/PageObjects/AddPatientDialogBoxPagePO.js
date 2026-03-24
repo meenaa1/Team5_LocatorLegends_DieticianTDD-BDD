@@ -1,3 +1,5 @@
+ import { expect } from '@playwright/test';
+ 
  class AddPatientDialogBoxPagePO {
 
   constructor(page) {
@@ -67,6 +69,7 @@
   }
 
   async getPlaceholder(locator) {
+
     return await locator.getAttribute('placeholder');
   }
 
@@ -86,10 +89,6 @@
     return await this.dialogContainer.evaluate(el =>
       el.scrollHeight > el.clientHeight
     );
-  }
-
-  async getPlaceholder(locator) {
-    return await locator.getAttribute('placeholder');
   }
 
   
