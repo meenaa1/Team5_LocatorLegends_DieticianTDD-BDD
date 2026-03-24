@@ -43,7 +43,7 @@ Then('User should see {int} dropdowns in the Add Patient Details dialog box', as
     logger.info(`User sees ${arg} dropdowns in the Add Patient Details dialog box`);
 });
 
-Then('User should see a date picker for DOB field with MM\\/DD\\/YYYY displayed', async ({ addPatientPage }) => {
+Then('User should see a date picker for DOB field with MM DD YYYY displayed', async ({ addPatientPage }) => {
     const dobPlaceholder = await addPatientPage.getPlaceholder(addPatientPage.dob);
     expect(dobPlaceholder).toBe('MM/DD/YYYY');    
     logger.info('User sees a date picker for DOB field with MM/DD/YYYY displayed');
