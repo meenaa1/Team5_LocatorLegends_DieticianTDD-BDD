@@ -54,7 +54,9 @@ Then('Close icon {string} should be displayed', async ({}, arg) => {
   // From: tests\Features\PatientInfoSection.feature:39:5
 });
 
-// ViewPatient Test Reports Table Steps
+
+
+// 16 ViewPatient Test Reports Table Steps
 
 
 Then('Reports table shouldbe displayed', async ({}) => {
@@ -77,7 +79,9 @@ Then('Pagination controls First, previous, next, last arrows should be displayed
   // From: tests\Features\ViewPatientTestReportsTable.feature:24:5
 });
 
-// Report Table Data Scenarios Stepdefinitions
+
+
+// 17 Report Table Data Scenarios Stepdefinitions
 
 
 Then('Each report should display a record number', async ({}) => {
