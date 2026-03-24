@@ -3,6 +3,9 @@ import { expect } from "@playwright/test";
 export class EditPage{
     constructor(page){
         this.page = page;
+        this.myPatientsButton = page.getByRole('button', { name: 'My Patients' });
+        this.myPatientTitle = page.getByRole('heading', { name: 'My Patients' });
+        this.PatientsListRows = page.locator("xpath = //table/tbody/tr");
         this.submitButton = page.getByRole('button', { name: 'Submit' });
         this.closeButton = page.getByRole('button', { name: 'Close' });
         this.inputFields = page.locator('.input-field');
@@ -38,6 +41,16 @@ export class EditPage{
 
     }
 
+
+    async clickMyPatientsButton(){
+        await this.myPatientsButton.click();
+    }
+    async verifyMyPatientsTitleVisible(){
+        await expect(this.myPatientTitle).toBeVisible();
+    }
+    async verifyPatientsListVisible(){
+        await expect(this.PatientsListRows).toHaveCountGreaterThan(0);
+    }
     async isSubmitButtonVisible(){
         await expect(this.submitButton).toBeVisible();
     }
@@ -50,14 +63,14 @@ export class EditPage{
     async isCloseButtonEnabled(){
         await expect(this.closeButton).toBeEnabled();
     }
-    async VerifyInputFieldCount(){
-        await expect(await this.inputFields).toHaveCount(9);
+    async VerifyInputFieldCount(expectedCount){
+        await expect(await this.inputFields).toHaveCount(expectedCount);
     }
-    async VerifyDropdownCount(){
-        await expect(await this.dropdowns).toHaveCount(3);
+    async VerifyDropdownCount(expectedCount){
+        await expect(await this.dropdowns).toHaveCount(expectedCount);
     }
-    async VerifyFileUploadOptionCount(){
-        await expect(await this.fileUploadOption).toHaveCount(1);
+    async VerifyFileUploadOptionCount(expectedCount){
+        await expect(await this.fileUploadOption).toHaveCount(expectedCount);
     }
     async getFirstNameFieldValue(){
         return await this.firstNameInput.inputValue();

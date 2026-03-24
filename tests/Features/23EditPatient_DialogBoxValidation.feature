@@ -48,42 +48,42 @@ Then User should see exactly 1 file upload option
 Scenario: Presence of first name of the patient
 Given User is in my patient page
 When User clicks edit icon for the particular patient
-Then User should see the ‘First Name’ field populated with the value entered during patient creation.
+Then User should see the "First Name" field populated with the value entered during patient creation for first name field.
 
 Scenario: Presence of last name of the patient
 Given User is in my patient page
 When User clicks edit icon for the particular patient
-Then User should see the "Last Name" field populated with the value entered during patient creation
+Then User should see the "Last Name" field populated with the value entered during patient creation for last name field.
 
 Scenario: Presence of Email of the patient
 Given User is in my patient page
 When User clicks edit icon for the particular patient
-Then User should see the "Email" field populated with the value entered during patient creation
+Then User should see the "Email" field populated with the value entered during patient creation for email field.
 
 Scenario: Presence of Contact Number of the patient
 Given User is in my patient page
 When User clicks edit icon for the particular patient
-Then User should see the "Contact Number" field populated with the value entered during patient creation
+Then User should see the "Contact Number" field populated with the value entered during patient creation for contact number field.
 
 Scenario: Presence of  allergy info of the patient 
 Given User is in my patient page
 When User clicks edit icon for the particular patient
-Then User should see the "Allergy Info" field populated with the value entered during patient creation
+Then User should see the "Allergy Info" field populated with the value entered during patient creation for allergy info field.
 
 Scenario: Presence of patients food preference
 Given User is in my patient page
 When User clicks edit icon for the particular patient
-Then User should see the "Food Preference" field populated with the value entered during patient creation
+Then User should see the "Food Preference" field populated with the value entered during patient creation for food preference field.
 
 Scenario: Presence of patients cuisine preference
 Given User is in my patient page
 When User clicks edit icon for the particular patient
-Then User should see the "Cuisine Preference" field populated with the value entered during patient creation
+Then User should see the "Cuisine Preference" field populated with the value entered during patient creation for cuisine preference field.
 
 Scenario: Presence of patients DOB info
 Given User is in my patient page
 When User clicks edit icon for the particular patient
-Then User should see the "DOB" field populated with the value entered during patient creation
+Then User should see the "DOB" field populated with the value entered during patient creation for DOB field.
 
 Scenario: Presence of sub titleVitals 
 Given User is in my patient page

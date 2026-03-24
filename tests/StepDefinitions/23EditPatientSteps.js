@@ -1,127 +1,135 @@
 import { createBdd } from "playwright-bdd";
 import { EditPage } from "../PageObjects/EditPagePom";
+import { LoginPagePo } from "../PageObjects/LoginPagePO";
+import { test } from "../Fixtures/testFixtures.js"; 
 const{Given,When, Then} = createBdd();
+// const editPage = new EditPage();
+// const loginPage = new LoginPagePo();
 
-Given('User is on the dashboard page after login', async ({}) => {
+Given('User is on the dashboard page after login', async ({loggedInPage}) => {
   
-    
+    loggedInPage.navigate();
+    loggedInPage.login();
+
 });
 
-When('User clicks {string} button', async ({}, arg) => {
-  // Step: When User clicks "My patients" button
-  // From: tests\Features\EditPatient.feature:5:1
+When('User clicks {string} button', async ({editPage}, arg) => {
+  
+    await editPage.clickMyPatientsButton();
 });
 
-Then('User should be navigated to the {string} page and should see the list of existing patients', async ({}, arg) => {
-  // Step: Then User should be navigated to the "My Patients" page and should see the list of existing patients
-  // From: tests\Features\EditPatient.feature:6:1
+Then('User should be navigated to the {string} page and should see the list of existing patients', async ({editPage}, arg) => {
+    await editPage.verifyMyPatientsTitleVisible();
+    await editPage.verifyPatientsListVisible();
 });
 
-Given('User is in my patient page', async ({}) => {
-  // Step: Given User is in my patient page
-  // From: tests\Features\EditPatient.feature:9:1
+Given('User is in my patient page', async ({editPage}) => {
+    await editPage.verifyMyPatientsTitleVisible();
 });
 
-When('User clicks edit icon for the particular patient', async ({}) => {
-  // Step: When User clicks edit icon for the particular patient
-  // From: tests\Features\EditPatient.feature:10:1
+When('User clicks edit icon for the particular patient', async ({editPage}) => {
+    await editPage.clickEditIconForPatient();
 });
 
-Then('User should see  Edit Patient page on the dialog box', async ({}) => {
-  // Step: Then User should see  Edit Patient page on the dialog box
-  // From: tests\Features\EditPatient.feature:11:1
+Then('User should see  Edit Patient page on the dialog box', async ({editPage}) => {
+    await editPage.verifyEditPatientTitleVisible();
 });
 
-Then('User should see  submit button', async ({}) => {
-  // Step: Then User should see  submit button
-  // From: tests\Features\EditPatient.feature:16:1
+Then('User should see  submit button', async ({editPage}) => {
+    await editPage.isSubmitButtonVisible();
 });
 
-Then('User should see submit button in enable mode', async ({}) => {
-  // Step: Then User should see submit button in enable mode
-  // From: tests\Features\EditPatient.feature:21:1
+Then('User should see submit button in enable mode', async ({editPage}) => {
+    await editPage.isSubmitButtonEnabled();
 });
 
-Then('User should see  close button', async ({}) => {
-  // Step: Then User should see  close button
-  // From: tests\Features\EditPatient.feature:26:1
+Then('User should see  close button', async ({editPage}) => {
+    await editPage.iscloseButtonVisible();
 });
 
-Then('User should see close button in enable mode', async ({}) => {
-  // Step: Then User should see close button in enable mode
-  // From: tests\Features\EditPatient.feature:31:1
+Then('User should see close button in enable mode', async ({editPage}) => {
+    await editPage.isCloseButtonEnabled();
 });
-Then('User should see {int} input field', async ({}, arg) => {
-  // Step: Then User should see 9 input field
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:36:1
-});
-
-Then('User should see {int} drop down', async ({}, arg) => {
-  // Step: Then User should see 3 drop down
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:41:1
+Then('User should see {int} input field', async ({editPage}, expectedCount) => {
+  
+    await editPage.VerifyInputFieldCount(expectedCount);
 });
 
-Then('User should see exactly {int} file upload option', async ({}, arg) => {
-  // Step: Then User should see exactly 1 file upload option
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:46:1
+Then('User should see {int} drop down', async ({editPage}, expectedCount) => {
+    await editPage.VerifyDropdownCount(expectedCount);
 });
 
-Then('User should see the ‘First Name’ field populated with the value entered during patient creation.', async ({}) => {
-  // Step: Then User should see the ‘First Name’ field populated with the value entered during patient creation.
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:51:1
+Then('User should see exactly {int} file upload option', async ({editPage}, expectedCount) => {
+    await editPage.VerifyFileUploadOptionCount(expectedCount);
 });
 
-Then('User should see the {string} field populated with the value entered during patient creation', async ({}, arg) => {
-  // Step: Then User should see the "Last Name" field populated with the value entered during patient creation
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:56:1
+Then('User should see the {string} field populated with the value entered during patient creation for first name field.', async ({editPage}, expectedFirstName) => {
+    await editPage.VerifyFirstNameFieldPopulated(this.createdPatientData.firstName);
 });
 
-Then('User should see vitals title after DOB field', async ({}) => {
-  // Step: Then User should see vitals title after DOB field
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:91:1
+Then('User should see the {string} field populated with the value entered during patient creation for last name field.', async ({editPage}, expectedLastName) => {
+    await editPage.VerifyLastNameFieldPopulated(this.createdPatientData.lastName);
 });
 
-Then('User should see SP place holder in SP field', async ({}) => {
-  // Step: Then User should see SP place holder in SP field
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:96:1
+Then('User should see the {string} field populated with the value entered during patient creation for email field.', async ({editPage}, expectedEmail) => {
+    await editPage.VerifyEmailFieldPopulated(this.createdPatientData.email);
 });
 
-Then('User should see DP place holder in DP field', async ({}) => {
-  // Step: Then User should see DP place holder in DP field
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:101:1
+Then('User should see the {string} field populated with the value entered during patient creation for contact number field.', async ({editPage}, expectedContactNumber) => {       
+    await editPage.VerifyContactNumberFieldPopulated(this.createdPatientData.contactNumber);
 });
 
-Then('User should see Weight place holder in Weight field', async ({}) => {
-  // Step: Then User should see Weight place holder in Weight field
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:106:1
+Then('User should see the {string} field populated with the value entered during patient creation for allergy info field.', async ({editPage}, expectedAllergy) => {
+    await editPage.VerifyAllergyInfoFieldPopulated(this.createdPatientData.allergyInfo);
 });
 
-Then('User should see Height place holder in Height field', async ({}) => {
-  // Step: Then User should see Height place holder in Height field
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:111:1
+Then('User should see the {string} field populated with the value entered during patient creation for food preference field.', async ({editPage}, expectedFoodPreference) => {      
+    await editPage.verifyFoodPreferenceFieldPopulated(this.createdPatientData.foodPreference);
 });
 
-Then('User should see Tempature place holder in Tempature field', async ({}) => {
-  // Step: Then User should see Tempature place holder in Tempature field
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:116:1
+Then('User should see the {string} field populated with the value entered during patient creation for cuisine preference field.', async ({editPage}, expectedCuisinePreference) => {   
+    await editPage.verifyCuisinePreferenceFieldPopulated(this.createdPatientData.cuisinePreference);
 });
 
-Then('User should not see mandatory indicators for Vitals Information fields', async ({}) => {
-  // Step: Then User should not see mandatory indicators for Vitals Information fields
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:121:1
+Then('User should see the {string} field populated with the value entered during patient creation for DOB field.', async ({editPage}, expectedDOB) => {
+    await editPage.verifyDOBFieldPopulated(this.createdPatientData.DOB);
 });
 
-Then('User should see Upload health report : text for Upload button', async ({}) => {
-  // Step: Then User should see Upload health report : text for Upload button
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:126:1
+Then('User should see vitals title after DOB field', async ({editPage}) => {
+    await editPage.isVitalsTitleAfterDOBField();
+});
+Then('User should see SP place holder in SP field', async ({editPage}) => {
+   await editPage.isSPPlaceHolderInSPField();
 });
 
-Then('User should see {string} text', async ({}, arg) => {
-  // Step: Then User should see "No File Choosen" text
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:131:1
+Then('User should see DP place holder in DP field', async ({editPage}) => {
+  await editPage.isDPPlaceHolderInDPField();
 });
 
-Then('Close button should have red color', async ({}) => {
-  // Step: Then Close button should have red color
-  // From: tests\Features\EditPatient_DialogBoxValidation.feature:136:1
+Then('User should see Weight place holder in Weight field', async ({editPage}) => {
+  await editPage.isWeightPlaceHolderInWeightField();
+});
+
+Then('User should see Height place holder in Height field', async ({editPage}) => {
+  await editPage.isHeightPlaceHolderInHeightField();
+});
+
+Then('User should see Tempature place holder in Tempature field', async ({editPage}) => {
+   await editPage.isTempaturePlaceHolderInTempatureField();
+});
+
+Then('User should not see mandatory indicators for Vitals Information fields', async ({editPage}) => {
+    await editPage.verifyVitalFieldsAreNotMandatory();
+});
+
+Then('User should see Upload health report : text for Upload button', async ({editPage}) => {
+    await editPage.isUploadHealthReportTextVisible();
+});
+
+Then('User should see {string} text', async ({editPage}, arg) => {
+    await editPage.isNoFilesChoosenTextVisible();
+});
+
+Then('Close button should have red color', async ({editPage}) => {
+    await editPage.verifyCloseButtonColor();
 });
