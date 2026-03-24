@@ -10,77 +10,76 @@ const { Given, When, Then } = createBdd(test);
 let addPatientPage;
 let loginPage;
 
-Given('User is in home page after login', async ({ page }) => {
-    loginPage = new LoginPagePo(page);
+Given('User is in home page after login', async ({ loginPage, addPatientPage }) => {
+    
     await loginPage.navigate();
     await loginPage.login(process.env.username, process.env.password);
-    addPatientPage = new AddPatientDialogBoxPagePO(page);
-  const isHomePageDisplayed = await addPatientPage.isHomePageDisplayed();
-  expect(isHomePageDisplayed).toBeTruthy();
+    const isHomePageDisplayed = await addPatientPage.isHomePageDisplayed();
+    expect(isHomePageDisplayed).toBeTruthy();
     logger.info('User is on the home page after login'); 
 });
 
-When('User clicks on New Patient in the header section', async ({ page }) => {
+When('User clicks on New Patient in the header section', async ({ addPatientPage }) => {
     await addPatientPage.clickNewPatient();
 
     logger.info('User clicked on New Patient in the header section');
 });
 
-Then('User should see Add Patient Details on the dialog box', async ({ page }) => {
+Then('User should see Add Patient Details on the dialog box', async ({ addPatientPage }) => {
     const title = await addPatientPage.getDialogTitle();
     expect(title).toBe('Add Patient Details');
     logger.info('User sees Add Patient Details on the dialog box');
 });
 
-Then('User should see {int} input boxes in the Add Patient Details dialog box', async ({ page }, arg)=> {
+Then('User should see {int} input boxes in the Add Patient Details dialog box', async ({ addPatientPage }, arg)=> {
     const inputCount = await addPatientPage.getInputCount();
     expect(inputCount).toBe(arg);
     logger.info(`User sees ${arg} input boxes in the Add Patient Details dialog box`);
 });
 
-Then('User should see {int} dropdowns in the Add Patient Details dialog box', async ({page}, arg) => {
+Then('User should see {int} dropdowns in the Add Patient Details dialog box', async ({ addPatientPage }, arg) => {
     const dropdownCount = await addPatientPage.getDropdownCount();
     expect(dropdownCount).toBe(arg);   
     logger.info(`User sees ${arg} dropdowns in the Add Patient Details dialog box`);
 });
 
-Then('User should see a date picker for DOB field with MM\\/DD\\/YYYY displayed', async ({page}) => {
+Then('User should see a date picker for DOB field with MM\\/DD\\/YYYY displayed', async ({ addPatientPage }) => {
     const dobPlaceholder = await addPatientPage.getPlaceholder(addPatientPage.dob);
     expect(dobPlaceholder).toBe('MM/DD/YYYY');    
     logger.info('User sees a date picker for DOB field with MM/DD/YYYY displayed');
 });
 
-Then('User should see exactly {int} file upload option in Add Patient Details dialog box', async ({}, arg) => {
+Then('User should see exactly {int} file upload option in Add Patient Details dialog box', async ({ addPatientPage }, arg) => {
     const fileUploadCount = await addPatientPage.getFileUploadCount();
     expect(fileUploadCount).toBe(arg);
     logger.info(`User sees exactly ${arg} file upload option in Add Patient Details dialog box`);
 });
 
-Then('User should see one Submit button', async ({}) => {
+Then('User should see one Submit button', async ({ addPatientPage }) => {
   const issummitVisible = await addPatientPage.submitBtn.isVisible();
   expect(issummitVisible).toBeTruthy();
     logger.info('User sees one Submit button');
 });
 
-Then('User should see one Submit button in disabled state', async ({}) => {
+Then('User should see one Submit button in disabled state', async ({ addPatientPage }) => {
   const isSubmitDisabled = await addPatientPage.submitBtn.isDisabled();
   expect(isSubmitDisabled).toBeTruthy();
   logger.info('User sees one Submit button in disabled state');
 });
 
-Then('User should see one Close button', async ({}) => {
+Then('User should see one Close button', async ({ addPatientPage }) => {
     const isCloseVisible = await addPatientPage.closeBtn.isVisible();
     expect(isCloseVisible).toBeTruthy();
     logger.info('User sees one Close button');
 });
 
-Then('User should see one Close button in enabled state', async ({}) => {
+Then('User should see one Close button in enabled state', async ({ addPatientPage }) => {
     const isCloseEnabled = await addPatientPage.closeBtn.isEnabled();
     expect(isCloseEnabled).toBeTruthy();    
     logger.info('User sees one Close button in enabled state');
 }); 
 
-Then('User should see mandatory field with placeholder {string}', async ({}, arg) => {
+Then('User should see mandatory field with placeholder {string}', async ({ addPatientPage }, arg) => {
   const mandatoryFields = {
     "First name": addPatientPage.firstName,
     "Last name": addPatientPage.lastName,
@@ -100,7 +99,7 @@ Then('User should see mandatory field with placeholder {string}', async ({}, arg
 });
       
 
-Then('User should see mandatory dropdown with placeholder {string}', async ({}, arg) => {
+Then('User should see mandatory dropdown with placeholder {string}', async ({ addPatientPage }, arg) => {
     const mandatoryDropdowns = {
       "Allergies": addPatientPage.allergies,
       "Food Preference": addPatientPage.foodPreference,
@@ -118,7 +117,7 @@ Then('User should see mandatory dropdown with placeholder {string}', async ({}, 
     logger.info(`User sees mandatory dropdown with placeholder ${arg}`);
 });
 
-Then('User should see mandatory DOB with placeholder {string}', async ({}, arg) => {
+Then('User should see mandatory DOB with placeholder {string}', async ({ addPatientPage }, arg) => {
  
 
     const locator = addPatientPage.dob;
@@ -132,7 +131,7 @@ Then('User should see mandatory DOB with placeholder {string}', async ({}, arg) 
     logger.info(`User sees mandatory DOB with placeholder ${arg}`);
 });
 
-Then('User should see non-manadatory field placeholder with {string}', async ({}, arg) => {
+Then('User should see non-manadatory field placeholder with {string}', async ({ addPatientPage }, arg) => {
     const nonMandatoryFields = {
       "Weight": addPatientPage.weight,
       "Height": addPatientPage.height,
@@ -152,19 +151,19 @@ Then('User should see non-manadatory field placeholder with {string}', async ({}
     logger.info(`User sees non-mandatory field with placeholder ${arg}`);
 });
 
-Then('User should see text Upload Health Report', async ({}) => {
+Then('User should see text Upload Health Report', async ({ addPatientPage }) => {
     const uploadText = await addPatientPage.getUploadText();
     expect(uploadText).toBe('Upload Health Report');
     logger.info('User sees text Upload Health Report');
 });
 
-Then('User should see text No file Chosen', async ({}) => {
+Then('User should see text No file Chosen', async ({ addPatientPage }) => {
     const noFileChosenText = await addPatientPage.getNoFileText();
     expect(noFileChosenText).toBe('No file chosen');
     logger.info('User sees text No file Chosen');
 });
 
-Then('User should see a scroll bar at the right side of dialog box', async ({}) => {
+Then('User should see a scroll bar at the right side of dialog box', async ({ addPatientPage}) => {
     const hasScrollBar = await addPatientPage.hasVerticalScrollBar();
     expect(hasScrollBar).toBeTruthy();
     logger.info('User sees a scroll bar at the right side of dialog box');
