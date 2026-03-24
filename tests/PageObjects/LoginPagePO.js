@@ -11,10 +11,7 @@ class LoginPagePo {
         this.navBar = page.locator('nav');
 
         // Colors
-        this.EXPECTED_COLORS = {
-            BLUE_PURPLE: 'rgb(63, 81, 181)',
-            WHITE: 'rgb(255, 255, 255)'
-        };
+        this.EXPECTED_COLORS = {BLUE_PURPLE: 'rgb(63, 81, 181)', WHITE: 'rgb(255, 255, 255)'};
 
         // Login card
         this.heading = page.getByRole('heading', { name: 'Dietician Application' });
