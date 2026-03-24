@@ -1,4 +1,4 @@
-const { expect } = require('@playwright/test');
+import { expect } from '@playwright/test';
 const LoginData = require('../TestData/LoginTestData.json');
 
 class LoginPagePo {

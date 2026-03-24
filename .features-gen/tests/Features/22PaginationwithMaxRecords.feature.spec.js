@@ -1,4 +1,4 @@
-// Generated from: tests\Features\PaginationwithMaxRecords.feature
+// Generated from: tests\Features\22PaginationwithMaxRecords.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management with maximum record in a page to view the TestReports', () => {
@@ -7,8 +7,8 @@ test.describe('Pagination management with maximum record in a page to view the T
     await Given('User is in view patient test report page with multiple records already exist in the system for that user'); 
   });
   
-  test('Verify that Each page should display only 2  records', async ({ Given, When, Then }) => { 
-    await Given('User is in dietician application dashboard page'); 
+  test('Verify that Each page should display only 2  records', async ({ Given, When, Then, dashboardPage }) => { 
+    await Given('User is in dietician application dashboard page', null, { dashboardPage }); 
     await When('User clicks on My Patients button and clicks on View Patient Test Reports button'); 
     await Then('User should see only 2 records in each page inside the View Test report Popup'); 
   });
@@ -22,7 +22,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\PaginationwithMaxRecords.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\22PaginationwithMaxRecords.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

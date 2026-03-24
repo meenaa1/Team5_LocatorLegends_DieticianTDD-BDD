@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd';
 
 const testDir = defineBddConfig({
-  features: ['tests/Features/EditPatient_DialogBoxValidation.feature'],   
+  features: ['tests/Features/**/*.feature'],   
   steps: ['tests/StepDefinitions/**/*.js', 'tests/Hooks/Hooks.js', 'tests/Fixtures/testFixtures.js'], 
 });
 

@@ -1,4 +1,4 @@
-// Generated from: tests\Features\PatientInfoSection.feature
+// Generated from: tests\Features\15PatientInfoSection.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Patient information section', () => {
@@ -58,7 +58,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\PatientInfoSection.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\15PatientInfoSection.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

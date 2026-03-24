@@ -1,4 +1,4 @@
-// Generated from: tests\Features\AddPatientDialogBoxValidation.feature
+// Generated from: tests\Features\13AddPatientDialogBoxValidation.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Add Patient Dialog Box -Validation', () => {
@@ -117,7 +117,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\AddPatientDialogBoxValidation.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\13AddPatientDialogBoxValidation.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

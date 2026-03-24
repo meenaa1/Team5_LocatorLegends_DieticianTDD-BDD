@@ -1,4 +1,4 @@
-// Generated from: tests\Features\PaginationReportWOneReportToView.feature
+// Generated from: tests\Features\20PaginationReportWOneReportToView.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management with only one record(Test Report) to View', () => {
@@ -22,7 +22,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\PaginationReportWOneReportToView.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\20PaginationReportWOneReportToView.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

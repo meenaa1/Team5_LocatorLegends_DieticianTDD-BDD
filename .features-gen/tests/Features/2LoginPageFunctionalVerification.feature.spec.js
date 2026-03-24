@@ -1,4 +1,4 @@
-// Generated from: tests\Features\LoginPageFunctionalVerification.feature
+// Generated from: tests\Features\2LoginPageFunctionalVerification.feature
 import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Login page Functional Verification', () => {
@@ -56,7 +56,7 @@ test.afterEach('AfterEach Hooks', ({ $runScenarioHooks, page }) => $runScenarioH
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('tests\\Features\\LoginPageFunctionalVerification.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('tests\\Features\\2LoginPageFunctionalVerification.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 
