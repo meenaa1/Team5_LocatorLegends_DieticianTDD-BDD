@@ -1,0 +1,48 @@
+{
+  "validUser": {
+    "username": "validUser123",
+    "password": "ValidPass!23"
+  },
+  "invalidUsers": [
+    {
+      "type": "nonExistingUser",
+      "username": "nonexistinguser",
+      "password": "anyPassword123",
+      "error": "Invalid username or password"
+    },
+    {
+      "type": "specialCharUsername",
+      "username": "!@#$%",
+      "password": "anyPassword123",
+      "error": "Invalid username or password"
+    },
+    {
+      "type": "shortUsername",
+      "username": "ab",
+      "password": "anyPassword123",
+      "error": "Invalid username or password"
+    },
+    {
+      "type": "wrongPassword",
+      "username": "validUser123",
+      "password": "wrongPassword123",
+      "error": "Invalid username or password"
+    },
+    {
+      "type": "specialCharPassword",
+      "username": "validUser123",
+      "password": "!@#$%",
+      "error": "Invalid username or password"
+    },
+    {
+      "type": "emptyUsername",
+      "password": "somePassword",
+      "error": "Username is Required"
+    },
+    {
+      "type": "emptyPassword",
+      "username": "validUser123",
+      "error": "Password is Required"
+    }
+  ]
+}

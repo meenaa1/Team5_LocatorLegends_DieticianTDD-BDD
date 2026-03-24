@@ -15,7 +15,7 @@ Then('First, previous, next, last arrows should be disabled', async ({}) => {
   // From: tests\Features\PaginationWoneRecord.feature:9:5
 });
 
-//Zero RECORDS Then Steps
+//10 Zero RECORDS Then Steps
 
 Then('{string} should be displayed', async ({}, arg) => {
   // Step: Then "Showing 0 to 0 of 0 patients" should be displayed

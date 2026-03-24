@@ -1,6 +1,5 @@
 const winston = require('winston');
 const path = require('path');
-const moment = require('moment-timezone');
 const fs = require('fs');
 
 // Create logging directory if missing
@@ -10,7 +9,7 @@ if (!fs.existsSync(loggingDir)) {
 }
 
 // Choose timezone
-const timeZone = 'America/New_York'; // change if needed
+const timeZone = 'America/New_York'; 
 
 // Log format
 const customFormat = winston.format.printf(({ level, message, timestamp }) => {
@@ -20,9 +19,7 @@ const customFormat = winston.format.printf(({ level, message, timestamp }) => {
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
-    winston.format.timestamp({
-      format: () => moment().tz(timeZone).format('YYYY-MM-DD HH:mm:ss')
-    }),
+    winston.format.timestamp({format: "YYYY-MM-DD HH:mm:ss" }),
     customFormat
   ),
   transports: [
