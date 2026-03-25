@@ -15,12 +15,12 @@ Feature: Pagination management with multiple records
 
   Scenario: Verifying Navigate to the first page using pagination
     Given User is in any page except first page of My Patients page
-    When User clicks the first page arrow '(>>)'
+    When User clicks the first page arrow '(<<)'
     Then First page of patient records should be displayed
 
   Scenario: Verifying Navigate to the last page using pagination
     Given User is in any page except last page of My Patients page
-    When User clicks the last page arrow '(<<)'
+    When User clicks the last page arrow '(>>)'
     Then Last page of patient records should be displayed
 
   Scenario: Verifying Pagination count is updated correctly

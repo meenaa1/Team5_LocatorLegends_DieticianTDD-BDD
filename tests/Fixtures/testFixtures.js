@@ -37,6 +37,9 @@ export const test = base.extend({
 
   editPage: async ({ page }, use) => {
     await use(new EditPagePom(page));
+  },
+  paginationPage: async ({ page }, use) => {
+    await use (new MyPatientsPaginationPO(page));
   }
 
 });
