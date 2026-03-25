@@ -11,7 +11,7 @@ class LoginPagePo {
         this.navBar = page.locator('nav');
 
         // Colors
-        this.EXPECTED_COLORS = {BLUE_PURPLE: 'rgb(63, 81, 181)', WHITE: 'rgb(255, 255, 255)'};
+        this.EXPECTED_COLORS = { BLUE_PURPLE: 'rgb(63, 81, 181)', WHITE: 'rgb(255, 255, 255)' };
 
         // Login card
         this.heading = page.getByRole('heading', { name: 'Dietician Application' });
@@ -72,7 +72,7 @@ class LoginPagePo {
         const user = LoginData.validUser;
         await this.login(user.username, user.password);
     }
-    
+
     async loginNonExistingUser() {
         const user = LoginData.nonExistingUser;
         await this.login(user.username, user.password);
@@ -134,6 +134,11 @@ class LoginPagePo {
 
     async loginwithNoPatients() {
         const user = LoginData.withNoPatients;
+        await this.login(user.username, user.password);
+    }
+
+    async loginwithOnePatients() {
+        const user = LoginData.withOnePatients;
         await this.login(user.username, user.password);
     }
 
