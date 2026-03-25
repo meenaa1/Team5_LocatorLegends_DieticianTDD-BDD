@@ -4,6 +4,7 @@ import EditPagePom from '../PageObjects/EditPagePom.js';
 import AddPatientDialogBoxPagePO from '../PageObjects/AddPatientDialogBoxPagePO.js'
 import DashboardPagePO from '../PageObjects/DashboardPagePO.js';
 import MyPatientsPagePO from '../PageObjects/MyPatientsPagePO.js';
+import PatientTableWRecordsPagePO from '../PageObjects/PatientTableWRecordsPagePO.js';
 
 
 export const test = base.extend({
@@ -18,6 +19,10 @@ export const test = base.extend({
 
   myPatientsPage: async ({ page }, use) => {
     await use(new MyPatientsPagePO(page));
+  },
+   
+  patientTablePage: async ({ page }, use) => {
+    await use(new PatientTableWRecordsPagePO(page));
   },
 
   addPatientPage: async ({ page }, use) => {
