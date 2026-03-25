@@ -3,12 +3,12 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Navigation to view patient test reports', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is in dietician dashboard page with patient records already exist in the system for that user'); 
+  test.beforeEach('Background', async ({ Given, loggedInPage, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is in dietician dashboard page with patient records already exist in the system for that user', null, { loggedInPage, loginPage }); 
   });
   
-  test('Verify that Navigation of View Previous Test Reports', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page'); 
+  test('Verify that Navigation of View Previous Test Reports', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page', null, { myPatientsPage }); 
     await When('User clicks View Previous Test Reports under action column'); 
     await Then('User should be navigated to "View Patient Test Reports" page'); 
   });

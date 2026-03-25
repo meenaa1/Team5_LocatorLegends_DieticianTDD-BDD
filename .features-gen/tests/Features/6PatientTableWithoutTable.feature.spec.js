@@ -3,14 +3,14 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Patient table without record', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User logged into the application without patient added to that user'); 
+  test.beforeEach('Background', async ({ Given, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User logged into the application without patient added to that user', null, { loginPage }); 
   });
   
   test('Verify that My Patient page loads with empty table', async ({ Given, When, Then, dashboardPage, myPatientsPage }) => { 
     await Given('User is in dietician application dashboard page', null, { dashboardPage }); 
     await When('User clicks on My Patients button', null, { myPatientsPage }); 
-    await Then('My Patients page should display with empty table'); 
+    await Then('My Patients page should display with empty table', null, { myPatientsPage }); 
   });
 
 });

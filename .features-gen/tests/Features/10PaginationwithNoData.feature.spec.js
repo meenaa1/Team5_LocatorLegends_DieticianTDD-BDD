@@ -3,8 +3,8 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management when no data exists in the table', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User logged into the application without patient added to that user'); 
+  test.beforeEach('Background', async ({ Given, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User logged into the application without patient added to that user', null, { loginPage }); 
   });
   
   test('Verify the Pagination when no patient data exists', async ({ Given, When, Then, dashboardPage, myPatientsPage }) => { 

@@ -3,104 +3,104 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management with multiple records', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is in dietician dashboard page with multiple patient records already exist in the system for that user'); 
+  test.beforeEach('Background', async ({ Given, loggedInPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is in dietician dashboard page with multiple patient records already exist in the system for that user', null, { loggedInPage }); 
   });
   
-  test('Verifying Navigate to the next page using pagination', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User clicks the next page arrow \'(>)\''); 
-    await Then('Next set of  patient records should be displayed'); 
+  test('Verifying Navigate to the next page using pagination', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User clicks the next page arrow \'(>)\'', null, { paginationPage }); 
+    await Then('Next set of  patient records should be displayed', null, { paginationPage }); 
   });
 
-  test('Verifying Navigate to the previous page using pagination', async ({ Given, When, Then }) => { 
-    await Given('User is in later page of My Patients page'); 
-    await When('User clicks the previous page arrow \'(<)\''); 
-    await Then('Previous set of patient records should be displayed'); 
+  test('Verifying Navigate to the previous page using pagination', async ({ Given, When, Then, loggedInPage, myPatientsPage, paginationPage }) => { 
+    await Given('User is in later page of My Patients page', null, { loggedInPage, myPatientsPage, paginationPage }); 
+    await When('User clicks the previous page arrow \'(<)\'', null, { paginationPage }); 
+    await Then('Previous set of patient records should be displayed', null, { paginationPage }); 
   });
 
-  test('Verifying Navigate to the first page using pagination', async ({ Given, When, Then }) => { 
-    await Given('User is in any page except first page of My Patients page'); 
-    await When('User clicks the first page arrow \'(>>)\''); 
+  test('Verifying Navigate to the first page using pagination', async ({ Given, When, Then, loggedInPage, myPatientsPage, paginationPage }) => { 
+    await Given('User is in any page except first page of My Patients page', null, { loggedInPage, myPatientsPage, paginationPage }); 
+    await When('User clicks the first page arrow \'(<<)\'', null, { paginationPage }); 
     await Then('First page of patient records should be displayed'); 
   });
 
-  test('Verifying Navigate to the last page using pagination', async ({ Given, When, Then }) => { 
-    await Given('User is in any page except last page of My Patients page'); 
-    await When('User clicks the last page arrow \'(<<)\''); 
+  test('Verifying Navigate to the last page using pagination', async ({ Given, When, Then, loggedInPage, myPatientsPage, paginationPage }) => { 
+    await Given('User is in any page except last page of My Patients page', null, { loggedInPage, myPatientsPage, paginationPage }); 
+    await When('User clicks the last page arrow \'(>>)\''); 
     await Then('Last page of patient records should be displayed'); 
   });
 
-  test('Verifying Pagination count is updated correctly', async ({ Given, When, Then }) => { 
-    await Given('User is in any page of My Patients page'); 
-    await When('User clicks any page navigation arrow'); 
-    await Then('Pagination text should display the correct range and total number of patients'); 
+  test('Verifying Pagination count is updated correctly', async ({ Given, When, Then, loggedInPage, myPatientsPage, paginationPage }) => { 
+    await Given('User is in any page of My Patients page', null, { loggedInPage, myPatientsPage, paginationPage }); 
+    await When('User clicks any page navigation arrow', null, { paginationPage }); 
+    await Then('Pagination text should display the correct range and total number of patients', null, { paginationPage }); 
   });
 
-  test('Verifying Pagination is displayed when patient records exceed one page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to any page'); 
-    await Then('Pagination controls should be displayed'); 
+  test('Verifying Pagination is displayed when patient records exceed one page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to any page', null, { paginationPage }); 
+    await Then('Pagination controls should be displayed', null, { paginationPage }); 
   });
 
-  test('Verify that Previous page arrow disabled on first page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to the first page of patient record'); 
-    await Then('Previous arrow \'(<)\' should be disabled'); 
+  test('Verify that Previous page arrow disabled on first page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to the first page of patient record', null, { paginationPage }); 
+    await Then('Previous arrow \'(<)\' should be disabled', null, { paginationPage }); 
   });
 
-  test('Verify that First page arrow disabled on first page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to the first page of patient record'); 
+  test('Verify that First page arrow disabled on first page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to the first page of patient record', null, { paginationPage }); 
     await Then('First page arrow \'(<<)\' should be disabled'); 
   });
 
-  test('Verify that Next page arrow enabled on first page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to the first page of patient record'); 
-    await Then('Next arrow \'(>)\' should be enabled'); 
+  test('Verify that Next page arrow enabled on first page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to the first page of patient record', null, { paginationPage }); 
+    await Then('Next arrow \'(>)\' should be enabled', null, { paginationPage }); 
   });
 
-  test('Verify that Last page arrow enabled on first page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to the first page of patient record'); 
-    await Then('Last page arrow \'(>>)\' should be enabled'); 
+  test('Verify that Last page arrow enabled on first page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to the first page of patient record', null, { paginationPage }); 
+    await Then('Last page arrow \'(>>)\' should be enabled', null, { paginationPage }); 
   });
 
-  test('Verify that Previous page arrow is enabled on all pages except the first page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to any page after the first page'); 
-    await Then('Previous arrow \'(<)\' should be enabled'); 
+  test('Verify that Previous page arrow is enabled on all pages except the first page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to any page after the first page', null, { paginationPage }); 
+    await Then('Previous arrow \'(<)\' should be enabled', null, { paginationPage }); 
   });
 
-  test('Verify that First page arrow is enabled on all pages except the first page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to any page after the first page'); 
-    await Then('First page arrow \'(<<)\' should be enabled'); 
+  test('Verify that First page arrow is enabled on all pages except the first page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to any page after the first page', null, { paginationPage }); 
+    await Then('First page arrow \'(<<)\' should be enabled', null, { paginationPage }); 
   });
 
-  test('Verify that Last page arrow is enabled on all pages except the last page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to any page except the last page'); 
-    await Then('Last page arrow \'(>>)\' should be enabled'); 
+  test('Verify that Last page arrow is enabled on all pages except the last page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to any page except the last page', null, { paginationPage }); 
+    await Then('Last page arrow \'(>>)\' should be enabled', null, { paginationPage }); 
   });
 
-  test('Verify that Next page arrow is enabled on all pages except the last page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to any page except the last page'); 
-    await Then('Next arrow \'(>)\' should be enabled'); 
+  test('Verify that Next page arrow is enabled on all pages except the last page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to any page except the last page', null, { paginationPage }); 
+    await Then('Next arrow \'(>)\' should be enabled', null, { paginationPage }); 
   });
 
-  test('Verify that Next Page arrow is disabled on last page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to the last page of the patient record'); 
-    await Then('Next arrow \'(>)\' should be disabled'); 
+  test('Verify that Next Page arrow is disabled on last page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to the last page of the patient record', null, { paginationPage }); 
+    await Then('Next arrow \'(>)\' should be disabled', null, { paginationPage }); 
   });
 
-  test('Verify that Last page arrow is disabled on last page', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page with multiple pages of patient record'); 
-    await When('User navigates to the last page of the patient record'); 
-    await Then('Last page arrow \'(>>)\' should be  disabled'); 
+  test('Verify that Last page arrow is disabled on last page', async ({ Given, When, Then, myPatientsPage, paginationPage }) => { 
+    await Given('User is in My Patients page with multiple pages of patient record', null, { myPatientsPage }); 
+    await When('User navigates to the last page of the patient record', null, { paginationPage }); 
+    await Then('Last page arrow \'(>>)\' should be  disabled', null, { paginationPage }); 
   });
 
 });
@@ -119,8 +119,8 @@ test.use({
 const bddFileData = [ // bdd-data-start
   {"pwTestLine":10,"pickleLine":6,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":11,"gherkinStepLine":7,"keywordType":"Context","textWithKeyword":"Given User is in My Patients page with multiple pages of patient record","stepMatchArguments":[]},{"pwStepLine":12,"gherkinStepLine":8,"keywordType":"Action","textWithKeyword":"When User clicks the next page arrow '(>)'","stepMatchArguments":[{"group":{"start":32,"value":"'(>)'","children":[{"children":[{"children":[]}]},{"start":33,"value":"(>)","children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":13,"gherkinStepLine":9,"keywordType":"Outcome","textWithKeyword":"Then Next set of  patient records should be displayed","stepMatchArguments":[]}]},
   {"pwTestLine":16,"pickleLine":11,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":17,"gherkinStepLine":12,"keywordType":"Context","textWithKeyword":"Given User is in later page of My Patients page","stepMatchArguments":[]},{"pwStepLine":18,"gherkinStepLine":13,"keywordType":"Action","textWithKeyword":"When User clicks the previous page arrow '(<)'","stepMatchArguments":[{"group":{"start":36,"value":"'(<)'","children":[{"children":[{"children":[]}]},{"start":37,"value":"(<)","children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":19,"gherkinStepLine":14,"keywordType":"Outcome","textWithKeyword":"Then Previous set of patient records should be displayed","stepMatchArguments":[]}]},
-  {"pwTestLine":22,"pickleLine":16,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":23,"gherkinStepLine":17,"keywordType":"Context","textWithKeyword":"Given User is in any page except first page of My Patients page","stepMatchArguments":[]},{"pwStepLine":24,"gherkinStepLine":18,"keywordType":"Action","textWithKeyword":"When User clicks the first page arrow '(>>)'","stepMatchArguments":[{"group":{"start":33,"value":"'(>>)'","children":[{"children":[{"children":[]}]},{"start":34,"value":"(>>)","children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":25,"gherkinStepLine":19,"keywordType":"Outcome","textWithKeyword":"Then First page of patient records should be displayed","stepMatchArguments":[]}]},
-  {"pwTestLine":28,"pickleLine":21,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":29,"gherkinStepLine":22,"keywordType":"Context","textWithKeyword":"Given User is in any page except last page of My Patients page","stepMatchArguments":[]},{"pwStepLine":30,"gherkinStepLine":23,"keywordType":"Action","textWithKeyword":"When User clicks the last page arrow '(<<)'","stepMatchArguments":[{"group":{"start":32,"value":"'(<<)'","children":[{"children":[{"children":[]}]},{"start":33,"value":"(<<)","children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":31,"gherkinStepLine":24,"keywordType":"Outcome","textWithKeyword":"Then Last page of patient records should be displayed","stepMatchArguments":[]}]},
+  {"pwTestLine":22,"pickleLine":16,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":23,"gherkinStepLine":17,"keywordType":"Context","textWithKeyword":"Given User is in any page except first page of My Patients page","stepMatchArguments":[]},{"pwStepLine":24,"gherkinStepLine":18,"keywordType":"Action","textWithKeyword":"When User clicks the first page arrow '(<<)'","stepMatchArguments":[{"group":{"start":33,"value":"'(<<)'","children":[{"children":[{"children":[]}]},{"start":34,"value":"(<<)","children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":25,"gherkinStepLine":19,"keywordType":"Outcome","textWithKeyword":"Then First page of patient records should be displayed","stepMatchArguments":[]}]},
+  {"pwTestLine":28,"pickleLine":21,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":29,"gherkinStepLine":22,"keywordType":"Context","textWithKeyword":"Given User is in any page except last page of My Patients page","stepMatchArguments":[]},{"pwStepLine":30,"gherkinStepLine":23,"keywordType":"Action","textWithKeyword":"When User clicks the last page arrow '(>>)'","stepMatchArguments":[{"group":{"start":32,"value":"'(>>)'","children":[{"children":[{"children":[]}]},{"start":33,"value":"(>>)","children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":31,"gherkinStepLine":24,"keywordType":"Outcome","textWithKeyword":"Then Last page of patient records should be displayed","stepMatchArguments":[]}]},
   {"pwTestLine":34,"pickleLine":26,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":35,"gherkinStepLine":27,"keywordType":"Context","textWithKeyword":"Given User is in any page of My Patients page","stepMatchArguments":[]},{"pwStepLine":36,"gherkinStepLine":28,"keywordType":"Action","textWithKeyword":"When User clicks any page navigation arrow","stepMatchArguments":[]},{"pwStepLine":37,"gherkinStepLine":29,"keywordType":"Outcome","textWithKeyword":"Then Pagination text should display the correct range and total number of patients","stepMatchArguments":[]}]},
   {"pwTestLine":40,"pickleLine":31,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":41,"gherkinStepLine":32,"keywordType":"Context","textWithKeyword":"Given User is in My Patients page with multiple pages of patient record","stepMatchArguments":[]},{"pwStepLine":42,"gherkinStepLine":33,"keywordType":"Action","textWithKeyword":"When User navigates to any page","stepMatchArguments":[]},{"pwStepLine":43,"gherkinStepLine":34,"keywordType":"Outcome","textWithKeyword":"Then Pagination controls should be displayed","stepMatchArguments":[]}]},
   {"pwTestLine":46,"pickleLine":36,"tags":[],"steps":[{"pwStepLine":7,"gherkinStepLine":4,"keywordType":"Context","textWithKeyword":"Given User is in dietician dashboard page with multiple patient records already exist in the system for that user","isBg":true,"stepMatchArguments":[]},{"pwStepLine":47,"gherkinStepLine":37,"keywordType":"Context","textWithKeyword":"Given User is in My Patients page with multiple pages of patient record","stepMatchArguments":[]},{"pwStepLine":48,"gherkinStepLine":38,"keywordType":"Action","textWithKeyword":"When User navigates to the first page of patient record","stepMatchArguments":[]},{"pwStepLine":49,"gherkinStepLine":39,"keywordType":"Outcome","textWithKeyword":"Then Previous arrow '(<)' should be disabled","stepMatchArguments":[{"group":{"start":15,"value":"'(<)'","children":[{"children":[{"children":[]}]},{"start":16,"value":"(<)","children":[{"children":[]}]}]},"parameterTypeName":"string"}]}]},
