@@ -5,7 +5,7 @@ import logger from '../../utils/Logger.js';
 const { Given, When, Then } = createBdd(test);
 
 Given('User is in dietician dashboard page with patient records already exist in the system for that user', async ({ loggedInPage, loginPage }) => {
-  await loginPage.expectDashboardVisible();
+  await loggedInPage.expectDashboardVisible();
   logger.info('User is in dietician dashboard with patient records');
 });
 

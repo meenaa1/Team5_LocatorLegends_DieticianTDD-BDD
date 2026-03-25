@@ -1,7 +1,7 @@
 Feature: Pagination management when no data exists in the table
 
   Background:
-    Given User logged into the application without patient added to that user
+    Given User logged into the application without patient added to that user to check the Pagination
 
   Scenario: Verify the Pagination when no patient data exists
     Given User is in dietician application dashboard page

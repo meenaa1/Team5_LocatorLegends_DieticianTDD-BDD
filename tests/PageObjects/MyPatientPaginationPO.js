@@ -10,10 +10,10 @@ class MyPatientsPaginationPO {
         this.firstArrow = page.locator('.pagination .first');    // (<<)
         this.lastArrow = page.locator('.pagination .last');      // (>>)
 
-        this.paginationText = page.locator('.pagination-text'); 
+        this.paginationText = page.locator('.pagination-text');
         this.paginationContainer = page.locator('.pagination');
     }
-   
+
     async clickNext() {
         await this.nextArrow.click();
     }
@@ -55,6 +55,14 @@ class MyPatientsPaginationPO {
     async validateArrowDisabled(locator) {
         await expect(locator).toBeDisabled();
     }
+
+    async validateAllPaginationArrowsDisabled() {
+        await expect(this.firstArrow).toBeDisabled();
+        await expect(this.prevArrow).toBeDisabled();
+        await expect(this.nextArrow).toBeDisabled();
+        await expect(this.lastArrow).toBeDisabled();
+    }
+
 }
 
 export default MyPatientsPaginationPO;
