@@ -3,7 +3,7 @@ import { test } from "../Fixtures/testFixtures.js";
 import logger from '../../utils/Logger.js';
 import { expect } from "@playwright/test";
 
-const { Given, When, Then } = createBdd(test);
+const { When, Then } = createBdd(test);
 
 Then('All columns should have values', async ({ patientTablePage }) => {
   await patientTablePage.validateColumnNotEmpty(patientTablePage.patientIdColumn);

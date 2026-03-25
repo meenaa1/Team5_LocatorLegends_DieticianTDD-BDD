@@ -1,10 +1,8 @@
-// MyPatientsTablePO.js
 import { expect } from '@playwright/test';
 
 class MyPatientsTablePO {
     constructor(page) {
         this.page = page;
-
         // Table rows
         this.rows = page.locator('table tbody tr');
         // Columns (by index)
@@ -37,7 +35,6 @@ class MyPatientsTablePO {
             expect(text.length).toBeGreaterThan(0);
         }
     }
-
     // async validateDetailsColumn() {
     //     const rowCount = await this.detailsColumn.count();
     //     for (let i = 0; i < rowCount; i++) {
@@ -70,7 +67,6 @@ class MyPatientsTablePO {
         }
     }
 
-
     async validateDOBs() {
         const rowCount = await this.detailsColumn.count();
         const regex = /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/;
@@ -94,7 +90,6 @@ class MyPatientsTablePO {
             expect(text).toMatch(regex);
         }
     }
-
 
     async validateActionButtons(buttonNames) {
         for (const name of buttonNames) {

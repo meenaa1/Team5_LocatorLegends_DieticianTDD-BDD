@@ -8,9 +8,11 @@ class MyPatientsPagePO {
         this.pageHeader = page.locator('h1, h2', { hasText: 'My Patients' });
         // Search bar
         this.searchBar = page.locator('input[placeholder="Search..."]');
-        this.searchIcon = page.locator('input[placeholder="Search..."], .search-icon');
+        this.searchIcon = page.locator('input[placeholder="Search..."]');
+        this.clearSearchBtn = page.locator('.search-clear');
         // Table column headers
         this.tableHeaders = page.locator('table thead th');
+        this.tableRows = page.locator('table tbody tr');
 
         // this.PatientId = page.locator('//[id="ColumnHeader"]/tbody/tr[1]/th[1]');
         // this.Name = page.locator('//[id="ColumnHeader"]/tbody/tr[1]/th[2]');
@@ -29,6 +31,12 @@ class MyPatientsPagePO {
         // Sorting icons
         this.PatientIdSortIcons = page.locator('table thead th:has-text("Patient Id") i.sort-icon');
         this.NameSortIcons = page.locator('table thead th:has-text("Name") i.sort-icon');
+
+        this.patientIdUpArrow = page.locator('th:has-text("Patient Id") >> .sort-up');
+        this.patientIdDownArrow = page.locator('th:has-text("Patient Id") >> .sort-down');
+        this.nameUpArrow = page.locator('th:has-text("Name") >> .sort-up');
+        this.nameDownArrow = page.locator('th:has-text("Name") >> .sort-down');
+
 
     }
 
@@ -64,6 +72,57 @@ class MyPatientsPagePO {
 
     async expectSortingIconsName() {
         await expect(this.NameSortIcons).toHaveCount(2);
+    }
+    async validateEmptyTable() {
+        await expect(this.tableRows).toHaveCount(0);
+    }
+
+    async searchPatient(text) {
+        await this.searchBar.fill(text);
+        await this.searchBar.press('Enter');
+    }
+
+    async clearSearch() {
+        await this.clearSearchBtn.click();
+    }
+
+    async sortPatientIdAscending() {
+        await this.patientIdUpArrow.click();
+    }
+
+    async sortPatientIdDescending() {
+        await this.patientIdDownArrow.click();
+    }
+
+    async sortNameAscending() {
+        await this.nameUpArrow.click();
+    }
+
+    async sortNameDescending() {
+        await this.nameDownArrow.click();
+    }
+
+    async validateAscending(columnLocator) {
+        const values = await columnLocator.allTextContents();
+        const sorted = [...values].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+        expect(values).toEqual(sorted);
+    }
+
+    async validateDescending(columnLocator) {
+        const values = await columnLocator.allTextContents();
+        const sorted = [...values].sort((a, b) => b.localeCompare(a, undefined, { numeric: true }));
+        expect(values).toEqual(sorted);
+    }
+
+    async validateSearchResults(expectedTerm) {
+        const rowCount = await this.rows.count();
+        expect(rowCount).toBeGreaterThan(0);
+        const content = await this.page.locator('table tbody').textContent();
+        expect(content).toContain(expectedTerm);
+    }
+
+    async validateAllRecordsVisible(expectedCount) {
+        await expect(this.tableRows).toHaveCount(expectedCount);
     }
 
 }
