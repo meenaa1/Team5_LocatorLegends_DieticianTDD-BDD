@@ -1,112 +1,149 @@
 import { createBdd } from "playwright-bdd";
 import { test } from "../Fixtures/testFixtures.js";
+import AddPatientDialogBoxPagePO from "../PageObjects/AddPatientDialogBoxPagePO.js";
+import AddPatientDetailsPagePO from "../PageObjects/AddPatientDetailsPadePO.js";
+
+
 
 const { Given, When, Then } = createBdd(test);
+let addPatientPage;
+let addPatientDetailsPage;  
 
-Given('User is in Add Patient Details dialog box', async ({}) => {
-  // Step: Given User is in Add Patient Details dialog box
-  // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:3:5
+Given('User is in Add Patient Details dialog box', async ({ page }) => {
+  addPatientPage = new AddPatientDialogBoxPagePO(page);
+  addPatientDetailsPage = new AddPatientDetailsPagePO(page);
+
+  await addPatientPage.isHomePageDisplayed();
+  await addPatientPage.clickNewPatient();
+
 });
 
 When('User clicks on Allergy dropdown', async ({}) => {
-  // Step: When User clicks on Allergy dropdown
-  // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:6:5
+  await addPatientPage.clickDropdown(dropdown); 
+
 });
 
 Then('Values should be present inside Allergy dropdown', async ({}) => {
-  // Step: Then Values should be present inside Allergy dropdown
-  // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:7:5
+    await addPatientPage.dropdownOptions(dropdown).first().isVisible();
+
 });
 
-Then('Dropdown should contain {int} values', async ({}, arg) => {
+Then('Dropdown should contain {int} values', async ({}, int) => {
+  await addPatientPage.getDropdownCount(int);
+
+ 
+
   // Step: And Dropdown should contain 13 values
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:8:5
 });
 
 When('User clicks on Food Preference dropdown', async ({}) => {
+  await addPatientPage.dropdownOptions(dropdown);
   // Step: When User clicks on Food Preference dropdown
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:11:5
 });
 
 Then('Values should be present inside Food Preference dropdown', async ({}) => {
+  await addPatientPage.dropdownOptions(dropdown).first().isVisible();
   // Step: Then Values should be present inside Food Preference dropdown
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:12:5
 });
 
 When('User clicks on Cuisine Category dropdown', async ({}) => {
+  await addPatientPage.clickDropdown(dropdown);
   // Step: When User clicks on Cuisine Category dropdown
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:16:5
 });
 
 Then('Values should be present inside Cuisine Category dropdown', async ({}) => {
+  await addPatientPage.dropdownOptions(dropdown).first().isVisible(); 
   // Step: Then Values should be present inside Cuisine Category dropdown
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:17:5
 });
 
 When('User enters valid values in all field', async ({}) => {
+
+  await addPatientPage.validPatientDetails();
   // Step: When User enters valid values in all field
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:21:5
 });
 
 Then('Submit button should be enabled', async ({}) => {
+  await addPatientPage.isSubmitEnabled(); 
   // Step: Then Submit button should be enabled
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:22:5
 });
 When('User clicks Submit after entering valid data in all mandatory fields', async ({}) => {
+  await addPatientPage.validPatientDetails().clicksubmit();
+   // Step: When User clicks Submit after entering valid data in all mandatory fields
+  // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:25:5
   // Step: When User clicks Submit after entering valid data in all mandatory fields
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:25:5
 });
 
 Then('User should see Patient successfully created - toast message', async ({}) => {
+  await addPatientDetailsPage.getSuccessToastText();
   // Step: Then User should see Patient successfully created - toast message
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:26:5
 });
 
 Then('User is directed to My Patient Page with New Patient Details created', async ({}) => {
+  await addPatientDetailsPage.isMyPatientPageDisplayed();
   // Step: And User is directed to My Patient Page with New Patient Details created
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:27:6
 });
 
 When('User selects Values from Allergy dropdown', async ({}) => {
+  await addPatientPage.selectValue(dropdown, value);
   // Step: When User selects Values from Allergy dropdown
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:30:5
 });
 
 Then('Expected Result should be selected in the Allergy field', async ({}) => {
+
+  await addPatientPage.selectDropdownOption(dropdown, value, expectedValue);
+
   // Step: Then Expected Result should be selected in the Allergy field
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:31:5
 });
 
 When('User selects Values from Food Preference dropdown', async ({}) => {
+  await addPatientPage.selectValue(dropdown, value);
   // Step: When User selects Values from Food Preference dropdown
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:34:5
 });
 
 Then('Expected Result should be selected in Food Preference field', async ({}) => {
+  await addPatientPage.selectDropdownOption(dropdown, value, expectedValue);  
   // Step: Then Expected Result should be selected in Food Preference field
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:35:5
 });
 
 When('User selects Values from Cuisine Category dropdown', async ({}) => {
+  await addPatientPage.selectValue(dropdown, value);
   // Step: When User selects Values from Cuisine Category dropdown
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:38:5
 });
 
 Then('Expected Result should be selected in Cuisine Category field', async ({}) => {
+  await addPatientPage.selectDropdownOption(dropdown, value, expectedValue);
   // Step: Then Expected Result should be selected in Cuisine Category field
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:39:5
 });
 
 When('User clicks Date of Birth field', async ({}) => {
+  await addPatientPage.getdobValue();
   // Step: When User clicks Date of Birth field
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:42:5
 });
 Then('User should see calender date picker displayed with Month,Day,Year', async ({}) => {
+  await addPatientDetailsPage.isCalendarDisplayed();
   // Step: Then User should see calender date picker displayed with Month,Day,Year
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:43:5
 });
 
 When('User enters DOB', async ({}) => {
+  await addPatientPage.getdobValue().fill(dob);
   // Step: When User enters DOB
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:46:5
 });

@@ -52,6 +52,7 @@
     return await this.allInputs.count();
   }
 
+
   async getDropdownCount() {
     return await this.allDropdowns.count();
   }
@@ -118,7 +119,7 @@
     await locator.fill(value);
   }
 
-  //
+  
   async selectDropdownOption(locator, value, expectedValue) {
     await expect(locator.selectOption(value)).toHaveText(expectedValue);
   }
@@ -126,21 +127,23 @@
   async clearField(locator) {
     await locator.fill('');
   }
-  async getdobValue() {
-    return await this.dob.inputValue();
+  async getdobValue(dob) {
+    const dobValue = await this.dob.inputValue();
+    await this.dob.click();
+    await this.dob.fill(dob);
+   
   }
-async clickdropdown() {
-    await this.dropdownOptions.first().click();
-    }
+  async clickDropdown(dropdown) {
+    
+    await dropdown.first().click();
+  }
 
  async selectValue(dropdown, value) {
     await dropdown.selectOption({ label: value });
   }
 
-  async getSelectedValue(dropdown) {
-    return await dropdown.inputValue();
-  }
-  
+  async dropdownOptions(dropdown) {
+    await dropdown.first().isVisible();
 }
 
 export default AddPatientDialogBoxPagePO;

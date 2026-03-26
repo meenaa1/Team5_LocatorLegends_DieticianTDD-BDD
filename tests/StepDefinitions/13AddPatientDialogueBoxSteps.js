@@ -1,18 +1,18 @@
 import { createBdd } from "playwright-bdd";
 import { test } from "../Fixtures/testFixtures.js"; 
 import { expect } from "@playwright/test";
-import AddPatientDialogBoxPagePO from "../PageObjects/AddPatientDialogBoxPagePO.js";
-import LoginPagePo from "../PageObjects/LoginPagePO.js";
-import logger from "../../utils/Logger.js";
+import logger from '../../utils/Logger.js';
+
 
 
 const { Given, When, Then } = createBdd(test);
 let addPatientPage;
 let loginPage;
 
-Given('User is in home page after login', async ({ loggedinPage, addPatientPage }) => {
+Given('User is in home page after login', async ({ loggedInPage, addPatientPage }) => {
     
-    await loggedinPage.navigate();
+    await loggedInPage.navigate();
+    await loggedInPage.expectDashboardVisible();
 
     const isHomePageDisplayed = await addPatientPage.isHomePageDisplayed();
     expect(isHomePageDisplayed).toBeTruthy();
