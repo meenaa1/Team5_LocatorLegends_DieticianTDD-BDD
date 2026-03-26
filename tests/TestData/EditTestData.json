@@ -1,0 +1,56 @@
+{
+    "ValidEditData": {
+        "newFirstName": "David",
+        "newLastName": "Smith",
+        "newEmail": "david.smith@example.com",
+        "newContactNumber": "3455675567"
+    },
+    "NumericData": {
+        "FirstName": "34564",
+        "LastName": "564656"
+    },
+    "specCharaNumericData": {
+        "FirstName": "34@#$%",
+        "LastName": "56!@#$%"
+    },
+    "SpecialCharacterData": {
+        "FirstName": "@#$%",
+        "LastName": "!@#$%",
+        "Email": "@!@#$%.com",
+        "ContactNumber": "@#$*&!@#$%"
+    },
+    "InvalidEmailFormat": {
+        "email": "ferrin.david@example"
+    },
+    "InvalidEmailWithoutAt": {
+        "email": "ferrin.david.example"
+    },
+    "ContactNumberWithAlphabets": {
+        "ContactNumber": "34567abcde"
+    },
+    "ContactNumberWithFewerDigits": {
+        "ContactNumber": "3456745"
+    },
+    "VitalsValidData": {
+        "Weight": 95,
+        "Height": 165,
+        "Temperature": 98.6,
+        "SP": 120,
+        "DP": 80
+    },
+    "VitalsDataWithAlphabets": {
+        "Weight": "dre",
+        "Height": "fdr",
+        "Temperature": "frd",
+        "SP": "des",
+        "DP": "edc"
+    },
+    "VitalsDataWithSpeChar": {
+        "Weight": "@#$",
+        "Height": "%$#",
+        "Temperature": "&^^",
+        "SP": "*&^",
+        "DP": "^&"
+    }
+
+}
