@@ -9,8 +9,8 @@ Given('User is in My Patients page after logged into the app and patients alread
   logger.info('User is in dietician dashboard with patient records');
 });
 
-Given('User is in View Plan Test Reports page', async ({ myPatientPage }) => {
-  await myPatientPage.clickViewReports();
+Given('User is in View Plan Test Reports page', async ({ myPatientsPage }) => {
+  await myPatientsPage.clickViewReports();
 });
 
 When('User clicks View PDF button for a particular record', async ({ viewPDFPage }) => {

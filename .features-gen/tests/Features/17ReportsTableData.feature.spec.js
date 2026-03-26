@@ -3,62 +3,62 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Reports table data scenarios', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User logged into the app and patients already exists'); 
+  test.beforeEach('Background', async ({ Given, loggedInPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User logged into the app and patients already exists', null, { loggedInPage }); 
   });
   
-  test('Verify that Record number is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Each report should display a record number'); 
+  test('Verify that Record number is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Each report should display a record number', null, { myPatientsPage }); 
   });
 
-  test('Verigying View PDF button display', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Each report should display View PDF button'); 
+  test('Verigying View PDF button display', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Each report should display View PDF button', null, { myPatientsPage }); 
   });
 
-  test('Verifying that Uploaded time is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Each report should display uploaded time'); 
+  test('Verifying that Uploaded time is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Each report should display uploaded time', null, { myPatientsPage }); 
   });
 
-  test('Verify that File name is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Each report should display file or report name'); 
+  test('Verify that File name is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Each report should display file or report name', null, { myPatientsPage }); 
   });
 
-  test('Verify that Vitals information is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Each report should display vitals information'); 
+  test('Verify that Vitals information is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Each report should display vitals information', null, { myPatientsPage }); 
   });
 
-  test('Verifying the Vitals order', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Vitals should be displayed in the order Weight → Height → Temperature → SP → DP'); 
+  test('Verifying the Vitals order', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Vitals should be displayed in the order Weight → Height → Temperature → SP → DP', null, { myPatientsPage }); 
   });
 
-  test('Verifying Vitals are displayed in multiline format', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Vitals should be displayed in multilines'); 
+  test('Verifying Vitals are displayed in multiline format', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Vitals should be displayed in multilines', null, { myPatientsPage }); 
   });
 
-  test('Verifying Health conditions is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Each report should display Identified health conditions'); 
+  test('Verifying Health conditions is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Each report should display Identified health conditions', null, { myPatientsPage }); 
   });
 
-  test('Verifying that Health conditions are displayed in multiline format', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Identified health conditions should be displayed in multilines'); 
+  test('Verifying that Health conditions are displayed in multiline format', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Identified health conditions should be displayed in multilines', null, { myPatientsPage }); 
   });
 
 });

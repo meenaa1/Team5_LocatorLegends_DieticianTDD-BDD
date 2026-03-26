@@ -3,8 +3,8 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management with only one record(Test Report) to View', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is logged into the application and only one patient record already exist in the system for that user'); 
+  test.beforeEach('Background', async ({ Given, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is logged into the application and only one patient record already exist in the system for that user', null, { loginPage }); 
   });
   
   test('Verify that All pagination arrows disabled when only one page exists', async ({ Given, When, Then }) => { 
