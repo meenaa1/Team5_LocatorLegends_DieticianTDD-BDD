@@ -1,0 +1,118 @@
+{
+  " validPatientDetails": {
+    "firstName": "validUser",
+    "lastName": "lastUser",
+    "email": "valid.user@gmail.com",
+    "contactNumber": "9876543210",
+    "allergies": ["Peanuts"],
+    "foodPreference": "Vegan",
+    "cuisineCategory": "Punjabi",
+    "dob": "01/12/2000",
+    "weight": "70",
+    "height": "170",
+    "temperature": "98.6",
+    "SP": "120",
+    "DP": "80",
+    "filePath": "testData/files/healthReport.pdf"
+  },
+
+  "allergyDropdown": [
+    { "Values": "Peanuts",       "Expected": "Peanuts" },
+    { "Values": "Peanuts, Milk", "Expected": "Peanuts, Milk" },
+    { "Values": "Soybean",       "Expected": "No selection" },
+    { "Values": "",              "Expected": "Allergies is required" }
+  ],
+
+  "foodPreferenceDropdown": [
+    { "Values": "Vegan", "Expected": "Vegan" },
+    { "Values": "Vegan, Jain", "Expected": "Vegan, Jain" },
+    { "Values": "Keto", "Expected": "No selection" },
+    { "Values": "", "Expected": "Food Preference is required" }
+  ],
+
+  "cuisineCategoryDropdown": [
+    { "Values": "Punjabi", "Expected": "Punjabi" },
+    { "Values": "Punjabi, Gujarati", "Expected": "Punjabi, Gujarati" },
+    { "Values": "Italian", "Expected": "No selection" },
+    { "Values": "", "Expected": "Cusine Category is required" }
+  ],
+
+  "dobValidation": [
+    { "DOB": "01/12/2000", "Result": "valid" },
+    { "DOB": "34/20/2022", "Result": "Invalid date ,Please select valid date" },
+    { "DOB": "ab/cd/efgh", "Result": "Invalid date format" },
+    { "DOB": "12/05",      "Result": "Invalid date format" },
+    { "DOB": "02/29/2024", "Result": "valid" },
+    { "DOB": "02/29/2023", "Result": "Please select valid date" },
+    { "DOB": "",           "Result": "Date  is required" }
+  ],
+
+  "nameValidation": [
+    { "First name": "1234", "Message": "Patient first name accepts only alphabets" },
+    { "First name": "@#$%", "Message": "Patient first name accepts only alphabets" },
+    { "First name": "",     "Message": "Firstname field is required" },
+    { "Last name" : "1234", "Message": "Patient last name accepts only alphabets" },
+    { "Last name" : "@#$%", "Message": "Patient last name accepts only alphabets" },
+    { "Last name" : "",     "Message": "Lastname field is required" }
+  ],
+
+  "emailValidation": [
+    { "Email": "123abc@gmail.com", "Message": "Please enter a valid email address" },
+    { "Email": "abcgmail.com", "Message": "Please enter a valid email address" },
+    { "Email": "abc@#$%.com", "Message": "Please enter a valid email address" },
+    { "Email": "abc@domain", "Message": "Please enter a valid email address" },
+    { "Email": "", "Message": "Email field is required" }
+  ],
+
+  "contactNumberValidation": [
+    { "Value": "abcdef", "Message": "Contact number accepts only numeric values" },
+    { "Value": "@#$%", "Message": "Contact number accepts only numeric values" },
+    { "Value": "12345", "Message": "Please enter a valid contact number" },
+    { "Value": "123456789012", "Message": "Please enter a valid contact number" },
+    { "Value": "", "Message": "Contact Num is required" }
+  ],
+
+  "weightValidation": [
+    { "Value": "abc", "Message": "Please enter a valid weight" },
+    { "Value": "@#$", "Message": "Please enter a valid weight" }
+  ],
+
+  "heightValidation": [
+    { "Value": "abc", "Message": "Please enter a valid height" },
+    { "Value": "@#$", "Message": "Please enter a valid height" }
+  ],
+
+  "temperatureValidation": [
+    { "Value": "abc", "Message": "Please enter a valid temperature" },
+    { "Value": "@#$", "Message": "Please enter a valid temperature" }
+  ],
+
+  "bloodPressureValidation": [
+    { "Value": "abc", "Message": "Please enter a valid SP value" },
+    { "Value": "@#$", "Message": "Please enter a valid SP value" },
+    { "Value": "123", "Message": "Please enter a valid DP value" },
+    { "Value": "456", "Message": "Please enter a valid DP value" }
+  ],
+
+  "testReportVerification": [
+    { "Verification": "new record number" },
+    { "Verification": "PDF file" },
+    { "Verification": "upload date info" },
+    { "Verification": "health condition as the values in health report" }
+  ],
+
+  "fileUploadValidation": [
+    {
+      "FileCondition": "invalid file type (docx, jpeg)",
+      "Result": "Invalid file type. Please upload a valid file"
+    },
+    {
+      "FileCondition": "file exceeding size limit",
+      "Result": "File size exceeds the allowed limit"
+    },
+    {
+      "FileCondition": "no file selected",
+      "Result": "Patient should be created successfully with file skipped"
+    }
+  ]
+}

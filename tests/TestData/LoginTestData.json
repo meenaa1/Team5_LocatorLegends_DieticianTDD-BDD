@@ -3,6 +3,14 @@
     "username": "validUser123",
     "password": "ValidPass!23"
   },
+  "withNoPatients": {
+    "username": "validUserWNopatients",
+    "password": "ValidPass!123"
+  },
+    "withOnePatients": {
+    "username": "validUserWOnepatients",
+    "password": "ValidPass!1234"
+  },
   "invalidUsers": [
     {
       "type": "nonExistingUser",

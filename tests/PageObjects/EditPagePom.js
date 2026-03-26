@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
 const EditTestData = require('../TestData/EditTestData.json');
 
-export class EditPage{
+class EditPagePom{
     constructor(page){
         this.page = page;
         this.myPatientsButton = page.getByRole('button', {name:'My Patients'});
@@ -490,3 +490,5 @@ export class EditPage{
 
 
 }
+
+export default EditPagePom;
