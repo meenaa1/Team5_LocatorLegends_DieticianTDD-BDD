@@ -37,6 +37,39 @@ class MyPatientsPagePO {
         this.nameUpArrow = page.locator('th:has-text("Name") >> .sort-up');
         this.nameDownArrow = page.locator('th:has-text("Name") >> .sort-down');
 
+        // 15 View Test Report Locators
+        this.patientIdCells = page.locator('table tbody tr td:nth-child(1)');
+        this.patientNameCells = page.locator('table tbody tr td:nth-child(2)');
+        this.detailsCells = page.locator('table tbody tr td:nth-child(3)');
+
+        this.viewReportsBtn = page.getByRole('button', { name: 'View Previous Test Reports' });
+
+        this.reportPopup = page.locator('.report-container');
+
+        this.reportTitle = page.locator('h1, h2', { hasText: 'View Patient Test Reports' });
+
+        this.reportPatientId = page.locator('.patient-id');
+        this.reportPatientName = page.locator('.patient-name');
+        this.reportPatientEmail = page.locator('.patient-email');
+        this.reportPatientPhone = page.locator('.patient-phone');
+
+        this.closeIcon = page.locator('.close');
+
+        this.reportsTable = page.locator('.report-modal table');
+        this.reportsHeaders = page.locator('.report-modal table thead th');
+        this.reportsRows = page.locator('.report-modal table tbody tr');
+
+        // Columns
+        this.recordNumberColumn = page.locator('td.record-number');
+        this.viewPdfBtn = page.locator('button:has-text("View PDF")');
+        this.uploadedTimeColumn = page.locator('td.uploaded-time');
+        this.reportNameColumn = page.locator('td.report-name');
+        this.vitalsColumn = page.locator('td.vitals');
+        this.healthConditionColumn = page.locator('td.health-conditions');
+
+        // Pagination inside popup
+        this.popupPagination = page.locator('.report-popup .pagination');
+
 
     }
 
@@ -62,7 +95,7 @@ class MyPatientsPagePO {
     }
 
     async expectTableHeaders(expectedHeaders) {
-        const actualHeaders = await this.page.locator('table thead th').allTextContents();
+        const actualHeaders = await this.page.tableHeaders.allTextContents();
         expect(actualHeaders).toEqual(expectedHeaders);
     }
 
@@ -124,6 +157,97 @@ class MyPatientsPagePO {
     async validateAllRecordsVisible(expectedCount) {
         await expect(this.tableRows).toHaveCount(expectedCount);
     }
+
+    //ViewTest Reports methods
+
+    async clickViewReports() {
+        await this.viewReportsBtn.first().click();
+    }
+
+    async validateReportOpened() {
+        await expect(this.reportPopup).toBeVisible();
+    }
+
+    async validateReportTitle(expected) {
+        await expect(this.reportTitle).toHaveText(expected);
+    }
+
+    async validatePatientId() {
+        await expect(this.reportPatientId).first().toBeVisible();
+    }
+
+    async validatePatientName() {
+        await expect(this.reportPatientName).first().toBeVisible();
+    }
+
+    async validatePatientEmail() {
+        await expect(this.reportPatientEmail).first().toBeVisible();
+    }
+
+    async validatePatientPhone() {
+        await expect(this.reportPatientPhone).first().toBeVisible();
+    }
+
+    async validateCloseIcon() {
+        await expect(this.closeIcon).first().toBeVisible();
+    }
+
+    // Reports Table
+
+    async validateReportsTableVisible() {
+        await expect(this.reportsTable).toBeVisible();
+    }
+
+    async validateReportHeaders(expectedHeaders) {
+        const actual = await this.reportsHeaders.first().allTextContents();
+        expect(actual).toEqual(expectedHeaders);
+    }
+
+    async validateRecordNumbers() {
+        await expect(this.recordNumberColumn).first().toBeVisible();
+    }
+
+    async validateViewPdfButtons() {
+        await expect(this.viewPdfBtn).first().toBeVisible();
+    }
+
+    async validateUploadedTime() {
+        await expect(this.uploadedTimeColumn).first().toBeVisible();
+    }
+
+    async validateReportNames() {
+        await expect(this.reportNameColumn).first().toBeVisible();
+    }
+
+    async validateVitals() {
+        await expect(this.vitalsColumn).first().toBeVisible();
+    }
+
+    async validateHealthConditions() {
+        await expect(this.healthConditionColumn).first().toBeVisible();
+    }
+
+    // Multiline check
+    async validateMultiline(locator) {
+        const text = await locator.first().textContent();
+        expect(text).toContain('\n');
+    }
+
+    async validateVitalsOrder() {
+        const text = await this.vitalsColumn.first().textContent();
+        const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+        expect(lines[0]).toContain('Weight');
+        expect(lines[1]).toContain('Height');
+        expect(lines[2]).toContain('Temperature');
+        expect(lines[3]).toContain('SP');
+        expect(lines[4]).toContain('DP');
+    }
+
+    // Pagination
+    async validatePopupPagination() {
+        await expect(this.popupPagination).toBeVisible();
+    }
+
 
 }
 
