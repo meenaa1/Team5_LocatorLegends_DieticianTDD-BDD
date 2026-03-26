@@ -36,39 +36,36 @@ class MyPatientsPagePO {
         this.patientIdDownArrow = page.locator('th:has-text("Patient Id") >> .sort-down');
         this.nameUpArrow = page.locator('th:has-text("Name") >> .sort-up');
         this.nameDownArrow = page.locator('th:has-text("Name") >> .sort-down');
-
-        // 15 View Test Report Locators
-        this.patientIdCells = page.locator('table tbody tr td:nth-child(1)');
-        this.patientNameCells = page.locator('table tbody tr td:nth-child(2)');
-        this.detailsCells = page.locator('table tbody tr td:nth-child(3)');
-
         this.viewReportsBtn = page.getByRole('button', { name: 'View Previous Test Reports' });
-
-        this.reportPopup = page.locator('.report-container');
 
         this.reportTitle = page.locator('h1, h2', { hasText: 'View Patient Test Reports' });
 
-        this.reportPatientId = page.locator('.patient-id');
-        this.reportPatientName = page.locator('.patient-name');
-        this.reportPatientEmail = page.locator('.patient-email');
-        this.reportPatientPhone = page.locator('.patient-phone');
 
-        this.closeIcon = page.locator('.close');
+        // 15 View Test Report Locators
+        // Popup container
+        this.popup = page.locator('div[role="dialog"]:has-text("View Patient Test Reports")');
 
-        this.reportsTable = page.locator('.report-modal table');
-        this.reportsHeaders = page.locator('.report-modal table thead th');
-        this.reportsRows = page.locator('.report-modal table tbody tr');
+        // Patient Info
+        this.reportPatientId = this.popup.locator('text=Patient ID:');
+        this.reportPatientName = this.popup.locator('text=Name:');
+        this.reportPatientEmail = this.popup.locator('text=Email:');
+        this.reportPatientPhone = this.popup.locator('text=Contact Number:');
+        this.closeIcon = this.popup.locator('.close');
+
+        this.reportsTable = this.popup.locator('.report-popup table');
+        this.reportsHeaders = this.popup.locator('.report-popup table thead th');
+        this.reportsRows = this.popup.locator('.report-popup table tbody tr');
 
         // Columns
-        this.recordNumberColumn = page.locator('td.record-number');
-        this.viewPdfBtn = page.locator('button:has-text("View PDF")');
-        this.uploadedTimeColumn = page.locator('td.uploaded-time');
-        this.reportNameColumn = page.locator('td.report-name');
-        this.vitalsColumn = page.locator('td.vitals');
-        this.healthConditionColumn = page.locator('td.health-conditions');
+        this.recordNumberColumn = this.popup.locator('td.record-number');
+        this.viewPdfBtn = this.popup.locator('button:has-text("View PDF")');
+        this.uploadedTimeColumn = this.popup.locator('td.uploaded-time');
+        this.reportNameColumn = this.popup.locator('td.report-name');
+        this.vitalsColumn = this.popup.locator('td.vitals');
+        this.healthConditionColumn = this.popup.locator('td.health-conditions');
 
         // Pagination inside popup
-        this.popupPagination = page.locator('.report-popup .pagination');
+        this.popupPagination = this.popup.locator('.report-popup .pagination');
 
 
     }
@@ -227,7 +224,6 @@ class MyPatientsPagePO {
         await expect(this.healthConditionColumn).first().toBeVisible();
     }
 
-    // Multiline check
     async validateMultiline(locator) {
         const text = await locator.first().textContent();
         expect(text).toContain('\n');
