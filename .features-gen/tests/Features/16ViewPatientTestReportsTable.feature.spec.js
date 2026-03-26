@@ -3,32 +3,32 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('View patient test reports - table', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User logged into the app and patients already exists'); 
+  test.beforeEach('Background', async ({ Given, loggedInPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User logged into the app and patients already exists', null, { loggedInPage }); 
   });
   
-  test('Verify that Report table is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Reports table shouldbe displayed'); 
+  test('Verify that Report table is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Reports table shouldbe displayed', null, { myPatientsPage }); 
   });
 
-  test('Verify that Table headers column are displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Table headers should have Record Number, File, Uploaded Time,File or Report Name, Vitals, Identified Health Conditions'); 
+  test('Verify that Table headers column are displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Table headers should have Record Number, File, Uploaded Time,File or Report Name, Vitals, Identified Health Conditions', null, { myPatientsPage }); 
   });
 
-  test('Verify that Table headers column order', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Record header should be in the exact order Record Number → File → Uploaded Time → File or Report Name → Vitals → Identified Health Conditions should be displayed'); 
+  test('Verify that Table headers column order', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Record header should be in the exact order Record Number → File → Uploaded Time → File or Report Name → Vitals → Identified Health Conditions should be displayed', null, { myPatientsPage }); 
   });
 
-  test('Verify that Pagination controls are displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Pagination controls First, previous, next, last arrows should be displayed'); 
+  test('Verify that Pagination controls are displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Pagination controls First, previous, next, last arrows should be displayed', null, { myPatientsPage }); 
   });
 
 });

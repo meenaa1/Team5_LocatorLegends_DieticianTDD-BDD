@@ -3,14 +3,14 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management with only one record', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is logged into the application and only one patient record already exist in the system for that user'); 
+  test.beforeEach('Background', async ({ Given, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is logged into the application and only one patient record already exist in the system for that user', null, { loginPage }); 
   });
   
-  test('All pagination arrows disabled when only one page exists', async ({ Given, When, Then, dashboardPage, myPatientsPage }) => { 
+  test('All pagination arrows disabled when only one page exists', async ({ Given, When, Then, dashboardPage, myPatientsPage, paginationPage }) => { 
     await Given('User is in dietician application dashboard page', null, { dashboardPage }); 
     await When('User clicks on My Patients button', null, { myPatientsPage }); 
-    await Then('First, previous, next, last arrows should be disabled'); 
+    await Then('First, previous, next, last arrows should be disabled', null, { paginationPage }); 
   });
 
 });

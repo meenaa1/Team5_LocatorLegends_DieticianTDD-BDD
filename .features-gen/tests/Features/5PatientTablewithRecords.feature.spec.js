@@ -3,28 +3,28 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Patient Table details with record', () => {
 
-  test('Verify the Patient list display', async ({ Given, When, Then, dashboardPage, myPatientsPage }) => { 
+  test('Verify the Patient list display', async ({ Given, When, Then, dashboardPage, myPatientsPage, patientTablePage }) => { 
     await Given('User is in dietician application dashboard page', null, { dashboardPage }); 
     await When('User clicks on My Patients button', null, { myPatientsPage }); 
-    await Then('All columns should have values'); 
+    await Then('All columns should have values', null, { patientTablePage }); 
   });
 
-  test('Verify the Patient Id displayed for each row', async ({ Given, When, Then, dashboardPage, myPatientsPage }) => { 
+  test('Verify the Patient Id displayed for each row', async ({ Given, When, Then, dashboardPage, myPatientsPage, patientTablePage }) => { 
     await Given('User is in dietician application dashboard page', null, { dashboardPage }); 
     await When('User clicks on My Patients button', null, { myPatientsPage }); 
-    await Then('Patient Id should be displayed for each patient record'); 
+    await Then('Patient Id should be displayed for each patient record', null, { patientTablePage }); 
   });
 
-  test('Verify the Patient name displayed for each row', async ({ Given, When, Then, dashboardPage, myPatientsPage }) => { 
+  test('Verify the Patient name displayed for each row', async ({ Given, When, Then, dashboardPage, myPatientsPage, patientTablePage }) => { 
     await Given('User is in dietician application dashboard page', null, { dashboardPage }); 
     await When('User clicks on My Patients button', null, { myPatientsPage }); 
-    await Then('Patient name should be displayed for each patient record'); 
+    await Then('Patient name should be displayed for each patient record', null, { patientTablePage }); 
   });
 
-  test('Verify the Details column displays patient information', async ({ Given, When, Then, dashboardPage, myPatientsPage }) => { 
+  test('Verify the Details column displays patient information', async ({ Given, When, Then, dashboardPage, myPatientsPage, patientTablePage }) => { 
     await Given('User is in dietician application dashboard page', null, { dashboardPage }); 
     await When('User clicks on My Patients button', null, { myPatientsPage }); 
-    await Then('Details column should display "phone number", email", " date of birth" for each patient record'); 
+    await Then('Details column should display "phone number", email", " date of birth" for each patient record', null, { patientTablePage }); 
   });
 
   test('Verify the Details are displayed in multiline format', async ({ Given, When, Then, dashboardPage, myPatientsPage }) => { 

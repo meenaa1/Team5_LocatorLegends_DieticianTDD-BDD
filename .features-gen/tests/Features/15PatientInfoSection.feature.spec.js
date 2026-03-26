@@ -3,50 +3,50 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Patient information section', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User logged into the app and patients already exists'); 
+  test.beforeEach('Background', async ({ Given, loggedInPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User logged into the app and patients already exists', null, { loggedInPage }); 
   });
   
-  test('Verify that Correct report opens for selected record', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Corresponding report for that record should be opened'); 
+  test('Verify that Correct report opens for selected record', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Corresponding report for that record should be opened', null, { myPatientsPage }); 
   });
 
-  test('Verify the Title is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Title " View Patient Test Reports" should be displayed'); 
+  test('Verify the Title is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Title " View Patient Test Reports" should be displayed', null, { myPatientsPage }); 
   });
 
-  test('Verify the Patient Id is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Patient id corresponding to the record selected in My Patients page should be displayed'); 
+  test('Verify the Patient Id is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Patient id corresponding to the record selected in My Patients page should be displayed', null, { myPatientsPage }); 
   });
 
-  test('Verify the Name is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Patient name corresponding to the record selected in My Patients page should be displayed'); 
+  test('Verify the Name is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Patient name corresponding to the record selected in My Patients page should be displayed', null, { myPatientsPage }); 
   });
 
-  test('Verify the Email is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Patient email corresponding to the record selected in My Patients page should be displayed'); 
+  test('Verify the Email is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Patient email corresponding to the record selected in My Patients page should be displayed', null, { myPatientsPage }); 
   });
 
-  test('Verify Contact number is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Patient contact number corresponding to the record selected in My Patients page should be displayed'); 
+  test('Verify Contact number is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Patient contact number corresponding to the record selected in My Patients page should be displayed', null, { myPatientsPage }); 
   });
 
-  test('Verify the Close icon is displayed', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page after logged in'); 
-    await When('User clicks View Previous Test Reports button for a specific record'); 
-    await Then('Close icon "x" should be displayed'); 
+  test('Verify the Close icon is displayed', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page after logged in', null, { myPatientsPage }); 
+    await When('User clicks View Previous Test Reports button for a specific record', null, { myPatientsPage }); 
+    await Then('Close icon "x" should be displayed', null, { myPatientsPage }); 
   });
 
 });

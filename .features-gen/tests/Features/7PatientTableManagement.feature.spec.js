@@ -3,50 +3,50 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Patient table Management', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is in dietician dashboard page with patient records already exist in the system for that user'); 
+  test.beforeEach('Background', async ({ Given, loggedInPage, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is in dietician dashboard page with patient records already exist in the system for that user', null, { loggedInPage, loginPage }); 
   });
   
-  test('Verify that Patient Id ascending sorting', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page'); 
-    await When('User clicks up arrow in Patient Id column'); 
-    await Then('Patient records should be sorted in ascending order by patient id'); 
+  test('Verify that Patient Id ascending sorting', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page', null, { myPatientsPage }); 
+    await When('User clicks up arrow in Patient Id column', null, { myPatientsPage }); 
+    await Then('Patient records should be sorted in ascending order by patient id', null, { myPatientsPage }); 
   });
 
-  test('Verify that Patient Id descending sorting', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page'); 
+  test('Verify that Patient Id descending sorting', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page', null, { myPatientsPage }); 
     await When('User clicks down arrow in Patient Id column'); 
-    await Then('Patient records should be sorted in descending order by patient id'); 
+    await Then('Patient records should be sorted in descending order by patient id', null, { myPatientsPage }); 
   });
 
-  test('Verify that Name ascending sorting', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page'); 
-    await When('User clicks up arrow in Name column'); 
-    await Then('Patient records should be sorted in ascending order by name'); 
+  test('Verify that Name ascending sorting', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page', null, { myPatientsPage }); 
+    await When('User clicks up arrow in Name column', null, { myPatientsPage }); 
+    await Then('Patient records should be sorted in ascending order by name', null, { myPatientsPage }); 
   });
 
-  test('Verify that Name descending sorting', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page'); 
-    await When('User clicks down arrow in Name column'); 
-    await Then('Patient records should be sorted in descending order by name'); 
+  test('Verify that Name descending sorting', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page', null, { myPatientsPage }); 
+    await When('User clicks down arrow in Name column', null, { myPatientsPage }); 
+    await Then('Patient records should be sorted in descending order by name', null, { myPatientsPage }); 
   });
 
-  test('Verify that Search functionality using patient name', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page'); 
-    await When('User searches using patient name'); 
-    await Then('Matching patient details should be displayed'); 
+  test('Verify that Search functionality using patient name', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page', null, { myPatientsPage }); 
+    await When('User searches using patient name', null, { myPatientsPage }); 
+    await Then('Matching patient details should be displayed', null, { myPatientsPage }); 
   });
 
-  test('Verify that Search funcionality using patient id', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patients page'); 
-    await When('User searched using patient id'); 
-    await Then('Matching patient details should be displayed with correct Patient ID'); 
+  test('Verify that Search funcionality using patient id', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User is in My Patients page', null, { myPatientsPage }); 
+    await When('User searched using patient id', null, { myPatientsPage }); 
+    await Then('Matching patient details should be displayed with correct Patient ID', null, { myPatientsPage }); 
   });
 
-  test('Verify that Search is cleared', async ({ Given, When, Then }) => { 
-    await Given('User entered the text in search box in My Patients page'); 
-    await When('User clears the search text'); 
-    await Then('All patient records should be displayed again'); 
+  test('Verify that Search is cleared', async ({ Given, When, Then, myPatientsPage }) => { 
+    await Given('User entered the text in search box in My Patients page', null, { myPatientsPage }); 
+    await When('User clears the search text', null, { myPatientsPage }); 
+    await Then('All patient records should be displayed again', null, { myPatientsPage }); 
   });
 
 });

@@ -1,9 +1,13 @@
 import { test as base } from 'playwright-bdd';
 import LoginPagePO from '../PageObjects/LoginPagePO.js';
-import { EditPage } from '../PageObjects/EditPagePom.js';
+import EditPagePom from '../PageObjects/EditPagePom.js';
 import AddPatientDialogBoxPagePO from '../PageObjects/AddPatientDialogBoxPagePO.js'
 import DashboardPagePO from '../PageObjects/DashboardPagePO.js';
 import MyPatientsPagePO from '../PageObjects/MyPatientsPagePO.js';
+import PatientTableWRecordsPagePO from '../PageObjects/PatientTableWRecordsPagePO.js';
+import MyPatientsPaginationPO from '../PageObjects/MyPatientPaginationPO.js';
+import ViewPDFPagePO from '../PageObjects/ViewPDFPagePO.js';
+
 
 
 export const test = base.extend({
@@ -20,7 +24,11 @@ export const test = base.extend({
     await use(new MyPatientsPagePO(page));
   },
 
-  addPatientPage : async ({ page }, use) => {
+  patientTablePage: async ({ page }, use) => {
+    await use(new PatientTableWRecordsPagePO(page));
+  },
+
+  addPatientPage: async ({ page }, use) => {
     await use(new AddPatientDialogBoxPagePO(page));
   },
 
@@ -29,11 +37,18 @@ export const test = base.extend({
     await loginPage.login(process.env.username, process.env.password);
     await use(loginPage);
   },
-  editPage: async ({ page}, use) => {
-    const editPage = new EditPage(page);
-    await use(editPage);
+
+  editPage: async ({ page }, use) => {
+    await use(new EditPagePom(page));
+  },
+
+  paginationPage: async ({ page }, use) => {
+    await use(new MyPatientsPaginationPO(page));
+  },
+
+  viewPDFPage: async ({ page }, use) => {
+    await use(new ViewPDFPagePO(page));
   }
 
 });
 
-export { expect } from '@playwright/test';

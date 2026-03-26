@@ -1,5 +1,5 @@
 // Generated from: tests\Features\23EditPatient_DialogBoxValidation.feature
-import { test } from "playwright-bdd";
+import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Edit Patient -Dialog Box Validation', () => {
 

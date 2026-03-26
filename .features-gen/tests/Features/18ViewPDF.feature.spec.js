@@ -3,14 +3,14 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('View PDF', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is in My Patients page after logged into the app and patients already exists'); 
+  test.beforeEach('Background', async ({ Given, loggedInPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is in My Patients page after logged into the app and patients already exists', null, { loggedInPage }); 
   });
   
-  test('Verify that Corresponding PDF report opens for a record', async ({ Given, When, Then }) => { 
-    await Given('User is in View Plan Test Reports page'); 
-    await When('User clicks View PDF button for a particular record'); 
-    await Then('Corresponding report for that record should be opened for that particular record'); 
+  test('Verify that Corresponding PDF report opens for a record', async ({ Given, When, Then, myPatientsPage, viewPDFPage }) => { 
+    await Given('User is in View Plan Test Reports page', null, { myPatientsPage }); 
+    await When('User clicks View PDF button for a particular record', null, { viewPDFPage }); 
+    await Then('Corresponding report for that record should be opened for that particular record', null, { viewPDFPage }); 
   });
 
 });
