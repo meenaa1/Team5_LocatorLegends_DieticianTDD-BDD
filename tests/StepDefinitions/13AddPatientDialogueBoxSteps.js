@@ -10,10 +10,10 @@ const { Given, When, Then } = createBdd(test);
 let addPatientPage;
 let loginPage;
 
-Given('User is in home page after login', async ({ loginPage, addPatientPage }) => {
+Given('User is in home page after login', async ({ loggedinPage, addPatientPage }) => {
     
-    await loginPage.navigate();
-    await loginPage.login(process.env.username, process.env.password);
+    await loggedinPage.navigate();
+
     const isHomePageDisplayed = await addPatientPage.isHomePageDisplayed();
     expect(isHomePageDisplayed).toBeTruthy();
     logger.info('User is on the home page after login'); 

@@ -1,3 +1,5 @@
+ import { expect } from '@playwright/test';
+ 
  class AddPatientDialogBoxPagePO {
 
   constructor(page) {
@@ -12,8 +14,8 @@
     this.lastName = page.locator('#lastName');
     this.email = page.locator('#email');
     this.contactNumber = page.locator('#contactNumber');
- // Vitals
-    this.weight = page.locator('#weight');
+ // Vitals placeholders
+    this.weight= page.locator('#weight');
     this.height = page.locator('#height');
     this.temperature = page.locator('#temperature');
     this.sp = page.locator('#sp');
@@ -21,8 +23,9 @@
 //dob
     this.dob = page.locator('#dob');
 //dropdowns
+    this.dropdownOptions = page.locator('.dropdown-menu option');
     this.allergies = page.locator('#allergies');
-    this.foodPreference = page.locator('#foodPreference');
+    this.foodPreferences = page.locator('#foodPreferences');
     this.cuisineCategory = page.locator('#cuisineCategory');
 // Buttons
     this.submitBtn = page.locator('#submitBtn');
@@ -67,6 +70,7 @@
   }
 
   async getPlaceholder(locator) {
+
     return await locator.getAttribute('placeholder');
   }
 
@@ -88,11 +92,55 @@
     );
   }
 
-  async getPlaceholder(locator) {
-    return await locator.getAttribute('placeholder');
+  async validpatientDetails(firstName, lastName, email, contactNumber, weight, height, temperature, sp, dp, dob) {
+    await this.firstName.fill(firstName);
+    await this.lastName.fill(lastName);
+    await this.email.fill(email);
+    await this.contactNumber.fill(contactNumber);
+    await this.weight.fill(weight);
+    await this.height.fill(height);
+    await this.temperature.fill(temperature);
+    await this.sp.fill(sp);
+    await this.dp.fill(dp);
+    await this.dob.fill(dob);
+  }
+  async selectDropdownValue(allergy, foodPref, cuisine) {
+    await this.allergies.selectOption(allergy);
+    await this.foodPreferences.selectOption(foodPref);
+    await this.cuisineCategory.selectOption(cuisine);
+  }
+    
+  
+  async clickSubmit() {
+    await this.submitBtn.click();
+  }
+  async fillInputField(locator, value) {
+    await locator.fill(value);
   }
 
+  //
+  async selectDropdownOption(locator, value, expectedValue) {
+    await expect(locator.selectOption(value)).toHaveText(expectedValue);
+  }
+
+  async clearField(locator) {
+    await locator.fill('');
+  }
+  async getdobValue() {
+    return await this.dob.inputValue();
+  }
+async clickdropdown() {
+    await this.dropdownOptions.first().click();
+    }
+
+ async selectValue(dropdown, value) {
+    await dropdown.selectOption({ label: value });
+  }
+
+  async getSelectedValue(dropdown) {
+    return await dropdown.inputValue();
+  }
   
-
-
 }
+
+export default AddPatientDialogBoxPagePO;
