@@ -1,220 +1,121 @@
-Feature: :Add Patient Details - Functional TestCase
+Feature: Add Patient Details - Functional Test Cases
+  Background:
+    Given User is in Add Patient Details dialog box
 
-Background: 
-Given User is in Add Patient Details Dialogue Box, creating New Patient Details
+   Scenario: Presence of values in Allergy dropdown
+    When User clicks on Allergy dropdown
+    Then Values should be present inside Allergy dropdown
+    And Dropdown should contain 13 values
 
-Scenario: Presence of dropdown values in Allergy
-  When User clicks on Allergry dropdown
-  Then Values should be present inside Allergy dropdown
+  Scenario: Presence of values in Food Preference dropdown
+    When User clicks on Food Preference dropdown
+    Then Values should be present inside Food Preference dropdown
+    And Dropdown should contain 5 values
 
-Scenario: Number of values in Allergy dropdown
-  When User clicks on Allergry dropdown
-  Then Dropdown should contain 13 values
+  Scenario: Presence of values in Cuisine Category dropdown
+    When User clicks on Cuisine Category dropdown
+    Then Values should be present inside Cuisine Category dropdown
+    And Dropdown should contain 36 values
 
-Scenario: Specific values in Allergy dropdown
-  When User clicks on Allergry dropdown
-  Then Dropdown should contain values "Egg", "Milk", "Soy", "Almond", "Peanuts", "Walnut", "Pistachio", "Sesame", "Hazelnut", "Pecan", "Cashew", "NONE"
+  Scenario: State of Submit button after adding values in all field
+    When User enters valid values in all field
+    Then Submit button should be enabled
 
-Scenario: Presence of dropdown values in food presence
-  When User clicks on Food Preference dropdown
-  Then Values should be present inside Food preference dropdown
+  Scenario: Success message validation for adding new patient with valid data
+    When User clicks Submit after entering valid data in all mandatory fields
+    Then User should see Patient successfully created - toast message
+     And User is directed to My Patient Page with New Patient Details created
 
-Scenario: Number of values in Food Preference dropdown
-  When User clicks on Food Preference dropdown
-  Then Dropdown should contain 5 values
+  Scenario Outline: Validate selection from Allergy dropdown
+    When User selects Values from Allergy dropdown
+    Then Expected Result should be selected in the Allergy field
 
-Scenario: Specific values in food presence dropdown
-  When User clicks on Food Preference dropdown
-  Then Dropdown should contain values "Vegan", "Vegetarian", "Jain", "Eggitarian", "NonVeg"
+  Scenario Outline: Validate Food Preference dropdown selection
+    When User selects Values from Food Preference dropdown
+    Then Expected Result should be selected in Food Preference field
 
-Scenario: Presence of dropdown values in cuisine
-  When User clicks on cuisine dropdown
-  Then Values should be present inside Cuisine dropdown
+  Scenario Outline: Validate Cuisine Category dropdown selection
+    When User selects Values from Cuisine Category dropdown
+    Then Expected Result should be selected in Cuisine Category field
 
-Scenario: Number of values in Cuisine dropdown
-  When User clicks on cuisine dropdown
-  Then Dropdown should contain 36 values
+  Scenario: Selecting date for DOB field
+    When User clicks Date of Birth field
+    Then User should see calender date picker displayed with Month,Day,Year    
 
-Scenario: Specific values in cuisine dropdown
-  When User clicks on cuisine dropdown
-  Then Dropdown should contain values "Indian", "South Indian", "Rajasthani", "Punjabi", "Bengali", "Orissa", "Gujarati", "Maharashtrian", "Andhra", "Kerala", "Goan", "Kashmiri", "Himachali", "Tamil Nadu", "Karnataka", "Sindhi", "Chhattisgarhi", "Madhya Pradesh", "Assamese", "Manipuri", "Tripuri", "Sikkimese", "Mizo", "Arunachali", "Uttarakhand", "Haryanvi", "Awadhi", "Bihari", "Uttar Pradesh", "Delhi", "North Indian"
+  Scenario Outline: Validate DOB input scenarios
+    When User enters DOB 
+    Then System should show Expected Result for DOB field
 
-Scenario: State of Submit button after adding values in all field
-  When User enters valid values in all field
-  Then Submit button should be enabled
+  
+  Scenario Outline: Validate First and Last Name fields
+    When User enters values in  field and navigates to next field
+    Then User should see error message 
 
-Scenario: Success message validation for adding new patient with valid data
-  When User clicks Submit after entering valid data in all mandatory fields
-  Then User should see Patient successfully created - toast message
 
-Scenario: Navigation to My patient after adding new patient with valid data
-  When User clicks Submit after entering valid data in all mandatory fields
-  Then User is directed to My Patient Page with New Patient Details created
+  Scenario Outline: Validate Email field
+    When User enters Email and navigates to next field
+    Then User should see error message 
 
-Scenario: Select a single value from Allergy dropdown
-  When User selects "Peanuts" from Allergy dropdown
-  Then "Peanuts" should be selected in the Allergy field
 
-Scenario: Select multiple values from Allergy dropdown
-  When User selects "Peanuts" and "Milk" from Allergy dropdown
-  Then "Milk" should be selected in the Allergy field
+  Scenario Outline: Validate Contact Number field
+    When User enters values in Contact Number field and navigates to next field
+    Then User should see error message 
 
-Scenario: selecting a value not present in Allergy dropdown
-  When User select "Soybean" from Allergy dropdown
-  Then No selection should occur
+  Scenario: Add weight with valid data
+    When User navigate to next field after entering valid weight
+    Then User is directed to My Patient Page with New Patient Details created
 
-Scenario: Select a single value from Food Preference dropdown
-  When User selects "Vegan" from Food Preference dropdown
-  Then "Vegan" should be selected in the Food Preference field
+  Scenario Outline: Validate Weight field
+    When User enters values in Weight field and navigates to next field
+    Then User should see error message 
 
-Scenario: Select multiple values from Food Preference dropdown
-  When User selects "Vegan" and "Jain" from Food Preference dropdown
-  Then "Jain" should be selected in the Food Preference field
+  Scenario: Add height with valid data
+    When User navigate to next field after entering valid height
+    Then User is directed to My Patient Page with New Patient Details created
 
-Scenario: selecting a value not present in Food Preference dropdown
-  When User tries to select "Keto" from Food Preference dropdown
-  Then No selection should occur
+  Scenario Outline: Validate Height field
+    When User enters values in Height field and navigates to next field
+    Then User should see error message 
 
-Scenario: Select a single value from Cuisine Category dropdown
-  When User selects "Punjabi" from Cuisine Category dropdown
-  Then "Punjabi" should be selected in the Cuisine Category field
+  Scenario: Add temperature with valid data
+    When User clicks Submit after entering valid temperature
+    Then User is directed to My Patient Page with New Patient Details created
 
-Scenario: Select multiple values from Cuisine Category dropdown
-  When User selects "Punjabi" and "Gujarati" from Cuisine Category dropdown
-  Then "Gujarati" should be selected in the Cuisine Category field
+  Scenario Outline: Validate Temperature field
+    When User enters values in Temperature field and navigates to next field
+    Then User should see error message 
 
-Scenario: selecting a value not present in Cuisine Category dropdown
-  When User tries to select "Italian" from Cuisine Category dropdown
-  Then No selection should occur
+  Scenario: Add SP,DP with valid data
+    When User clicks Submitafter entering valid SP and DP
+    Then User is directed to My Patient Page with New Patient Details created
 
-Scenario: Selecting date for DOB field
-  When User clicks Date of Birth field
-  Then User should see calender date picker displayed with Month,Day,Year
+  Scenario Outline: Validate Blood Pressure fields (SP & DP)
+    When User enters values in SP and DP fields and navigates to next field
+    Then User should see error message 
 
-Scenario: Selecting valid date in DOB field
-  When User clicks Date of Birth field, selects valid date 01/12/2000
-  Then User should see the selected date 01/12/2000
+  Scenario: Upload valid file - pdf
+    When User clicks Submit after uploading a valid file
+    Then User should be redirected to My Patient page with the uploaded file saved successfully
 
-Scenario: Verify selected date is displayed in MM/DD/YYYY format
-  When User clicks Date of Birth field, selects valid date
-  Then User should see the selected date in MM/DD/YYYY format
+  Scenario: File name after Upload valid file - pdf
+    When User uploads health report in pdf
+    Then User should see uploaded file name with extension
 
-Scenario: Prevent selection of future date in DOB field
-  When User clicks calendar Date of Birth field
-  Then User should see the future date to be disabled
+  Scenario Outline: Verify uploaded test report details
+    When User clicks View Previous Test Report after being redirected to My Patient page for newly created patient
+    Then User should see Verification in test report
 
-Scenario: Selecting current date as DOB
-  When User selects current date as DOB
-  Then User should see an error message "Invalid date ,Please select valid date"
+  Scenario Outline: Validate file upload behavior
+    When User uploads files
+    Then User should see Expected Result
 
-Scenario: Selecting Invalid date
-  When User enters invalid date (34/20/2022)
-  Then User should see an error message "Invalid date ,Please select valid date"
+  Scenario: Close add dialog using Close button
+    When User clicks Close button after submit
+    Then Add dialog should close and user should be on my patient page without new patient created
 
-Scenario: User enters non-numeric value in DOB field
-  When User enters "ab/cd/efgh" in the DOB field
-  Then User should see an error message "Invalid date format"
 
-Scenario: Selecting partial date in DOB field
-  When User enters "12/05" in the DOB field
-  Then User should see an error message "Invalid date format"
 
-Scenario: Boundary year Navigation
-  When User selects date 1780 in calendar
-  Then Years older than 100 years from today should be disabled
 
-Scenario: Leap year validation
-  When User enters Feb 29 2024 in DOB
-  Then User should see the selected date Feb 29 2024
 
-Scenario: Non Leap year validation
-  When User enters Feb 29 2023
-  Then User should see an error message "Please select valid date"
 
-Scenario: Add first name field with numeric data
-  When User navigate to next field after entering numeric data in First name field
-  Then User should see error message in Patient first name accepts only alphabets
 
-Scenario: Add first name field with special character data
-  When User navigate to next field after entering special characters in First name field
-  Then User should see error message in Patient first name accepts only alphabets
-
-Scenario: Mandatory field check for firstname field
-  When User navigate to next field leaving First name field empty
-  Then User should see error message "Firstname field is required"
-
-Scenario: Add last name field with numeric data
-  When User navigate to next field after entering numeric data in Last name field
-  Then User should see error message in Patient last name accepts only alphabets
-
-Scenario: Add last name field with special character data
-  When User navigate to next field after entering special characters in Last name field
-  Then User should see error message in Patient last name accepts only alphabets
-
-Scenario: Mandatory field check for lastname field
-  When User navigate to next field leaving Last name field empty
-  Then User should see error message "Lastname field is required"
-
-Scenario: Add email with starts with number
-  When User navigate to next field after entering email starting with number
-  Then User should see the error message “Please enter a valid email address”
-
-Scenario: Add email without @ symbol
-  When User navigate to next field after entering email without @
-  Then User should see the error message “Please enter a valid email address”
-
-Scenario: Add email with special characters
-  When User navigate to next field after entering email with special characters other than @
-  Then User should see the error message “Please enter a valid email address”
-
-Scenario: Add email without .com
-  When User navigate to next field after entering email without .com
-  Then User should see the error message “Please enter a valid email address”
-
-Scenario: Existing email id
-  When User navigate to next field after entering existing email id
-  Then User should see the error message “Email id already exists”
-
-Scenario: Mandatory field check for email field
-  When User navigate to next field after entering all mandatory fields except email field
-  Then User should see error message "Email field is required"
-
-Scenario: Add contact number with alphabets
-  When User navigate to next field after entering alphabets in contact number with valid data in other mandatory fields
-  Then User should see the error message “Contact number accepts only numeric values”
-
-Scenario: Add contact number with special characters
-  When User navigate to next field after entering special characters in contact number with valid data in other mandatory fields
-  Then User should see the error message “Contact number accepts only numeric values”
-
-Scenario: Add contact number with less than required digits
-  When User navigate to next field after entering contact number with less than required digits with valid data in other mandatory fields
-  Then User should see the error message “Please enter a valid contact number”
-
-Scenario: Add contact number with greater than required digits
-  When User navigate to next field after entering contact number with greater than required digits with valid data in other mandatory fields
-  Then User should see the error message “Please enter a valid contact number”
-
-Scenario: Existing contact number
-  When User navigate to next field after entering existing contact number
-  Then User should see the error message “Contact number already exists”
-
-Scenario: Mandatory field check for contact num field
-  When User navigate to next field after entering all mandatory fields except contact number field
-  Then User should see error message "Contact Num is required"
-
-Scenario: Leaving Allergies field empty
-  When User navigate to next field after entering all mandatory fields without selecting Allergies
-  Then User should see error message "Allergies is required"
-
-Scenario: Leaving Food Preference field empty
-  When User navigate to next field after entering all mandatory fields without selecting Food Preference
-  Then User should see error message "Food Preference is required"
-
-Scenario: Leaving Cusine Category field empty
-  When User navigate to next field after entering all mandatory fields without selecting Cuisine Category
-  Then User should see error message "Cusine Category is required"
-
-Scenario: Leaving DOB field empty
-  When User navigate to next field after entering all mandatory fields without selecting DOB
-  Then User should see error message "Date is required"
