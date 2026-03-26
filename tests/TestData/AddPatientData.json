@@ -12,8 +12,8 @@
     "height": "170",
     "temperature": "98.6",
     "SP": "120",
-    "DP": "80",
-    "filePath": "testData/files/healthReport.pdf"
+    "DP": "80"
+  
   },
 
   "allergyDropdown": [
