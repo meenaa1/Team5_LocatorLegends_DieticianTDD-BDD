@@ -1,40 +1,40 @@
- import { expect } from '@playwright/test';
- 
- class AddPatientDialogBoxPagePO {
+import { expect } from '@playwright/test';
+
+class AddPatientDialogBoxPagePO {
 
   constructor(page) {
     this.page = page;
     this.homeTitle = page.locator('.home-title');
     this.newPatientBtn = page.locator('#new-patient-btn');
-// dialog locators
+    // dialog locators
     this.dialogContainer = page.locator('.dialog-container');
     this.dialogTitle = page.locator('.dialog-title');
-//input fields
+    //input fields
     this.firstName = page.locator('#firstName');
     this.lastName = page.locator('#lastName');
     this.email = page.locator('#email');
     this.contactNumber = page.locator('#contactNumber');
- // Vitals placeholders
-    this.weight= page.locator('#weight');
+    // Vitals placeholders
+    this.weight = page.locator('#weight');
     this.height = page.locator('#height');
     this.temperature = page.locator('#temperature');
     this.sp = page.locator('#sp');
     this.dp = page.locator('#dp');
-//dob
+    //dob
     this.dob = page.locator('#dob');
-//dropdowns
+    //dropdowns
     this.dropdownOptions = page.locator('.dropdown-menu option');
     this.allergies = page.locator('#allergies');
     this.foodPreferences = page.locator('#foodPreferences');
     this.cuisineCategory = page.locator('#cuisineCategory');
-// Buttons
+    // Buttons
     this.submitBtn = page.locator('#submitBtn');
     this.closeBtn = page.locator('#closeBtn');
-// File upload
+    // File upload
     this.fileUpload = page.locator('input[type="file"]');
     this.uploadText = page.locator('.upload-label');
     this.noFileText = page.locator('.no-file-text');
-//collection locators
+    //collection locators
     this.allInputs = page.locator('.dialog-container input');
     this.allDropdowns = page.locator('.dialog-container select');
   }
@@ -110,8 +110,8 @@
     await this.foodPreferences.selectOption(options.foodPref);
     await this.cuisineCategory.selectOption(options.cuisine);
   }
-    
-  
+
+
   async clickSubmit() {
     await this.submitBtn.click();
   }
@@ -119,7 +119,7 @@
     await locator.fill(value);
   }
 
-  
+
   async selectDropdownOption(locator, value, expectedValue) {
     await expect(locator.selectOption(value)).toHaveText(expectedValue);
   }
@@ -128,17 +128,36 @@
     await locator.fill('');
   }
   async getdobValue(dob) {
+<<<<<<< HEAD
     return await this.dob.inputValue();
 
    
   }
  
+=======
+    const dobValue = await this.dob.inputValue();
+    await this.dob.click();
+    await this.dob.fill(dob);
 
- async selectValue(dropdown, value) {
+  }
+  async clickDropdown(dropdown) {
+
+    await dropdown.first().click();
+  }
+>>>>>>> main
+
+  async selectValue(dropdown, value) {
     await dropdown.selectOption({ label: value });
   }
 
+<<<<<<< HEAD
  
  }
+=======
+  async dropdownOptions(dropdown) {
+    await dropdown.first().isVisible();
+  }
+}
+>>>>>>> main
 
 export default AddPatientDialogBoxPagePO;

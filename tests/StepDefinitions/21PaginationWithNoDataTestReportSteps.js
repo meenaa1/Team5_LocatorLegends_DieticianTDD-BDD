@@ -1,22 +1,24 @@
 import { createBdd } from "playwright-bdd";
 import { test } from "../Fixtures/testFixtures.js";
 import { expect } from "@playwright/test";
+import logger from '../../utils/Logger.js';
 
-const { Given, When, Then } = createBdd(test);
+const { Given, Then } = createBdd(test);
 
 
 
-Given('User logged into the application without patient added to that user to view Reports', async ({}) => {
-  // Step: Given User logged into the application without patient added to that user to view Reports
-  // From: tests\Features\PaginationWithNoDataTestReport.feature:4:1
+Given('User logged into the application without patient added to that user to view Reports', async ({ loginPage }) => {
+  await loginPage.loginwithNoPatients();
+  logger.info('User logged in with No patient record');// There will be no View Patient Test reports Button because the user has no patient So "When" is invalid.
+
 });
 
-Then('{string} should be displayed inside the Test Report Popup', async ({}, arg) => {
-  // Step: Then "Showing 0 to 0 of 0 patients" should be displayed inside the Test Report Popup
-  // From: tests\Features\PaginationWithNoDataTestReport.feature:9:1
+Then('{string} should be displayed inside the Test Report Popup', async ({ viewPDFPage }, arg) => {
+  const text = await viewPDFPage.paginationText.textContent();
+  expect(text.trim()).toBe(expectedText);
+  await viewPDFPage.validateAllPaginationArrowsDisabled();
 });
 
-Then('First, previous, next, last arrows should be disabled inside the Test Report Popup', async ({}) => {
-  // Step: Then First, previous, next, last arrows should be disabled inside the Test Report Popup
-  // From: tests\Features\PaginationWithNoDataTestReport.feature:14:1
+Then('First, previous, next, last arrows should be disabled inside the Test Report Popup', async ({ viewPDFPage }) => {
+  await viewPDFPage.validateAllPaginationArrowsDisabled();
 });
