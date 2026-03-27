@@ -93,22 +93,22 @@
     );
   }
 
-  async validpatientDetails(firstName, lastName, email, contactNumber, weight, height, temperature, sp, dp, dob) {
-    await this.firstName.fill(firstName);
-    await this.lastName.fill(lastName);
-    await this.email.fill(email);
-    await this.contactNumber.fill(contactNumber);
-    await this.weight.fill(weight);
-    await this.height.fill(height);
-    await this.temperature.fill(temperature);
-    await this.sp.fill(sp);
-    await this.dp.fill(dp);
-    await this.dob.fill(dob);
+  async validpatientDetails(patientData) {
+    await this.firstName.fill(patientData.firstName);
+    await this.lastName.fill(patientData.lastName);
+    await this.email.fill(patientData.email);
+    await this.contactNumber.fill(patientData.contactNumber);
+    await this.weight.fill(patientData.weight);
+    await this.height.fill(patientData.height);
+    await this.temperature.fill(patientData.temperature);
+    await this.sp.fill(patientData.sp);
+    await this.dp.fill(patientData.dp);
+    await this.dob.fill(patientData.dob);
   }
-  async selectDropdownValue(allergy, foodPref, cuisine) {
-    await this.allergies.selectOption(allergy);
-    await this.foodPreferences.selectOption(foodPref);
-    await this.cuisineCategory.selectOption(cuisine);
+  async selectDropdownValue(options) {
+    await this.allergies.selectOption(options.allergy);
+    await this.foodPreferences.selectOption(options.foodPref);
+    await this.cuisineCategory.selectOption(options.cuisine);
   }
     
   
@@ -128,9 +128,8 @@
     await locator.fill('');
   }
   async getdobValue(dob) {
-    const dobValue = await this.dob.inputValue();
-    await this.dob.click();
-    await this.dob.fill(dob);
+    return await this.dob.inputValue();
+
    
   }
  

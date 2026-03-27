@@ -5,17 +5,17 @@ Feature: Add Patient Details - Functional Test Cases
   Scenario: Presence of values in Allergy dropdown
     When User clicks on Allergy dropdown
     Then Values should be present inside Allergy dropdown
-    And Allergy Dropdown should contain 13 values
+    And  Dropdown should contain 13 values
 
   Scenario: Presence of values in Food Preference dropdown
     When User clicks on Food Preference dropdown
     Then Values should be present inside Food Preference dropdown
-    And Food Preference Dropdown should contain 5 values
+    And  Dropdown should contain 5 values
 
   Scenario: Presence of values in Cuisine Category dropdown
     When User clicks on Cuisine Category dropdown
     Then Values should be present inside Cuisine Category dropdown
-    And Cuisine Dropdown should contain 36 values
+    And  Dropdown should contain 36 values
 
   Scenario: State of Submit button after adding values in all field
     When User enters valid values in all field
