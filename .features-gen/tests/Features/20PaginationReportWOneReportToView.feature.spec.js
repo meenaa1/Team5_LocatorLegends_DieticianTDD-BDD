@@ -7,10 +7,10 @@ test.describe('Pagination management with only one record(Test Report) to View',
     await Given('User is logged into the application and only one patient record already exist in the system for that user', null, { loginPage }); 
   });
   
-  test('Verify that All pagination arrows disabled when only one page exists', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patient page'); 
-    await When('User clicks on View Patient Test Reports button'); 
-    await Then('First, previous, next, last arrows should be disabled in the View Test Reports Pop up'); 
+  test('Verify that All pagination arrows disabled when only one page exists', async ({ Given, When, Then, loginPage, viewPDFPage }) => { 
+    await Given('User is in My Patient page', null, { loginPage }); 
+    await When('User clicks on View Patient Test Reports button', null, { viewPDFPage }); 
+    await Then('First, previous, next, last arrows should be disabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
 });

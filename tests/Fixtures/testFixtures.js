@@ -32,6 +32,7 @@ export const test = base.extend({
     await use(new AddPatientDialogBoxPagePO(page));
   },
 
+
   loggedInPage: async ({ loginPage }, use) => {
     await loginPage.navigate();
     await loginPage.login(process.env.username, process.env.password);

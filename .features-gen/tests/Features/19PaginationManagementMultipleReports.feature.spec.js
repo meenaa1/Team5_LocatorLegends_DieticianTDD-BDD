@@ -3,104 +3,104 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management with multiple records in View Patient Test Reports', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is in View Patient Test Reports page with multiple records already existing in the system for that user'); 
+  test.beforeEach('Background', async ({ Given, loggedInPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is in View Patient Test Reports page with multiple records already existing in the system for that user', null, { loggedInPage }); 
   });
   
-  test('Navigate to the next page using pagination', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple records for the patient'); 
-    await When('User clicks the next page arrow \'(>)\' of the View Test Reports Pop up'); 
-    await Then('Next set of patient records should be displayed'); 
+  test('Navigate to the next page using pagination', async ({ Given, When, Then, myPatientsPage, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple records for the patient', null, { myPatientsPage, viewPDFPage }); 
+    await When('User clicks the next page arrow \'(>)\' of the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('Next set of patient records should be displayed', null, { viewPDFPage }); 
   });
 
-  test('Navigate to the previous page using pagination', async ({ Given, When, Then }) => { 
-    await Given('User is in Report table of View Patient Test Reports page'); 
-    await When('User clicks the previous page arrow \'(<)\' of the View Test Reports Pop up'); 
-    await Then('Previous set of patient records should be displayed in the View Test Reports Pop up'); 
+  test('Navigate to the previous page using pagination', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in Report table of View Patient Test Reports page', null, { viewPDFPage }); 
+    await When('User clicks the previous page arrow \'(<)\' of the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('Previous set of patient records should be displayed in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Navigate to the first page using pagination', async ({ Given, When, Then }) => { 
-    await Given('User is in any page except first page of Report table'); 
-    await When('User clicks the first page arrow \'(<<)\' of the View Test Reports Pop up'); 
-    await Then('First page of patient records should be displayed in the View Test Reports Pop up'); 
+  test('Navigate to the first page using pagination', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in any page except first page of Report table', null, { viewPDFPage }); 
+    await When('User clicks the first page arrow \'(<<)\' of the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('First page of patient records should be displayed in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Navigate to the last page using pagination', async ({ Given, When, Then }) => { 
-    await Given('User is in any page except last page of Report table'); 
-    await When('User clicks the last page arrow \'(>>)\' of the View Test Reports Pop up'); 
-    await Then('Last page of patient records should be displayed in the View Test Reports Pop up'); 
+  test('Navigate to the last page using pagination', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in any page except last page of Report table', null, { viewPDFPage }); 
+    await When('User clicks the last page arrow \'(>>)\' of the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('Last page of patient records should be displayed in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Pagination count is updated correctly', async ({ Given, When, Then }) => { 
-    await Given('User is in any page of Report table'); 
-    await When('User clicks any page navigation arrow in the View Test Reports Pop up'); 
-    await Then('Pagination text should display the correct range and total number of patients of the View Test Reports Pop up'); 
+  test('Pagination count is updated correctly', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in any page of Report table', null, { viewPDFPage }); 
+    await When('User clicks any page navigation arrow in the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('Pagination text should display the correct range and total number of patients of the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Pagination is displayed when patient records exceed one page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to any page of the View Test Reports Pop up'); 
-    await Then('Pagination controls should be displayed in the View Test Reports Pop up'); 
+  test('Pagination is displayed when patient records exceed one page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to any page of the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('Pagination controls should be displayed in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Previous page arrow disabled on first page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to the first page of patient records'); 
-    await Then('Previous arrow \'(<)\' should be disabled in the View Test Reports Pop up'); 
+  test('Previous page arrow disabled on first page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to the first page of patient records', null, { viewPDFPage }); 
+    await Then('Previous arrow \'(<)\' should be disabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('First page arrow disabled on first page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to the first page of patient records'); 
-    await Then('First page arrow \'(<<)\' should be disabled in the View Test Reports Pop up'); 
+  test('First page arrow disabled on first page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to the first page of patient records', null, { viewPDFPage }); 
+    await Then('First page arrow \'(<<)\' should be disabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Next page arrow enabled on first page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to the first page of patient records'); 
-    await Then('Next arrow \'(>)\' should be enabled in the View Test Reports Pop up'); 
+  test('Next page arrow enabled on first page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to the first page of patient records', null, { viewPDFPage }); 
+    await Then('Next arrow \'(>)\' should be enabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Last page arrow enabled on first page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to the first page of patient records'); 
-    await Then('Last page arrow \'(>>)\' should be enabled in the View Test Reports Pop up'); 
+  test('Last page arrow enabled on first page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to the first page of patient records', null, { viewPDFPage }); 
+    await Then('Last page arrow \'(>>)\' should be enabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Previous page arrow is enabled on all pages except the first page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to any page after the first page of the View Test Reports Pop up'); 
-    await Then('Previous arrow \'(<)\' should be enabled in the View Test Reports Pop up'); 
+  test('Previous page arrow is enabled on all pages except the first page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to any page after the first page of the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('Previous arrow \'(<)\' should be enabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('First page arrow is enabled on all pages except the first page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to any page after the first page of the View Test Reports Pop up'); 
-    await Then('First page arrow \'(<<)\' should be enabled in the View Test Reports Pop up'); 
+  test('First page arrow is enabled on all pages except the first page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to any page after the first page of the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('First page arrow \'(<<)\' should be enabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Last page arrow is enabled on all pages except the last page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to any page except the last page of the View Test Reports Pop up'); 
-    await Then('Last page arrow \'(>>)\' should be enabled in the View Test Reports Pop up'); 
+  test('Last page arrow is enabled on all pages except the last page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to any page except the last page of the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('Last page arrow \'(>>)\' should be enabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Next page arrow is enabled on all pages except the last page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to any page except the last page of in the View Test Reports Pop up'); 
-    await Then('Next arrow \'(>)\' should be enabled in the View Test Reports Pop up'); 
+  test('Next page arrow is enabled on all pages except the last page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to any page except the last page of in the View Test Reports Pop up', null, { viewPDFPage }); 
+    await Then('Next arrow \'(>)\' should be enabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Next page arrow is disabled on last page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to the last page of the patient records'); 
-    await Then('Next arrow \'(>)\' should be disabled in the View Test Reports Pop up'); 
+  test('Next page arrow is disabled on last page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to the last page of the patient records', null, { viewPDFPage }); 
+    await Then('Next arrow \'(>)\' should be disabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
-  test('Last page arrow is disabled on last page', async ({ Given, When, Then }) => { 
-    await Given('User is in View Patient Test Reports page with multiple pages of records'); 
-    await When('User navigates to the last page of the patient records'); 
-    await Then('Last page arrow \'(>>)\' should be disabled in the View Test Reports Pop up'); 
+  test('Last page arrow is disabled on last page', async ({ Given, When, Then, viewPDFPage }) => { 
+    await Given('User is in View Patient Test Reports page with multiple pages of records', null, { viewPDFPage }); 
+    await When('User navigates to the last page of the patient records', null, { viewPDFPage }); 
+    await Then('Last page arrow \'(>>)\' should be disabled in the View Test Reports Pop up', null, { viewPDFPage }); 
   });
 
 });

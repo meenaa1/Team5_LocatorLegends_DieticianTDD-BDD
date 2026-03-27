@@ -3,20 +3,20 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management when no data exists in the table', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User logged into the application without patient added to that user to view Reports'); 
+  test.beforeEach('Background', async ({ Given, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User logged into the application without patient added to that user to view Reports', null, { loginPage }); 
   });
   
-  test('Verify Pagination when no patient data exists', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patient page'); 
-    await When('User clicks on View Patient Test Reports button'); 
-    await Then('"Showing 0 to 0 of 0 patients" should be displayed inside the Test Report Popup'); 
+  test('Verify Pagination when no patient data exists', async ({ Given, When, Then, loginPage, viewPDFPage }) => { 
+    await Given('User is in My Patient page', null, { loginPage }); 
+    await When('User clicks on View Patient Test Reports button', null, { viewPDFPage }); 
+    await Then('"Showing 0 to 0 of 0 patients" should be displayed inside the Test Report Popup', null, { viewPDFPage }); 
   });
 
-  test('Verify that All pagination arrows disabled when no data exists', async ({ Given, When, Then }) => { 
-    await Given('User is in My Patient page'); 
-    await When('User clicks on View Patient Test Reports button'); 
-    await Then('First, previous, next, last arrows should be disabled inside the Test Report Popup'); 
+  test('Verify that All pagination arrows disabled when no data exists', async ({ Given, When, Then, loginPage, viewPDFPage }) => { 
+    await Given('User is in My Patient page', null, { loginPage }); 
+    await When('User clicks on View Patient Test Reports button', null, { viewPDFPage }); 
+    await Then('First, previous, next, last arrows should be disabled inside the Test Report Popup', null, { viewPDFPage }); 
   });
 
 });

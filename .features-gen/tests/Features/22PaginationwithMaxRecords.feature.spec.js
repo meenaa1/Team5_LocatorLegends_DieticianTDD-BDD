@@ -3,14 +3,14 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Pagination management with maximum record in a page to view the TestReports', () => {
 
-  test.beforeEach('Background', async ({ Given }, testInfo) => { if (testInfo.error) return;
-    await Given('User is in view patient test report page with multiple records already exist in the system for that user'); 
+  test.beforeEach('Background', async ({ Given, loginPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is in view patient test report page with multiple records already exist in the system for that user', null, { loginPage }); 
   });
   
-  test('Verify that Each page should display only 2  records', async ({ Given, When, Then, dashboardPage }) => { 
+  test('Verify that Each page should display only 2  records', async ({ Given, When, Then, dashboardPage, myPatientsPage, viewPDFPage }) => { 
     await Given('User is in dietician application dashboard page', null, { dashboardPage }); 
-    await When('User clicks on My Patients button and clicks on View Patient Test Reports button'); 
-    await Then('User should see only 2 records in each page inside the View Test report Popup'); 
+    await When('User clicks on My Patients button and clicks on View Patient Test Reports button', null, { myPatientsPage }); 
+    await Then('User should see only 2 records in each page inside the View Test report Popup', null, { viewPDFPage }); 
   });
 
 });
