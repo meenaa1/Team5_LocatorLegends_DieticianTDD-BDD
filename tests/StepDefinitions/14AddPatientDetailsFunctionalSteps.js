@@ -131,12 +131,12 @@ Then('Expected Result should be selected in Cuisine Category field', async ({}) 
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:39:5
 });
 
-When('User clicks Date of Birth field', async ({}) => {
+When('User clicks Date of Birth field in the new patient form', async ({}) => {
   await addPatientPage.getdobValue();
   // Step: When User clicks Date of Birth field
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:42:5
 });
-Then('User should see calender date picker displayed with Month,Day,Year', async ({}) => {
+Then('User should see calender date picker displayed with Month,Day,Year in the new patient form', async ({}) => {
   await addPatientDetailsPage.isCalendarDisplayed();
   // Step: Then User should see calender date picker displayed with Month,Day,Year
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:43:5
@@ -217,17 +217,17 @@ When('User clicks Submit after uploading a valid file', async ({}) => {
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:97:5
 });
 
-Then('User should be redirected to My Patient page with the uploaded file saved successfully', async ({}) => {
+Then('User should be redirected to My Patient page with the uploaded file saved successfully after adding the new patient', async ({}) => {
   // Step: Then User should be redirected to My Patient page with the uploaded file saved successfully
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:98:5
 });
 
-When('User uploads health report in pdf', async ({}) => {
+When('User uploads health report in pdf format', async ({}) => {
   // Step: When User uploads health report in pdf
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:101:5
 });
 
-Then('User should see uploaded file name with extension', async ({}) => {
+Then('User should see uploaded file name with correct extension', async ({}) => {
   // Step: Then User should see uploaded file name with extension
   // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:102:5
 });

@@ -39,8 +39,8 @@ Feature: Add Patient Details - Functional Test Cases
     Then Expected Result should be selected in Cuisine Category field
 
   Scenario: Selecting date for DOB field
-    When User clicks Date of Birth field
-    Then User should see calender date picker displayed with Month,Day,Year    
+    When User clicks Date of Birth field in the new patient form
+    Then User should see calender date picker displayed with Month,Day,Year in the new patient form   
 
   Scenario Outline: Validate DOB input scenarios
     When User enters DOB 
@@ -95,11 +95,11 @@ Feature: Add Patient Details - Functional Test Cases
 
   Scenario: Upload valid file - pdf
     When User clicks Submit after uploading a valid file
-    Then User should be redirected to My Patient page with the uploaded file saved successfully
+    Then User should be redirected to My Patient page with the uploaded file saved successfully after adding the new patient
 
   Scenario: File name after Upload valid file - pdf
-    When User uploads health report in pdf
-    Then User should see uploaded file name with extension
+    When User uploads health report in pdf format
+    Then User should see uploaded file name with correct extension
 
   Scenario Outline: Verify uploaded test report details
     When User clicks View Previous Test Report after being redirected to My Patient page for newly created patient
