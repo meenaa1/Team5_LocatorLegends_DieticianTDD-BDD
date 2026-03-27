@@ -143,18 +143,12 @@ class AddPatientDialogBoxPagePO {
     await dropdownLocator.click();
   }
 
-  getDropdownLocator(dropdownKey) {
-    if (dropdownKey === 'allergy') return this.allergies;
-    if (dropdownKey === 'foodPreference') return this.foodPreferences;
-    if (dropdownKey === 'cuisine' || dropdownKey === 'cuisineCategory') return this.cuisineCategory;
-    return dropdownKey;
-  }
 
-  async getDropdownOptions(dropdownKeyOrLocator) {
-    const dropdownLocator = this.getDropdownLocator(dropdownKeyOrLocator);
+  async getDropdownOptions(dropdownLocator) {
+   
     const optionLocator = dropdownLocator.locator("option");
     const options = await optionLocator.allTextContents();
-    return options.map((text) => (text || '').trim()).filter((text) => text !== '');
+    return options
   }
 
   async clickSubmit() {
