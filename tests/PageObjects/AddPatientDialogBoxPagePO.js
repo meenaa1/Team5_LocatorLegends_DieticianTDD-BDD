@@ -42,14 +42,12 @@ class AddPatientDialogBoxPagePO {
     this.allDropdowns = page.locator('.dialog-container select');
     this.myPatientPage = page.locator('.my-patient-page');
     this.successToast = page.locator('.toast-success');
-   
+
   }
 
   async isHomePageDisplayed() {
     return await this.homeTitle.isVisible();
   }
-
-
   async clickNewPatient() {
     await this.newPatientBtn.click();
   }
