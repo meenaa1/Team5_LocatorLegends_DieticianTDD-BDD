@@ -1,7 +1,6 @@
 import { createBdd } from "playwright-bdd";
 import { test } from "../Fixtures/testFixtures.js"; 
-
-
+import {EditPagePom} from '../PageObjects/EditPagePom.js';
 
 const { Given, When, Then } = createBdd(test);
 
@@ -11,460 +10,491 @@ Given('User is on the dashboard page after login', async ({ loggedInPage }) => {
 });
 
 When('User clicks {string} button', async ({ editPage }, arg) => {
-    await editPage.clickMyPatientsButton();
+    await this.editPage.clickMyPatientsButton();
 });
 
 Then('User should be navigated to the {string} page and should see the list of existing patients', async ({ editPage }, arg) => {
-    await editPage.verifyMyPatientsTitleVisible();
-    await editPage.verifyPatientsListVisible();
+    await this.editPage.verifyMyPatientsTitleVisible();
+    await this.editPage.verifyPatientsListVisible();
 });
 
 Given('User is in my patient page', async ({ editPage }) => {
-    await editPage.verifyMyPatientsTitleVisible();
+    await this.editPage.verifyMyPatientsTitleVisible();
 });
 
 When('User clicks edit icon for the particular patient', async ({ editPage }) => {
-    await editPage.clickEditIconForPatient();
+    await this.editPage.clickEditIconForPatient();
 });
 
 Then('User should see  Edit Patient page on the dialog box', async ({ editPage }) => {
-    await editPage.verifyEditPatientTitleVisible();
+    await this.editPage.verifyEditPatientTitleVisible();
 });
 
 Then('User should see  submit button', async ({ editPage }) => {
-    await editPage.isSubmitButtonVisible();
+    await this.editPage.isSubmitButtonVisible();
 });
 
 Then('User should see submit button in enable mode', async ({ editPage }) => {
-    await editPage.isSubmitButtonEnabled();
+    await this.editPage.isSubmitButtonEnabled();
 });
 
 Then('User should see  close button', async ({ editPage }) => {
-    await editPage.iscloseButtonVisible();
+    await this.editPage.iscloseButtonVisible();
 });
 
 Then('User should see close button in enable mode', async ({ editPage }) => {
-    await editPage.isCloseButtonEnabled();
+    await this.editPage.isCloseButtonEnabled();
 });
 Then('User should see {int} input field', async ({ editPage }, expectedCount) => {
 
-    await editPage.VerifyInputFieldCount(expectedCount);
+    await this.editPage.VerifyInputFieldCount(expectedCount);
 });
 
 Then('User should see {int} drop down', async ({ editPage }, expectedCount) => {
-    await editPage.VerifyDropdownCount(expectedCount);
+    await this.editPage.VerifyDropdownCount(expectedCount);
 });
 
 Then('User should see exactly {int} file upload option', async ({ editPage }, expectedCount) => {
-    await editPage.VerifyFileUploadOptionCount(expectedCount);
+    await this.editPage.VerifyFileUploadOptionCount(expectedCount);
 });
 
 Then('User should see the {string} field populated with the value entered during patient creation for first name field.', async ({ editPage }, expectedFirstName) => {
-    await editPage.VerifyFirstNameFieldPopulated(this.createdPatientData.firstName);
+    await this.editPage.VerifyFirstNameFieldPopulated(this.createdPatientData.firstName);
 });
 
 Then('User should see the {string} field populated with the value entered during patient creation for last name field.', async ({ editPage }, expectedLastName) => {
-    await editPage.VerifyLastNameFieldPopulated(this.createdPatientData.lastName);
+    await this.editPage.VerifyLastNameFieldPopulated(this.createdPatientData.lastName);
 });
 
 Then('User should see the {string} field populated with the value entered during patient creation for email field.', async ({ editPage }, expectedEmail) => {
-    await editPage.VerifyEmailFieldPopulated(this.createdPatientData.email);
+    await this.editPage.VerifyEmailFieldPopulated(this.createdPatientData.email);
 });
 
 Then('User should see the {string} field populated with the value entered during patient creation for contact number field.', async ({ editPage }, expectedContactNumber) => {
-    await editPage.VerifyContactNumberFieldPopulated(this.createdPatientData.contactNumber);
+    await this.editPage.VerifyContactNumberFieldPopulated(this.createdPatientData.contactNumber);
 });
 
 Then('User should see the {string} field populated with the value entered during patient creation for allergy info field.', async ({ editPage }, expectedAllergy) => {
-    await editPage.VerifyAllergyInfoFieldPopulated(this.createdPatientData.allergyInfo);
+    await this.editPage.VerifyAllergyInfoFieldPopulated(this.createdPatientData.allergyInfo);
 });
 
 Then('User should see the {string} field populated with the value entered during patient creation for food preference field.', async ({ editPage }, expectedFoodPreference) => {
-    await editPage.verifyFoodPreferenceFieldPopulated(this.createdPatientData.foodPreference);
+    await this.editPage.verifyFoodPreferenceFieldPopulated(this.createdPatientData.foodPreference);
 });
 
 Then('User should see the {string} field populated with the value entered during patient creation for cuisine preference field.', async ({ editPage }, expectedCuisinePreference) => {
-    await editPage.verifyCuisinePreferenceFieldPopulated(this.createdPatientData.cuisinePreference);
+    await this.editPage.verifyCuisinePreferenceFieldPopulated(this.createdPatientData.cuisinePreference);
 });
 
 Then('User should see the {string} field populated with the value entered during patient creation for DOB field.', async ({ editPage }, expectedDOB) => {
-    await editPage.verifyDOBFieldPopulated(this.createdPatientData.DOB);
+    await this.editPage.verifyDOBFieldPopulated(this.createdPatientData.DOB);
 });
 
 Then('User should see vitals title after DOB field', async ({ editPage }) => {
-    await editPage.isVitalsTitleAfterDOBField();
+    await this.editPage.isVitalsTitleAfterDOBField();
 });
 Then('User should see SP place holder in SP field', async ({ editPage }) => {
-    await editPage.isSPPlaceHolderInSPField();
+    await this.editPage.isSPPlaceHolderInSPField();
 });
 
 Then('User should see DP place holder in DP field', async ({ editPage }) => {
-    await editPage.isDPPlaceHolderInDPField();
+    await this.editPage.isDPPlaceHolderInDPField();
 });
 
 Then('User should see Weight place holder in Weight field', async ({ editPage }) => {
-    await editPage.isWeightPlaceHolderInWeightField();
+    await this.editPage.isWeightPlaceHolderInWeightField();
 });
 
 Then('User should see Height place holder in Height field', async ({ editPage }) => {
-    await editPage.isHeightPlaceHolderInHeightField();
+    await this.editPage.isHeightPlaceHolderInHeightField();
 });
 
 Then('User should see Tempature place holder in Tempature field', async ({ editPage }) => {
-    await editPage.isTempaturePlaceHolderInTempatureField();
+    await this.editPage.isTempaturePlaceHolderInTempatureField();
 });
 
 Then('User should not see mandatory indicators for Vitals Information fields', async ({ editPage }) => {
-    await editPage.verifyVitalFieldsAreNotMandatory();
+    await this.editPage.verifyVitalFieldsAreNotMandatory();
 });
 
 Then('User should see Upload health report : text for Upload button', async ({ editPage }) => {
-    await editPage.isUploadHealthReportTextVisible();
+    await this.editPage.isUploadHealthReportTextVisible();
 });
 
 Then('User should see {string} text', async ({ editPage }, arg) => {
-    await editPage.isNoFilesChoosenTextVisible();
+    await this.editPage.isNoFilesChoosenTextVisible();
 });
 
 Then('Close button should have red color', async ({ editPage }) => {
-    await editPage.verifyCloseButtonColor();
+    await this.editPage.verifyCloseButtonColor();
 });
 
 // --------------------------------------------------EditPatient_FunctionTestCase-------------------------------------------------
 
-Given('User is on the My Patients page after login', async ({}) => {
-  // Step: Given User is on the My Patients page after login
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:4:1
+Given('User is on the My Patients page after login', async ({editPage}) => {
+    loggedInPage.login();
+    await this.editPage.clickMyPatientsButton();
+    await this.editPage.verifyMyPatientsTitleVisible();
+
 });
 
-When('User clicks Edit icon for the particular patient', async ({}) => {
-  // Step: When User clicks Edit icon for the particular patient
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:5:1
+When('User clicks Edit icon for the particular patient', async ({editPage}) => {
+   await this.editPage.clickEditIconForPatient();
 });
 
-Then('User is navigated to the Edit Patient dialog box', async ({}) => {
-  // Step: Then User is navigated to the Edit Patient dialog box
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:6:1
-});
-
-Given('User is edit dialog box', async ({}) => {
-  // Step: Given User is edit dialog box
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:9:1
-});
-
-When('User clear exisiting value in first name field', async ({}) => {
-  // Step: When User clear exisiting value in first name field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:10:1
-});
-
-Then('User should see placeholder {string}', async ({}, arg) => {
-  // Step: Then User should see placeholder "First name"
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:11:1
-});
-
-When('User clear exisiting value in last name field', async ({}) => {
-  // Step: When User clear exisiting value in last name field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:15:1
-});
-
-When('User clear exisiting value in email name field', async ({}) => {
-  // Step: When User clear exisiting value in email name field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:20:1
-});
-
-When('User clear exisiting value in contact no field', async ({}) => {
-  // Step: When User clear exisiting value in contact no field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:25:1
-});
-
-Then('User should see placeholder  {string}', async ({}, arg) => {
-  // Step: Then User should see placeholder  "Contact Number"
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:26:1
-});
-
-When('User clicks submit after editing first name with valid data', async ({}) => {
-  // Step: When User clicks submit after editing first name with valid data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:30:1
-});
-
-Then('User should redirected to my patient with edited value in first name', async ({}) => {
-  // Step: Then User should redirected to my patient with edited value in first name
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:31:1
-});
-
-When('User clicks submit after editing first name with numeric data', async ({}) => {
-  // Step: When User clicks submit after editing first name with numeric data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:35:1
-});
-
-Then('User should  see error message in Patient name accepts only alphabets', async ({}) => {
-  // Step: Then User should  see error message in Patient name accepts only alphabets
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:36:1
-});
-
-When('User clicks submit after editing first name with spl numeric data', async ({}) => {
-  // Step: When User clicks submit after editing first name with spl numeric data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:40:1
-});
-
-When('User clicks submit after editing first name with spl charc data', async ({}) => {
-  // Step: When User clicks submit after editing first name with spl charc data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:45:1
+Then('User is navigated to the Edit Patient dialog box', async ({editPage}) => {
+   await this.editPage.verifyEditPageTitleVisible();
 });
 
 Given('User is in the edit dialog box', async ({}) => {
-  // Step: Given User is in the edit dialog box
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:49:1
+   await this.editPage.verifyEditPageTitleVisible();
 });
 
-When('User clicks submit after editing the last name with valid data', async ({}) => {
-  // Step: When User clicks submit after editing the last name with valid data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:50:1
+When('User clear exisiting value in first name field', async ({editPage}) => {
+   await this.editPage.clearFirstNameField();
 });
 
-Then('User should be redirected to My Patient page with the edited value in the last name', async ({}) => {
-  // Step: Then User should be redirected to My Patient page with the edited value in the last name
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:51:1
+Then('User should see placeholder {string}', async ({editPage}, Firstname) => {
+   await this.editPage.verifyFirstNamePlaceholdervisible();
 });
 
-When('User clicks submit after editing the last name with numeric data', async ({}) => {
-  // Step: When User clicks submit after editing the last name with numeric data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:55:1
+When('User clear exisiting value in last name field', async ({editPage}) => {
+   await this.editPage.clearLastNameField();
 });
 
-Then('User should see the error message “Patient name accepts only alphabets”', async ({}) => {
-  // Step: Then User should see the error message “Patient name accepts only alphabets”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:56:1
+Then('User should see placeholder {string} for last name', async ({editPage}, Lastname) => {
+   await this.editPage.verifyLastNamePlaceholdervisible();
 });
 
-When('User clicks submit after editing the last name with special characters and numeric data', async ({}) => {
-  // Step: When User clicks submit after editing the last name with special characters and numeric data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:60:1
+When('User clear exisiting value in email name field', async ({editPage}) => {
+   await this.editPage.clearEmailField();
 });
 
-When('User clicks submit after editing the last name with special characters', async ({}) => {
-  // Step: When User clicks submit after editing the last name with special characters
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:65:1
+Then('User should see placeholder {string} for Email', async ({editPage}, Email) => {
+   await this.editPage.verifyEmailPlaceholdervisible();
 });
 
-When('User clicks submit after editing the email with valid data', async ({}) => {
-  // Step: When User clicks submit after editing the email with valid data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:70:1
+When('User clear exisiting value in contact no field', async ({editPage}) => {
+   await this.editPage.clearContactNumberField();
+});
+Then('User should see placeholder  {string} for contact Number', async ({editPage}, arg) => {
+   await this.editPage.verifyContactNumberPlaceholdervisible();
 });
 
-Then('User should be redirected to My Patient page with the edited value in the email field', async ({}) => {
-  // Step: Then User should be redirected to My Patient page with the edited value in the email field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:71:1
+When('User clicks submit after editing first name with valid data', async ({editPage}) => {
+    await this.editPage.clearFirstNameField();
+    const updatedFirstNameValue = await this.editPage.editFirstNameWithValidData();
+    await this.editPage.clickSubmitButton();
+    this.updatedPatientData  = { FirstName: updatedFirstNameValue };
 });
 
-When('User clicks submit after editing the email with invalid format', async ({}) => {
-  // Step: When User clicks submit after editing the email with invalid format
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:75:1
+Then('User should redirected to my patient with edited value in first name', async ({editPage}) => {
+      await this.editPage.verifyMyPatientsTitleVisible();
+      await this.editPage.verifyeditedFirstNameVisible(this.updatedPatientData.FirstName);
+
 });
 
-Then('User should see the error message “Please enter a valid email address”', async ({}) => {
-  // Step: Then User should see the error message “Please enter a valid email address”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:76:1
+When('User clicks submit after editing first name with numeric data', async ({editPage}) => {
+      await this.editPage.clearFirstNameField();
+      await this.editPage.editFirstNameWithNumericData();
+      await this.editPage.clickSubmitButton();
 });
 
-When('User clicks submit after editing the email without @ symbol', async ({}) => {
-  // Step: When User clicks submit after editing the email without @ symbol
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:80:1
+Then('User should  see error message in Patient name accepts only alphabets', async ({editPage}) => {
+      await this.editPage.verifyPatientNameErrorMessage();
 });
 
-When('User clicks submit after editing the email with invalid special characters', async ({}) => {
-  // Step: When User clicks submit after editing the email with invalid special characters
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:85:1
+When('User clicks submit after editing first name with spl numeric data', async ({editPage}) => {
+     await this.editPage.clearFirstNameField();
+     await this.editPage.editFirstNameWithSplCharNumericData();
+     await this.editPage.clickSubmitButton();
 });
 
-When('User  clicks submit after removes the existing email value', async ({}) => {
-  // Step: When User  clicks submit after removes the existing email value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:90:1
+When('User clicks submit after editing first name with spl charc data', async ({editPage}) => {
+    await this.editPage.clearFirstNameField();
+    await this.editPage.editFirstNameWithSplCharData();
+    await this.editPage.clickSubmitButton();
 });
 
-Then('User should see the error message “Email field cannot be empty”', async ({}) => {
-  // Step: Then User should see the error message “Email field cannot be empty”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:91:1
+When('User clicks submit after editing the last name with valid data', async ({editPage}) => {
+    await this.editPage.clearLastNameField();
+    const updatedLastNameValue = await this.editPage.editLastNameWithValidData();
+    await this.editPage.clickSubmitButton();
+    this.updatedPatientData = { LastName: updatedLastNameValue };
 });
 
-When('User clicks submit after editing the CTC number with valid data', async ({}) => {
-  // Step: When User clicks submit after editing the CTC number with valid data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:95:1
+Then('User should be redirected to My Patient page with the edited value in the last name', async ({editPage}) => {
+      await this.editPage.verifyMyPatientsTitleVisible();
+      await this.editPage.verifyeditedLastNameVisible(this.updatedPatientData.LastName);
+    
 });
 
-Then('User should be redirected to My Patient page with the edited value in the CTC number field', async ({}) => {
-  // Step: Then User should be redirected to My Patient page with the edited value in the CTC number field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:96:1
+When('User clicks submit after editing the last name with numeric data', async ({editPage}) => {
+      await this.editPage.clearLastNameField();
+      await this.editPage.editLastNameWithNumericData();
+      await this.editPage.clickSubmitButton();
 });
 
-When('User clicks submit after editing the CTC number with alphabetic data', async ({}) => {
-  // Step: When User clicks submit after editing the CTC number with alphabetic data
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:100:1
+Then('User should see the error message “Patient name accepts only alphabets”', async ({editPage}) => {
+     await this.editPage.verifyPatientNameErrorMessage();
 });
 
-Then('User should see the error message “CTC number accepts only numeric values”', async ({}) => {
-  // Step: Then User should see the error message “CTC number accepts only numeric values”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:101:1
+When('User clicks submit after editing the last name with special characters and numeric data', async ({editPage}) => {
+      await this.editPage.clearLastNameField();
+      await this.editPage.editLastNameWithSplCharNumericData();
+      await this.editPage.clickSubmitButton();
 });
 
-When('User clicks submit after editing the CTC number with special characters', async ({}) => {
-  // Step: When User clicks submit after editing the CTC number with special characters
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:105:1
+When('User clicks submit after editing the last name with special characters', async ({editPage}) => {
+     await this.editPage.clearLastNameField();
+     await this.editPage.editLastNameWithSplCharData();
+     await this.editPage.clickSubmitButton();
 });
 
-When('User clicks submit after entering a CTC number with fewer digits', async ({}) => {
-  // Step: When User clicks submit after entering a CTC number with fewer digits
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:110:1
+When('User clicks submit after editing the email with valid data', async ({editPage}) => {
+    await this.editPage.clearEmailField();
+    const updatedEmailValue = await this.editPage.editEmailWithValidData();
+    await this.editPage.clickSubmitButton();
+    this.updatedPatientData = { LastName: updatedEmailValue };
 });
 
-Then('User should see the error message “Please enter a valid CTC number”', async ({}) => {
-  // Step: Then User should see the error message “Please enter a valid CTC number”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:111:1
+Then('User should be redirected to My Patient page with the edited value in the email field', async ({editPage}) => {
+      await this.editPage.verifyMyPatientsTitleVisible();
+      await this.editPage.verifyeditedEmailVisible(this.updatedPatientData.Email); 
 });
 
-When('User clicks submit after removing the existing ctc value', async ({}) => {
-  // Step: When User clicks submit after removing the existing ctc value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:115:1
+When('User clicks submit after editing the email with invalid format', async ({editPage}) => {
+      await this.editPage.clearEmailField();
+      await this.editPage.editEmailWithInvalidFormat();
+      await this.editPage.clickSubmitButton();
 });
 
-Then('User should see the error message “CTC number field cannot be empty”', async ({}) => {
-  // Step: Then User should see the error message “CTC number field cannot be empty”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:116:1
+Then('User should see the error message “Please enter a valid email address”', async ({editPage}) => {
+     await this.editPage.verifyEmailErrorMessage();
 });
 
-When('User clicks submit after entering a valid value in the weight field', async ({}) => {
-  // Step: When User clicks submit after entering a valid value in the weight field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:120:1
+When('User clicks submit after editing the email without @ symbol', async ({editPage}) => {
+     await this.editPage.clearEmailField();
+     await this.editPage.editEmailWithoutAtSymbol();
+     await this.editPage.clickSubmitButton();
 });
 
-Then('User should be redirected to the My Patient page with the updated weight value', async ({}) => {
-  // Step: Then User should be redirected to the My Patient page with the updated weight value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:121:1
+When('User clicks submit after editing the email with invalid special characters', async ({editPage}) => {
+    await this.editPage.clearEmailField();
+    await this.editPage.editEmailWithSpecCharacters();
+    await this.editPage.clickSubmitButton();
 });
 
-When('User clicks “View Previous Test Report” after being redirected to the My Patient page for updating weight value', async ({}) => {      
-  // Step: When User clicks “View Previous Test Report” after being redirected to the My Patient page for updating weight value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:125:1
+When('User  clicks submit after removes the existing email value', async ({editPage}) => {
+    await this.editPage.clearEmailField();
+    await this.editPage.clickSubmitButton();
 });
 
-Then('User should see new value under vitals column in new record number', async ({}) => {
-  // Step: Then User should see new value under vitals column in new record number
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:126:1
+Then('User should see the error message “Email field cannot be empty”', async ({editPage}) => {
+    await this.editPage.verifyEmptyEmailErrorMesage();
 });
 
-When('User clicks submit after entering a valid value in the height field', async ({}) => {
-  // Step: When User clicks submit after entering a valid value in the height field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:130:1
+When('User clicks submit after editing the CTC number with valid data', async ({editPage}) => {
+     await this.editPage.clearContactNumberField();
+    const updatedCTCNoValue = await this.editPage.editContactNumberWithValidData();
+    await this.editPage.clickSubmitButton();
+    this.updatedPatientData = { ContactNumber: updatedCTCNoValue };
 });
 
-Then('User should be redirected to the My Patient page with the updated height value', async ({}) => {
-  // Step: Then User should be redirected to the My Patient page with the updated height value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:131:1
+Then('User should be redirected to My Patient page with the edited value in the CTC number field', async ({editPage}) => {
+      await this.editPage.verifyMyPatientsTitleVisible();
+      await this.editPage.verifyeditedCTCNumberVisible(this.updatedPatientData.Email);
 });
 
-When('User clicks “View Previous Test Report” after being redirected to the My Patient page for updating height value', async ({}) => {      
-  // Step: When User clicks “View Previous Test Report” after being redirected to the My Patient page for updating height value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:135:1
+When('User clicks submit after editing the CTC number with alphabetic data', async ({editPage}) => {
+     await this.editPage.clearContactNumberField();
+    await this.editPage.editContactNumberWithAlphabets();
+    await this.editPage.clickSubmitButton();
 });
 
-When('User clicks submit after entering a valid value in the temperature field', async ({}) => {
-  // Step: When User clicks submit after entering a valid value in the temperature field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:140:1
+Then('User should see the error message “CTC number accepts only numeric values”', async ({editPage}) => {
+    await this.editPage.verifyContactNumberErrorMessage();
 });
 
-Then('User should be redirected to the My Patient page with the updated temperature value', async ({}) => {
-  // Step: Then User should be redirected to the My Patient page with the updated temperature value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:141:1
+When('User clicks submit after editing the CTC number with special characters', async ({editPage}) => {
+      await this.editPage.clearContactNumberField();
+      await this.editPage.editContactWithSpecChar();
+      await this.editPage.clickSubmitButton();
 });
 
-When('User clicks “View Previous Test Report” after being redirected to the My Patient page for updating temperature value', async ({}) => { 
-  // Step: When User clicks “View Previous Test Report” after being redirected to the My Patient page for updating temperature value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:145:1
+When('User clicks submit after entering a CTC number with fewer digits', async ({editPage}) => {
+     await this.editPage.clearContactNumberField();
+    await this.editPage.editContactNumberWithFewerDigits();
+    await this.editPage.clickSubmitButton();
 });
 
-When('User clicks submit after entering a valid value in the SP field only', async ({}) => {
-  // Step: When User clicks submit after entering a valid value in the SP field only
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:150:1
+Then('User should see the error message “Please enter a valid CTC number” for fewer Digits', async ({editPage}) => {
+    await this.editPage.verifycontactNumberErrorMsgFewerDigitsVisible();
 });
 
-Then('User should recieve error message in DP field', async ({}) => {
-  // Step: Then User should recieve error message in DP field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:151:1
+When('User clicks submit after removing the existing ctc value', async ({editPage}) => {
+    await this.editPage.clearContactNumberField();
+    await this.editPage.clickSubmitButton();
 });
 
-When('User clicks submit after entering a valid value in SP & DP field', async ({}) => {
-  // Step: When User clicks submit after entering a valid value in SP & DP field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:155:1
+Then('User should see the error message “CTC number field cannot be empty”', async ({editPage}) => {
+    await this.editPage.verifyemptyContactNumberErrorMessageVisible();
 });
 
-Then('User should be redirected to My Patient page', async ({}) => {
-  // Step: Then User should be redirected to My Patient page
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:156:1
+When('User clicks submit after entering a valid value in the weight field', async ({editPage}) => {
+      await this.editPage.clearWeightField();
+      const updatedWeight = await this.editPage.editWeightWithValidData();
+      await this.editPage.clickSubmitButton();
+      this.updatedPatientData = { Weight: updatedWeight }; 
+
 });
 
-When('User clicks “View Previous Test Report” after being redirected to the My Patient page for updating the SP & DP value', async ({}) => { 
-  // Step: When User clicks “View Previous Test Report” after being redirected to the My Patient page for updating the SP & DP value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:160:1
+Then('User should be redirected to the My Patient page with the updated weight value', async ({editPage}) => {
+      await this.editPage.verifyMyPatientsTitleVisible();
+      await this.editPage.verifyeditedWeightVisible(this.updatedPatientData.Weight);
 });
 
-Then('User should see new record number', async ({}) => {
-  // Step: Then User should see new record number
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:161:1
+When('User clicks “View Previous Test Report” after being redirected to the My Patient page for updating weight value', async ({editPage}) => {      
+    await this.editPage.clickPreviousTestReportsButton();
+
 });
 
-When('User clicks submit after entering a valid value in the DP field', async ({}) => {
-  // Step: When User clicks submit after entering a valid value in the DP field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:170:1
+Then('User should see new value under vitals column in new record number', async ({editPage}) => {
+    
+      await this.editPage.verifyNewRecordWeightValue(this.updatedPatientData.Weight);
 });
 
-Then('User should recieve error message in SP field', async ({}) => {
-  // Step: Then User should recieve error message in SP field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:171:1
+When('User clicks submit after entering a valid value in the height field', async ({editPage}) => {
+      await this.editPage.clearHeightField();
+      const updatedHeight = await this.editPage.editHeightWithValidData();
+      await this.editPage.clickSubmitButton();
+      this.updatedPatientData = { Height: updatedHeight }; 
 });
 
-When('User clicks submit after entering with alphabets', async ({}) => {
-  // Step: When User clicks submit after entering with alphabets
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:175:1
+Then('User should be redirected to the My Patient page with the updated height value', async ({editPage}) => {
+      await this.editPage.verifyMyPatientsTitleVisible();
+      await this.editPage.verifyeditedHeightVisible(this.updatedPatientData.Height);
 });
 
-Then('User should see the error message “Please enter a valid weight”', async ({}) => {
-  // Step: Then User should see the error message “Please enter a valid weight”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:176:1
+When('User clicks “View Previous Test Report” after being redirected to the My Patient page for updating height value', async ({editPage}) => {      
+    await this.editPage.clickPreviousTestReportsButton();
 });
 
-When('User clicks submit after entering with special characters', async ({}) => {
-  // Step: When User clicks submit after entering with special characters
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:180:1
+When('User clicks submit after entering a valid value in the temperature field', async ({editPage}) => {
+      await this.editPage.clearTemperatureField();
+      const updatedTemperature = await this.editPage.editTemperatureWithValidData();
+      await this.editPage.clickSubmitButton();
+      this.updatedPatientData = { Temperature: updatedTemperature };
 });
 
-Then('User should see the error message “Please enter a valid height”', async ({}) => {
-  // Step: Then User should see the error message “Please enter a valid height”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:186:1
+Then('User should be redirected to the My Patient page with the updated temperature value', async ({editPage}) => {
+      await this.editPage.verifyMyPatientsTitleVisible();
+      await this.editPage.verifyeditedTemperatureVisible(this.updatedPatientData.Temperature);
 });
 
-Then('User should see the error message “Please enter a valid temperature”', async ({}) => {
-  // Step: Then User should see the error message “Please enter a valid temperature”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:196:1
+When('User clicks “View Previous Test Report” after being redirected to the My Patient page for updating temperature value', async ({editPage}) => { 
+      await this.editPage.clickPreviousTestReportsButton();
 });
 
-Then('User should see the error message “Please enter a valid SP value”', async ({}) => {
-  // Step: Then User should see the error message “Please enter a valid SP value”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:206:1
+When('User clicks submit after entering a valid value in the SP field only', async ({editPage}) => {
+      await this.editPage.editOnlySPWithValidData();
+      await this.editPage.clickSubmitButton();
 });
 
-Then('User should see the error message “Please enter a valid DP value”', async ({}) => {
-  // Step: Then User should see the error message “Please enter a valid DP value”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:216:1
+Then('User should recieve error message in DP field', async ({editPage}) => {
+    await this.editPage.verifySPErrorMessage();
 });
 
-When('User clicks Date of Birth field', async ({}) => {
-  // Step: When User clicks Date of Birth field
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:225:1
+When('User clicks submit after entering a valid value in SP & DP field', async ({editPage}) => {
+      const updatedSP = await this.editPage.editOnlySPWithValidData();
+      const updatedDP = await this.editPage.editOnlyDPWithValidData();
+      await this.editPage.clickSubmitButton();
+      this.updatedPatientData = { SP: updatedSP };
+      this.updatedPatientData = { DP: updatedDP };
 });
 
-Then('User should see calender date picker displayed with Month,Day,Year', async ({}) => {
-  // Step: Then User should see calender date picker displayed with Month,Day,Year
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:226:1
+Then('User should be redirected to My Patient page', async ({editPage}) => {
+      await this.editPage.verifyMyPatientsTitleVisible();
+});
+
+When('User clicks “View Previous Test Report” after being redirected to the My Patient page for updating the SP & DP value', async ({editPage}) => { 
+    await this.editPage.clickPreviousTestReportsButton();
+});
+
+Then('User should see new record number', async ({editPage}) => {
+    await this.editPage.verifyNewRecordNumber();
+});
+
+When('User clicks submit after entering a valid value in the DP field', async ({editPage}) => {
+      await this.editPage.editOnlyDPWithValidData();
+      await this.editPage.clickSubmitButton();
+});
+
+Then('User should recieve error message in SP field', async ({editPage}) => {
+      await this.editPage.verifyDPErrorMessage();
+});
+
+When('User clicks submit after entering with alphabets for weight', async ({editPage}) => {
+    await this.editPage.editWeightWithAlphabets();
+});
+
+Then('User should see the error message “Please enter a valid weight”', async ({editPage}) => {
+    await this.editPage.verifyWeightErrorMessage();
+});
+When('User clicks submit after entering with special characters for weight', async ({editPage}) => {
+    await this.editPage.editWeightWithSpecialCharacters();
+});
+
+When('User clicks submit after entering with alphabets for height', async ({editPage}) => {
+    await this.editPage.editHeightWithAlphabets();
+});
+
+Then('User should see the error message “Please enter a valid height”', async ({editPage}) => {
+    await this.editPage.verifyHeightErrorMessage();
+});
+
+When('User clicks submit after entering with special characters for height', async ({editPage}) => {
+    await this.editPage.editHeightWithSpecialCharacters();
+});
+When('User clicks submit after entering with alphabets for temperature', async ({editPage}) => {
+      await this.editPage.editTemperaturetWithAlphabets();
+});
+
+When('User clicks submit after entering with special characters for temperature', async ({editPage}) => {
+    await this.editPage.editTemperatureWithSpecialCharacters();
+});
+
+Then('User should see the error message “Please enter a valid temperature”', async ({editPage}) => {
+    await this.editPage.verifyTemperatureErrorMessage();
+});
+When('User clicks submit after entering with alphabets for SP', async ({editPage}) => {
+    await this.editPage.editSPWithAlphabets();
+});
+Then('User should see the error message “Please enter a valid SP value”', async ({editPage}) => {
+    await this.editPage.verifySPInvalidDataErrorMessage();
+});
+
+When('User clicks submit after entering with special characters for SP', async ({editPage}) => {
+      await this.editPage.editSPWithSpecialCharacters();
+});
+When('User clicks submit after entering with alphabets for DP', async ({editPage}) => {
+    await this.editPage.editDPWithAlphabets();
+});
+
+Then('User should see the error message “Please enter a valid DP value”', async ({editPage}) => {
+    await this.editPage.verifyDPInvalidDataErrorMessage();
+});
+
+When('User clicks submit after entering with special characters for DP', async ({editPage}) => {
+    await this.editPage.editDPWithSpecialCharacters();
+});
+
+When('User clicks Date of Birth field for edit', async ({editPage}) => {
+    await this.editPage.openDateOfBirthCalenderPicker();
+});
+
+Then('User should see calender date picker displayed with Month,Day,Year for edit', async ({editPage}) => {
+    await this.editPage.verifyDateMonthAndYearVisible();
 });
 
 When('User clicks Date of Birth field after selects valid date {int}\\/{int}\\/{int}', async ({}, arg, arg1, arg2) => {
@@ -537,69 +567,62 @@ When('User enter Feb {int} {int}', async ({}, arg, arg1) => {
   // From: tests\Features\24EditPatient_FunctionTestCase.feature:275:1
 });
 
-When('User uploads health report in pdf', async ({}) => {
-  // Step: When User uploads health report in pdf
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:280:1
+When('User uploads health report in pdf during edit', async ({editPage}) => {
+    await this.editPage.uploadHealthReportFile();
 });
 
-Then('User should see uploaded file name with extension', async ({}) => {
-  // Step: Then User should see uploaded file name with extension
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:281:1
+Then('User should see uploaded file name with extension during edit', async ({editPage}) => {
+    await this.editPage.verifyUploadedFileName();
 });
 
-When('User clicks submit after uploading a valid file', async ({}) => {
-  // Step: When User clicks submit after uploading a valid file
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:285:1
+When('User clicks submit after uploading a valid file', async ({editPage}) => {
+      await this.editPage.uploadHealthReportFile();
+      await this.editPage.clickSubmitButton();
 });
 
-Then('User should be redirected to My Patient page with the uploaded file saved successfully', async ({}) => {
-  // Step: Then User should be redirected to My Patient page with the uploaded file saved successfully
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:286:1
+Then('User should be redirected to My Patient page with the uploaded file saved successfully during edit', async ({editPage}) => {
+    await this.editPage.verifyMyPatientsTitleVisible();
 });
 
-When('User clicks “View Previous Test Report” after being redirected to the My Patient page for uploaded  health report', async ({}) => {    
-  // Step: When User clicks “View Previous Test Report” after being redirected to the My Patient page for uploaded  health report
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:290:1
+When('User clicks “View Previous Test Report” after being redirected to the My Patient page for uploaded  health report', async ({editPage}) => {    
+    await this.editPage.clickPreviousTestReportsButton();
 });
 
-Then('User should see new record number in test report page', async ({}) => {
-  // Step: Then User should see new record number in test report page
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:291:1
+Then('User should see new record number in test report page', async ({editPage}) => {
+  await this.editPage.verifyNewRecordNumber();
+});
+When('User uploads health report in pdf  during edit', async ({editPage}) => {
+  await this.editPage.uploadHealthReportFile();
 });
 
-Then('User should see PDF file in test report', async ({}) => {
-  // Step: Then User should see PDF file in test report
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:296:1
+Then('User should see PDF file in test report', async ({editPage}) => {
+    await this.editPage.verifyPdfFileNameVisible();
 });
 
-Then('User should see upload date info in test report', async ({}) => {
-  // Step: Then User should see upload date info in test report
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:301:1
+Then('User should see upload date info in test report', async ({editPage}) => {
+    await this.editPage.verifyUpoadedTimeVisible();
 });
 
-Then('User should see health condition as the values in health report', async ({}) => {
-  // Step: Then User should see health condition as the values in health report
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:306:1
+Then('User should see health condition as the values in health report', async ({editPage}) => {
+   await this.editPage.verifyHealthConditionValuesVisible();
 });
 
-When('User clicks submit after uploading a file with an invalid file type - docx', async ({}) => {
-  // Step: When User clicks submit after uploading a file with an invalid file type - docx
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:310:1
+When('User clicks submit after uploading a file with an invalid file type - docx', async ({editPage}) => {
+    await this.editPage.verifyInvalidFileUpload();
+    await this.editPage.clickSubmitButton();
 });
 
-Then('User should see the error message “Invalid file type. Please upload a valid file”', async ({}) => {
-  // Step: Then User should see the error message “Invalid file type. Please upload a valid file”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:311:1
+Then('User should see the error message “Invalid file type. Please upload a valid file”', async ({editPage}) => {
+    await this.editPage.verifyUploadInvalidFileErrorMessage();
 });
 
-When('User clicks submit after uploading a file larger than allowed size', async ({}) => {
-  // Step: When User clicks submit after uploading a file larger than allowed size
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:315:1
+When('User clicks submit after uploading a file larger than allowed size', async ({editPage}) => {
+    await this.editPage.verifyExceedingFileSizeFileUpload();
+    await this.editPage.clickSubmitButton();
 });
 
-Then('User should see the error message “File size exceeds the allowed limit”', async ({}) => {
-  // Step: Then User should see the error message “File size exceeds the allowed limit”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:316:1
+Then('User should see the error message “File size exceeds the allowed limit”', async ({editPage}) => {
+    await this.editPage.verifyuploadExceedingFileSizeErrorMessageVisible();
 });
 
 When('User clicks submit after  uploading invalid file type - docx', async ({}) => {
@@ -607,34 +630,30 @@ When('User clicks submit after  uploading invalid file type - docx', async ({}) 
   // From: tests\Features\24EditPatient_FunctionTestCase.feature:320:1
 });
 
-When('User clicks submit without uploading any file', async ({}) => {
-  // Step: When User clicks submit without uploading any file
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:325:1
+When('User clicks submit without uploading any file', async ({editPage}) => {
+    await this.editPage.clickSubmitButton();
 });
 
-Then('User should see the error message “Please select a file to upload”', async ({}) => {
-  // Step: Then User should see the error message “Please select a file to upload”
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:326:1
+Then('User should see the error message “Please select a file to upload”', async ({editPage}) => {
+  await this.editPage.verifyUploadInvalidFileErrorMessage();
 });
 
-When('User clicks the Close button', async ({}) => {
-  // Step: When User clicks the Close button
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:330:1
+When('User clicks the Close button', async ({editPage}) => {
+   await this.editPage.clickCloseButton();
 });
 
-Then('User should redirect to My Patient page', async ({}) => {
-  // Step: Then User should redirect to My Patient page
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:331:1
+Then('User should redirect to My Patient page', async ({editPage}) => {
+  await this.editPage.verifyMyPatientsTitleVisible();
 });
 
-When('User clicks the Close button after entering the value', async ({}) => {
-  // Step: When User clicks the Close button after entering the value
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:335:1
+When('User clicks the Close button after entering the value', async ({editPage}) => {
+    await this.editPage.editFirstName();
+    await this.editPage.clickCloseButton();
 });
 
-Then('user should redirect on the My Patient page without saving changes', async ({}) => {
-  // Step: Then user should redirect on the My Patient page without saving changes
-  // From: tests\Features\24EditPatient_FunctionTestCase.feature:336:1
+Then('user should redirect on the My Patient page without saving changes', async ({editPage}) => {
+    await this.editPage.verifyFirstNameNotUpdated();
+    await this.editPage.verifyMyPatientsTitleVisible();
 });
 
 

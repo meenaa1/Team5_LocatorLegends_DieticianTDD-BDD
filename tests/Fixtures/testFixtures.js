@@ -7,6 +7,7 @@ import MyPatientsPagePO from '../PageObjects/MyPatientsPagePO.js';
 import PatientTableWRecordsPagePO from '../PageObjects/PatientTableWRecordsPagePO.js';
 import MyPatientsPaginationPO from '../PageObjects/MyPatientPaginationPO.js';
 import ViewPDFPagePO from '../PageObjects/ViewPDFPagePO.js';
+import DeletePO from '../PageObjects/DeletePO.js';
 
 
 
@@ -49,7 +50,11 @@ export const test = base.extend({
 
   viewPDFPage: async ({ page }, use) => {
     await use(new ViewPDFPagePO(page));
-  }
+  },
+
+  DeletePopup: async ({ page }, use) => {
+    await use(new DeletePO(page));
+  },
 
 });
 

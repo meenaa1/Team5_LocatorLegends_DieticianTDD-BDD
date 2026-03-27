@@ -47,7 +47,7 @@ class EditPagePom{
         this.emptyEmailErrorMesage = page.getByText('Email field cannot be empty');
         this.contactNumberErrorMessage = page.getByText('Contact number accepts only numeric values');
         this.contactNumberErrorMsgFewerDigits = page.getByText('Please enter a valid contact number');
-        this.emptyContaxtNumberErrorMessage = page.getByText('Contact number field cannot be empty');
+        this.emptyContactNumberErrorMessage = page.getByText('Contact number field cannot be empty');
         this.viewPreviousTestReportsButton = page.getByRole('button', { name:'View Previous Test Reports'});
         this.NewRecordTable = page.locator('table tbody tr');
         this.DPErrorMessage = page.getByText('DP value is required');
@@ -64,6 +64,13 @@ class EditPagePom{
         this.datePickerDay = page.getByRole('gridcell');
         this.uploadHelthReportInput = page.locator('input[type="file"]');
         this.uploadHealthReportFileName = page.getByText('BllodReport.pdf');
+        this.uploadedTime = (row) => row.locator('td').nth(2);
+        this.healthConditionsCell = (row) => row.locator('td').nth(5);
+        this.uploadInvalidFileErrorMessage = page.getByText('Invalid file type. Please upload a valid file');
+        this.uploadExceedingFileSizeErrorMessage = page.getByText('File size exceeds the allowed limit');
+        this.uploadJpegFileErrorMessage = page.getByText('Invalid file type. Please upload a valid file');
+        this.withoutUploadFileErrorMessage = page.getByText('Please select a file to upload');
+
 
 
 
@@ -216,11 +223,21 @@ class EditPagePom{
     async clickSubmitButton(){
         await this.submitButton.click();
     }
+    async verifyeditedFirstNameVisible(expectedName){
+        const row = this.page.locator('table tbody tr', {has: this.page.getByText(expectedName)});
+        await expect(row).toBeVisible();
+
+    }
     async editLastNameWithValidData(){
         await this.clearLastNameField();
         const editLastName = EditTestData.ValidEditData;
         await this.lastNameInput.fill(editLastName.newLastName);
         return editLastName.newLastName;
+    }
+    async verifyeditedLastNameVisible(expectedName){
+        const row = this.page.locator('table tbody tr', {has: this.page.getByText(expectedName)});
+        await expect(row).toBeVisible();
+
     }
     async editFirstNameWithNumericData(){
         await this.clearFirstNameField();
@@ -261,11 +278,16 @@ class EditPagePom{
     async verifyPatientNameErrorMessage(expectedMessage){
         await expect(this.patientNameErrorMessage).toHaveText(expectedMessage);
     }
+    
     async editEmailWithValidData(){
         await this.clearEmailField();
         const editEmail = EditTestData.ValidEditData;
         await this.emailInput.fill(editEmail.newEmail);
         return editEmail.newEmail;
+    }
+    async verifyeditedEmailVisible(expectedEmail){
+        const row = this.page.locator('table tbody tr', {has: this.page.getByText(expectedEmail)});
+        await expect(row).toBeVisible();
     }
     async editEmailWithInvalidFormat(){
         await this.clearEmailField();
@@ -288,11 +310,18 @@ class EditPagePom{
     async verifyEmailErrorMessage(expectedMessage){
         await expect(this.emailErrorMessage).toHaveText(expectedMessage);
     }
+    async verifyEmptyEmailErrorMesage(expectedMessage){
+        await expect(this.emptyEmailErrorMesage).toHaveText(expectedMessage)
+    };
     async editContactNumberWithValidData(){
         await this.clearContactNumberField();
         const editContactNumber = EditTestData.ValidEditData;
         await this.contactNumberInput.fill(editContactNumber.newContactNumber);
         return editContactNumber.newContactNumber;
+    }
+    async verifyeditedCTCNumberVisible(expectedCTC){
+        const row = this.page.locator('table tbody tr', {has: this.page.getByText(expectedCTC)});
+        await expect(row).toBeVisible();
     }
     async editContactNumberWithAlphabets(){
         await this.clearContactNumberField();
@@ -303,11 +332,23 @@ class EditPagePom{
     async verifyContactNumberErrorMessage(expectedMessage){
         await expect(this.contactNumberErrorMessage).toHaveText(expectedMessage);
     }
+    async editContactWithSpecChar(){
+        await this.clearContactNumberField();
+        const editContactNumber = EditTestData.SpecialCharacterData;
+        await this.contactNumberInput.fill(editContactNumber.ContactNumber);
+        return editContactNumber.ContactNumber; 
+    }
     async editContactNumberWithFewerDigits(){
         await this.clearContactNumberField();
         const editContactNumber = EditTestData.ContactNumberWithFewerDigits;
         await this.contactNumberInput.fill(editContactNumber.ContactNumber);
         return editContactNumber.ContactNumber;
+    }
+    async verifycontactNumberErrorMsgFewerDigitsVisible(expectedMessage){
+        await expect(this.contactNumberErrorMsgFewerDigits).toHaveText(expectedMessage);
+    }
+    async verifyemptyContactNumberErrorMessageVisible(expectedMessage){
+        await expect(this.emptyContactNumberErrorMessage).toHaveText(expectedMessage)
     }
     async clearWeightField(){
         await this.weightInput.clear();
@@ -317,6 +358,10 @@ class EditPagePom{
         const editWeight = EditTestData.VitalsValidData;
         await this.weightInput.fill(editWeight.Weight);
         return editWeight.weight;
+    }
+    async verifyeditedWeightVisible(expectedWeight){
+        const row = this.page.locator('table tbody tr', {has: this.page.getByText(expectedWeight)});
+        await expect(row).toBeVisible();
     }
     async clickPreviousTestReportsButton(){
         await this.viewPreviousTestReportsButton.click();
@@ -335,6 +380,10 @@ class EditPagePom{
         await this.heightInpt.fill(editHeight.Height);
         return editHeight.height;
     }
+    async verifyeditedHeightVisible(expectedHeight){
+        const row = this.page.locator('table tbody tr', {has: this.page.getByText(expectedHeight)});
+        await expect(row).toBeVisible();
+    }
     async verifyNewRecordHeightValue(expectedHeight){
         const newRecord = this.NewRecordTable.first();
         const vitalscell = newRecord.locator('td').nth(5);
@@ -348,6 +397,10 @@ class EditPagePom{
         const editTemperature = EditTestData.VitalsValidData;
         await this.temperatureInput.fill(editTemperature.Temperature);
         return editTemperature.Temperature;
+    }
+    async verifyeditedTemperatureVisible(expectedTemperature){
+        const row = this.page.locator('table tbody tr', {has: this.page.getByText(expectedTemperature)});
+        await expect(row).toBeVisible();
     }
     async verifyNewRecordTemperatureValue(expectedTemperature){
         const newRecord = this.NewRecordTable.first();
@@ -477,14 +530,62 @@ class EditPagePom{
         await expect(this.datePickerDay).first().toBeVisible();
     }
     async uploadHealthReportFile(){
-        await this.uploadHelthReportInput.setInputFiles(`tests/TestData/`)
+        await this.uploadHelthReportInput.setInputFiles(`tests/TestData/`);
     }
     async verifyUploadedFileName(){
         await expect(this.uploadHealthReportFileName).toBeVisible();
     }
-    async verifyPdfFileVisible(){
-        
+    async verifyPdfFileNameVisible(){
+        await expect(this.uploadHealthReportFileName).toBeVisible();
     }
+    async verifyPdfFileVisible(){
+         const newRow = this.NewRecordTable.first();
+        const recordNumber = this.recordNumberCell(newRow);
+        await expect(recordNumber).toContainText('View PDF');
+    }
+    async verifyUpoadedTimeVisible(){
+        const newRow = this.NewRecordTable.first();
+        const uploadedTimecell = await this.uploadedTime(newRow);
+        await expect(uploadedTimecell).toBeVisible();
+        const uploadedTimeText = (await uploadedTimeCell.innerText()).trim();
+        expect(uploadedTimeText.length).toBeGreaterThan(0);
+    }
+    async verifyHealthConditionValuesVisible(){
+        const newRow = this.NewRecordTable.first();
+        const healthConditionscell = await this.healthConditionsCell(newRow);
+        await expect(healthConditionscell).toBeVisible();
+        const healthText = (await healthCell.innerText()).trim();
+        expect(healthText.length).toBeGreaterThan(0);
+    }
+    async verifyInvalidFileUpload(){
+        await this.uploadHelthReportInput.setInputFiles(`tests/TestData/`);
+    }
+    async verifyUploadInvalidFileErrorMessage(expectedMessage){
+        await expect(this.uploadInvalidFileErrorMessage).toHaveText(expectedMessage);
+    }
+    async verifyExceedingFileSizeFileUpload(){
+        await this.uploadHelthReportInput.setInputFiles(`tests/TestData/`);
+    }
+    async verifyuploadExceedingFileSizeErrorMessageVisible(expectedMessage){
+        await this.uploadExceedingFileSizeErrorMessage(expectedMessage);
+    }
+    async verifyJpegFileUpload(){
+        await this.uploadHelthReportInput.setInputFiles(`tests/TestData/`);
+    } 
+    async verifyUploadJpegFileErrorMessage(expectedMessage){
+        await expect(this.uploadJpegFileErrorMessage).toHaveText(expectedMessage);
+    }
+    async clickCloseButton(){
+        await this.closeButton.click();
+    }
+    async editFirstName(value){
+        await this.firstNameInput.fill(value);
+    }
+    async verifyFirstNameNotUpdated(changedValue) {
+    const table = this.page.locator('table tbody');
+    await expect(table).not.toContainText(changedValue);
+}
+
     
 
 

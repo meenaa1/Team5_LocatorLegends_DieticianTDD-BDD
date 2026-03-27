@@ -6,42 +6,42 @@ When User clicks Edit icon for the particular patient
 Then User is navigated to the Edit Patient dialog box
 
 Scenario: Presence of place holder in First Name 
-Given User is edit dialog box
+Given User is in the edit dialog box
 When User clear exisiting value in first name field
 Then User should see placeholder "First name"
 
 Scenario: Presence of place holder in  last name
-Given User is edit dialog box
+Given User is in the edit dialog box
 When User clear exisiting value in last name field
-Then User should see placeholder "Last name"
+Then User should see placeholder "Last name" for last name
 
 Scenario: Presence of place holder in email
-Given User is edit dialog box
+Given User is in the edit dialog box
 When User clear exisiting value in email name field
-Then User should see placeholder "Email"
+Then User should see placeholder "Email" for Email
 
 Scenario: Presence of place holder in  contact no
-Given User is edit dialog box
+Given User is in the edit dialog box
 When User clear exisiting value in contact no field
-Then User should see placeholder  "Contact Number"
+Then User should see placeholder  "Contact Number" for contact Number
 
 Scenario: Edit first name with valid data
-Given User is edit dialog box
+Given User is in the edit dialog box
 When User clicks submit after editing first name with valid data
 Then User should redirected to my patient with edited value in first name
 
 Scenario: Edit first name with numeric data
-Given User is edit dialog box
+Given User is in the edit dialog box
 When User clicks submit after editing first name with numeric data
 Then User should  see error message in Patient name accepts only alphabets
 
 Scenario: Edit first name with spl charac & numeric data
-Given User is edit dialog box
+Given User is in the edit dialog box
 When User clicks submit after editing first name with spl numeric data
 Then User should  see error message in Patient name accepts only alphabets
 
 Scenario: Edit first name with spl charc data
-Given User is edit dialog box
+Given User is in the edit dialog box
 When User clicks submit after editing first name with spl charc data
 Then User should  see error message in Patient name accepts only alphabets
 
@@ -108,7 +108,7 @@ Then User should see the error message “CTC number accepts only numeric values
 Scenario: Edit CTC number with less than required digits
 Given User is in the edit dialog box
 When User clicks submit after entering a CTC number with fewer digits
-Then User should see the error message “Please enter a valid CTC number”
+Then User should see the error message “Please enter a valid CTC number” for fewer Digits
 
 Scenario: Edit CTC number by removing existing value
 Given User is in the edit dialog box
@@ -172,58 +172,58 @@ Then User should recieve error message in SP field
 
 Scenario: Edit weight with alphabets
 Given User is in the edit dialog box
-When User clicks submit after entering with alphabets
+When User clicks submit after entering with alphabets for weight
 Then User should see the error message “Please enter a valid weight”
 
 Scenario: Edit weight with special characters
 Given User is in the edit dialog box
-When User clicks submit after entering with special characters
+When User clicks submit after entering with special characters for weight
 Then User should see the error message “Please enter a valid weight”
 
 Scenario: Edit height with alphabets
 Given User is in the edit dialog box
-When User clicks submit after entering with alphabets
+When User clicks submit after entering with alphabets for height
 Then User should see the error message “Please enter a valid height”
 
 Scenario: Edit height with special characters
 Given User is in the edit dialog box
-When User clicks submit after entering with special characters
+When User clicks submit after entering with special characters for height
 Then User should see the error message “Please enter a valid height”
 
 Scenario: Edit temperature with alphabets
 Given User is in the edit dialog box
-When User clicks submit after entering with alphabets
+When User clicks submit after entering with alphabets for temperature
 Then User should see the error message “Please enter a valid temperature”
 
 Scenario: Edit temperature with special characters
 Given User is in the edit dialog box
-When User clicks submit after entering with special characters
+When User clicks submit after entering with special characters for temperature
 Then User should see the error message “Please enter a valid temperature”
 
 Scenario: Edit SP with alphabets
 Given User is in the edit dialog box
-When User clicks submit after entering with alphabets
+When User clicks submit after entering with alphabets for SP
 Then User should see the error message “Please enter a valid SP value”
 
 Scenario: Edit SP with special characters
 Given User is in the edit dialog box
-When User clicks submit after entering with special characters
+When User clicks submit after entering with special characters for SP
 Then User should see the error message “Please enter a valid SP value”
 
 Scenario: Edit DP with alphabets
 Given User is in the edit dialog box
-When User clicks submit after entering with alphabets
+When User clicks submit after entering with alphabets for DP
 Then User should see the error message “Please enter a valid DP value”
 
 Scenario: Edit DP with special characters
 Given User is in the edit dialog box
-When User clicks submit after entering with special characters
+When User clicks submit after entering with special characters for DP
 Then User should see the error message “Please enter a valid DP value”
 
 Scenario: Edit date for DOB field               
 Given User is in the edit dialog box
-When User clicks Date of Birth field
-Then User should see calender date picker displayed with Month,Day,Year
+When User clicks Date of Birth field for edit
+Then User should see calender date picker displayed with Month,Day,Year for edit
 
 Scenario: Edit valid date in DOB field               
 Given User is in the edit dialog box
@@ -277,13 +277,13 @@ Then User should see an error message "Please select valid date"
 
 Scenario: File name after Upload valid file - pdf
 Given User is in the edit dialog box
-When User uploads health report in pdf 
-Then User should see uploaded file name with extension
+When User uploads health report in pdf  during edit
+Then User should see uploaded file name with extension during edit
 
 Scenario: Upload valid file - pdf
 Given User is in the edit dialog box
 When User clicks submit after uploading a valid file
-Then User should be redirected to My Patient page with the uploaded file saved successfully
+Then User should be redirected to My Patient page with the uploaded file saved successfully during edit
 
 Scenario: Presence of record number after file upload
 Given User is in the edit dialog box
