@@ -1,4 +1,6 @@
 import { expect } from '@playwright/test';
+const addPatientData = require('../TestData/AddPatientData.json');
+
 
 class AddPatientDialogBoxPagePO {
 
@@ -22,6 +24,7 @@ class AddPatientDialogBoxPagePO {
     this.dp = page.locator('#dp');
     //dob
     this.dob = page.locator('#dob');
+    this.calendar = page.locator('.calendar');
     //dropdowns
     this.dropdownOptions = page.locator('.dropdown-menu option');
     this.allergies = page.locator('#allergies');
@@ -37,6 +40,9 @@ class AddPatientDialogBoxPagePO {
     //collection locators
     this.allInputs = page.locator('.dialog-container input');
     this.allDropdowns = page.locator('.dialog-container select');
+    this.myPatientPage = page.locator('.my-patient-page');
+    this.successToast = page.locator('.toast-success');
+   
   }
 
   async isHomePageDisplayed() {
@@ -46,6 +52,18 @@ class AddPatientDialogBoxPagePO {
 
   async clickNewPatient() {
     await this.newPatientBtn.click();
+  }
+  async getDialogTitle() {
+    return await this.dialogTitle.textContent();
+  }
+  async getFileUploadCount() {
+    return await this.fileUpload.count();
+  }
+  async getUploadText() {
+    return await this.uploadText.textContent();
+  }
+  async getNoFileText() {
+    return await this.noFileText.textContent();
   }
 
   async getInputCount() {
@@ -62,13 +80,6 @@ class AddPatientDialogBoxPagePO {
   }
 
 
-  async isSubmitDisabled() {
-    return await this.submitBtn.isDisabled();
-  }
-
-  async isCloseEnabled() {
-    return await this.closeBtn.isEnabled();
-  }
 
   async getPlaceholder(locator) {
 
@@ -79,13 +90,16 @@ class AddPatientDialogBoxPagePO {
     return await this.dialogTitle.textContent();
   }
 
-  async getUploadText() {
-    return await this.uploadText.textContent();
+
+  async clickDobField() {
+    await this.dob.click();
   }
 
-  async getNoFileText() {
-    return await this.noFileText.textContent();
+  async isCalendarDisplayed() {
+    return await this.calendar.isVisible();
   }
+
+
 
   async hasVerticalScrollBar() {
     return await this.dialogContainer.evaluate(el =>
@@ -93,7 +107,22 @@ class AddPatientDialogBoxPagePO {
     );
   }
 
-  async validpatientDetails(patientData) {
+  async fillPatientDetails(patientData) {
+    const patientInfo = addPatientData["validPatientDetails"];
+
+    const patientData = {
+      firstName: patientInfo.firstName,
+      lastName: patientInfo.lastName,
+      email: patientInfo.email,
+      contactNumber: patientInfo.contactNumber,
+      weight: patientInfo.weight,
+      height: patientInfo.height,
+      temperature: patientInfo.temperature,
+      sp: patientInfo.SP,
+      dp: patientInfo.DP,
+      dob: patientInfo.dob
+    };
+
     await this.firstName.fill(patientData.firstName);
     await this.lastName.fill(patientData.lastName);
     await this.email.fill(patientData.email);
@@ -112,6 +141,16 @@ class AddPatientDialogBoxPagePO {
   }
 
 
+  async clickDropdown(dropdownLocator) {
+    await dropdownLocator.click();
+  }
+
+  async getDropdownOptions(dropdownLocator) {
+    const optionLocator = dropdownLocator.locator("option");
+    const options = await optionLocator.allTextContents();
+    return options
+  }
+
   async clickSubmit() {
     await this.submitBtn.click();
   }
@@ -119,45 +158,97 @@ class AddPatientDialogBoxPagePO {
     await locator.fill(value);
   }
 
+  async navigateToMyPatientPage() {
+    await this.page.click('.my-patient-page-link');
+  }
+
+  async getSuccessToastText() {
+    return await this.successToast.textContent();
+  }
+  
+  }
+  async isMyPatientPageDisplayed() {
+    return await this.myPatientPage.isVisible();
+  }
+
 
   async selectDropdownOption(locator, value, expectedValue) {
     await expect(locator.selectOption(value)).toHaveText(expectedValue);
   }
 
-  async clearField(locator) {
-    await locator.fill('');
-  }
-  async getdobValue(dob) {
-<<<<<<< HEAD
-    return await this.dob.inputValue();
 
-   
-  }
- 
-=======
-    const dobValue = await this.dob.inputValue();
-    await this.dob.click();
-    await this.dob.fill(dob);
 
-  }
-  async clickDropdown(dropdown) {
-
-    await dropdown.first().click();
-  }
->>>>>>> main
 
   async selectValue(dropdown, value) {
     await dropdown.selectOption({ label: value });
   }
 
-<<<<<<< HEAD
- 
- }
-=======
-  async dropdownOptions(dropdown) {
-    await dropdown.first().isVisible();
+  async verifyAllergySelection(expected) {
+
+    if (expected === "Allergies is required") {
+      const error = this.page.locator('.error-message');
+      await expect(error).toContainText("Allergies is required");
+
+    } else if (expected === "No selection") {
+      const selectedValue = await this.allergies.inputValue();
+      expect(selectedValue).toBe("");
+
+    } else {
+      const selectedValue = await this.allergies.inputValue();
+      expect(selectedValue).toBe(expected);
+    }
+  }
+
+  async verifyFoodPreferenceSelection(expected) {
+    if (expected === "Food Preference is required") {
+      await expect(this.page.locator('.error-message')).toContainText("Food Preference is required");
+    } else if (expected === "No selection") {
+      expect(await this.foodPreferences.inputValue()).toBe("");
+    } else {
+      expect(await this.foodPreferences.inputValue()).toBe(expected);
+    }
+  }
+
+  async verifyCuisineCategorySelection(expected) {
+    if (expected === "Cusine Category is required") {
+      await expect(this.page.locator('.error-message')).toContainText("Cusine Category is required");
+    } else if (expected === "No selection") {
+      expect(await this.cuisineCategory.inputValue()).toBe("");
+    } else {
+      expect(await this.cuisineCategory.inputValue()).toBe(expected);
+    }
+  }
+
+  async verifyAllergyValues() {
+    const expected = ["Egg", "Milk", "Soy", "Almond", "Peanuts", "Walnut",
+      "Pistachio", "Sesame", "Hazelnut", "Pecan", "Cashew", "NONE"];
+    return await this.verifyDropdownValues("allergy", expected);
+  }
+
+  async verifyFoodPreferenceValues() {
+    const expected = ["Vegan", "Vegetarian", "Jain", "Eggitarian", "NonVeg"];
+    return await this.verifyDropdownValues("foodPreference", expected);
+  }
+
+  async verifyCuisineCategoryValues() {
+    const expected = ["Indian", "South Indian", "Rajasthani", "Punjabi", "Bengali", "Orissa", "Gujarati", "Maharashtrian", "Andhra", "Kerala", "Goan", "Kashmiri", "Himachali", "Tamil Nadu", "Karnataka", "Sindhi", "Chhattisgarhi", "Madhya Pradesh", "Assamese", "Manipuri", "Tripuri", "Sikkimese", "Mizo", "Arunachali", "Uttarakhand", "Haryanvi", "Awadhi", "Bihari", "Uttar Pradesh", "Delhi", "North Indian"];
+    return await this.verifyDropdownValues("cuisineCategory", expected);
+  }
+  async verifyDropdownValues(dropdownKey, expectedValues) {
+    const actualValues = await this.getDropdownOptions(dropdownKey);
+
+    if (actualValues.length !== expectedValues.length) {
+      return false;
+
+      for (const value of expectedValues) {
+        if (!actualValues.includes(value)) {
+          return false;
+        }
+
+        return true;
+      }
+
+    }
   }
 }
->>>>>>> main
-
 export default AddPatientDialogBoxPagePO;
