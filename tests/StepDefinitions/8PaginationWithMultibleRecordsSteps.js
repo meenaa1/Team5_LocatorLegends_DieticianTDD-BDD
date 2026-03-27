@@ -17,12 +17,11 @@ Given('User is in My Patients page with multiple pages of patient record', async
 
 When('User clicks the next page arrow {string}', async ({ paginationPage }, arg) => {
   await paginationPage.clickNext();
+  await paginationPage.storeFirstRow();
 });
 
 Then('Next set of  patient records should be displayed', async ({ paginationPage }) => {
-  const before = await paginationPage.getFirstRowText();
-  await paginationPage.clickNext();
-  await paginationPage.validatePageChanged(before);
+  await paginationPage.validatePageChanged();
   logger.info('Next page records displayed');
 });
 
@@ -37,8 +36,6 @@ When('User clicks the previous page arrow {string}', async ({ paginationPage }, 
 });
 
 Then('Previous set of patient records should be displayed', async ({ paginationPage }) => {
-  const before = await paginationPage.getFirstRowText();
-  await paginationPage.clickPrevious();
   await paginationPage.validatePageChanged(before);
   logger.info('Previous page records displayed');
 });
