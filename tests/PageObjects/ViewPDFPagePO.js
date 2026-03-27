@@ -15,7 +15,7 @@ class ViewPatientReportsPO {
 
         // Table
         this.reportsTable = this.popup.locator('table');
-        this.reportRows = this.reportsTable.locator('tbody tr');
+        this.reportRows = this.popup.locator('table tbody tr');
 
         // Table columns
         this.recordNumberColumn = this.popup.locator('td.record-number');
@@ -26,7 +26,6 @@ class ViewPatientReportsPO {
         this.healthConditionColumn = this.popup.locator('td.health-conditions');
 
         // Pagination controls
-        this.rows = this.popup.locator('table tbody tr');
         this.nextArrow = this.popup.locator('.pagination .next');      // (>)
         this.prevArrow = this.popup.locator('.pagination .prev');      // (<)
         this.firstArrow = this.popup.locator('.pagination .first');    // (<<)
@@ -83,6 +82,52 @@ class ViewPatientReportsPO {
     async clickPreviousPage() {
         await this.prevArrow.click();
     }
+
+    async clickFirst() {
+        await this.first.click();
+    }
+
+    async clickLast() { 
+        await this.last.click(); 
+    }
+
+     async getFirstRowText() {
+        return await this.reportRows.first().textContent();
+    }
+     async storeFirstRow() {
+        this.firstRowText = await this.getFirstRowText();
+    }
+    
+    async validatePageChanged() {
+        const current = await this.getFirstRowText();
+        expect(current).not.toBe(this.firstRowText);
+    }
+
+    async verifyPopupVisible() {
+        await expect(this.popup).toBeVisible();
+    }
+
+    async verifyRecordsVisible() {
+        await expect(this.reportRows.first()).toBeVisible();
+    }
+
+    async verifyPaginationVisible() {
+        await expect(this.pagination).toBeVisible();
+    }
+
+    async verifyPaginationText() {
+        const text = await this.paginationText.textContent();
+        expect(text).toMatch(/\d+\s*-\s*\d+\s*of\s*\d+/);
+    }
+
+    async validateArrowEnabled(locator) {
+        await expect(locator).toBeEnabled();
+    }
+
+    async validateArrowDisabled(locator) {
+        await expect(locator).toBeDisabled();
+    }
+
 }
 
 export default ViewPatientReportsPO;

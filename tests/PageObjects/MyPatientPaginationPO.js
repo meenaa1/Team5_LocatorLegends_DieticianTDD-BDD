@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 class MyPatientsPaginationPO {
     constructor(page) {
         this.page = page;
-        this.rows = page.locator('table tbody tr');
+        this.tableRows = page.locator('table tbody tr');
 
         this.nextArrow = page.locator('.pagination .next');      // (>)
         this.prevArrow = page.locator('.pagination .prev');      // (<)
@@ -35,9 +35,6 @@ class MyPatientsPaginationPO {
         const count = await this.tableRows.count();
         expect(count).toBeGreaterThan(0);
     }
-    async getFirstRowText() {
-        return await this.rows.first().textContent();
-    }
 
     async validatePaginationVisible() {
         await expect(this.paginationContainer).toBeVisible();
@@ -46,6 +43,19 @@ class MyPatientsPaginationPO {
     async validatePaginationText() {
         const text = await this.paginationText.textContent();
         expect(text).toMatch(/\d+\s*-\s*\d+\s*of\s*\d+/);
+    }
+
+    async storeFirstRow() {
+        this.firstRowText = await this.getFirstRowText();
+    }
+
+    async getFirstRowText() {
+        return await this.tableRows.first().textContent();
+    }
+
+    async validatePageChanged() {
+        const current = await this.getFirstRowText();
+        expect(current).not.toBe(this.firstRowText);
     }
 
     async validateArrowEnabled(locator) {
