@@ -87,17 +87,17 @@ class ViewPatientReportsPO {
         await this.first.click();
     }
 
-    async clickLast() { 
-        await this.last.click(); 
+    async clickLast() {
+        await this.last.click();
     }
 
-     async getFirstRowText() {
+    async getFirstRowText() {
         return await this.reportRows.first().textContent();
     }
-     async storeFirstRow() {
+    async storeFirstRow() {
         this.firstRowText = await this.getFirstRowText();
     }
-    
+
     async validatePageChanged() {
         const current = await this.getFirstRowText();
         expect(current).not.toBe(this.firstRowText);
@@ -128,6 +128,10 @@ class ViewPatientReportsPO {
         await expect(locator).toBeDisabled();
     }
 
+    // 22 Feature File
+   async validateNumberOfRecords(expectedCount) {
+    await expect(this.reportRows).toHaveCount(expectedCount);
+}
 }
 
 export default ViewPatientReportsPO;

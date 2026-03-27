@@ -3,11 +3,7 @@ import { test } from "../Fixtures/testFixtures.js";
 import { expect } from "@playwright/test";
 import logger from '../../utils/Logger.js';
 
-
-
 const { Given, When, Then } = createBdd(test);
-let addPatientPage;
-let loginPage;
 
 Given('User is in home page after login', async ({ loggedInPage, addPatientPage }) => {
     
