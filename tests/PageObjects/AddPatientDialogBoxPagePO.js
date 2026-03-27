@@ -107,8 +107,8 @@ class AddPatientDialogBoxPagePO {
     );
   }
 
-  async fillPatientDetails(patientData) {
-    const patientInfo = addPatientData["validPatientDetails"];
+  async fillPatientDetails() {
+    const patientInfo = addPatientData[" validPatientDetails"];
 
     const patientData = {
       firstName: patientInfo.firstName,
@@ -145,10 +145,18 @@ class AddPatientDialogBoxPagePO {
     await dropdownLocator.click();
   }
 
-  async getDropdownOptions(dropdownLocator) {
+  getDropdownLocator(dropdownKey) {
+    if (dropdownKey === 'allergy') return this.allergies;
+    if (dropdownKey === 'foodPreference') return this.foodPreferences;
+    if (dropdownKey === 'cuisine' || dropdownKey === 'cuisineCategory') return this.cuisineCategory;
+    return dropdownKey;
+  }
+
+  async getDropdownOptions(dropdownKeyOrLocator) {
+    const dropdownLocator = this.getDropdownLocator(dropdownKeyOrLocator);
     const optionLocator = dropdownLocator.locator("option");
     const options = await optionLocator.allTextContents();
-    return options
+    return options.map((text) => (text || '').trim()).filter((text) => text !== '');
   }
 
   async clickSubmit() {
@@ -165,8 +173,7 @@ class AddPatientDialogBoxPagePO {
   async getSuccessToastText() {
     return await this.successToast.textContent();
   }
-  
-  }
+
   async isMyPatientPageDisplayed() {
     return await this.myPatientPage.isVisible();
   }
@@ -239,16 +246,15 @@ class AddPatientDialogBoxPagePO {
 
     if (actualValues.length !== expectedValues.length) {
       return false;
-
-      for (const value of expectedValues) {
-        if (!actualValues.includes(value)) {
-          return false;
-        }
-
-        return true;
-      }
-
     }
+
+    for (const value of expectedValues) {
+      if (!actualValues.includes(value)) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }
 export default AddPatientDialogBoxPagePO;

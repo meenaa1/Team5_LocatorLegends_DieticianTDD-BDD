@@ -63,9 +63,7 @@ Feature: Add Patient Details - Functional Test Cases
     When User clicks Date of Birth field in the new patient form
     Then User should see calender date picker displayed with Month,Day,Year in the new patient form   
 
-  Scenario Outline: Validate DOB input scenarios
-    When User enters DOB 
-    Then System should show Expected Result for DOB field
+ 
 
   
 

@@ -115,7 +115,6 @@ When('User clicks Date of Birth field in the new patient form', async ({ addPati
 });
 Then('User should see calender date picker displayed with Month,Day,Year in the new patient form', async ({ addPatientPage }) => {
   await addPatientPage.isCalendarDisplayed();
-  // Step: Then User should see calender date picker displayed with Month,Day,Year
-  // From: tests\Features\14AddPatientDetailsFunctionalTestCase.feature:43:5
+
 });
 
