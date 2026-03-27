@@ -3,8 +3,8 @@ import { test } from "../../../tests/Fixtures/testFixtures.js";
 
 test.describe('Add Patient Dialog Box -Validation', () => {
 
-  test.beforeEach('Background', async ({ Given, When, addPatientPage, loggedinPage }, testInfo) => { if (testInfo.error) return;
-    await Given('User is in home page after login', null, { addPatientPage, loggedinPage }); 
+  test.beforeEach('Background', async ({ Given, When, addPatientPage, loggedInPage }, testInfo) => { if (testInfo.error) return;
+    await Given('User is in home page after login', null, { addPatientPage, loggedInPage }); 
     await When('User clicks on New Patient in the header section', null, { addPatientPage }); 
   });
   

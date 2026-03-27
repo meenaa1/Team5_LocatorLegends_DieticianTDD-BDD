@@ -133,17 +133,13 @@
     await this.dob.fill(dob);
    
   }
-  async clickDropdown(dropdown) {
-    
-    await dropdown.first().click();
-  }
+ 
 
  async selectValue(dropdown, value) {
     await dropdown.selectOption({ label: value });
   }
 
-  async dropdownOptions(dropdown) {
-    await dropdown.first().isVisible();
-}
+ 
+ }
 
 export default AddPatientDialogBoxPagePO;
