@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd';
+import dotenv from 'dotenv';
+import path from 'path';
 
 const testDir = defineBddConfig({
   features: ['tests/Features/**/*.feature'],   
@@ -11,8 +13,7 @@ const testDir = defineBddConfig({
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-  import dotenv from 'dotenv';
-  import path from 'path';
+  const authFile = path.resolve(__dirname, 'playwright/.auth/user.json');
   dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
@@ -41,10 +42,28 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     // video:'retain-on-failure',
     headless: true,
+    /**
+     * Use the saved storage state for all functional tests.
+     */
+    storageState: authFile,
   },
 
   /* Configure projects for major browsers */
   projects: [
+    /**
+     * 1. Define the Authentication Setup project.
+     * This project will run your login script before anything else.
+     */
+    {
+      name: 'setup',
+      testMatch: /auth\.setup\.js/, 
+    },
+
+    /**
+     * 2. Main Browser Projects
+     * Each project now depends on the 'setup' project.
+     */
+    
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
