@@ -4,21 +4,20 @@ import { defineBddConfig } from 'playwright-bdd';
 import dotenv from 'dotenv';
 import path from 'path';
 
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+//const authFile = path.resolve(__dirname, 'playwright/.auth/user.json');
+
+
 const testDir = defineBddConfig({
-  features: ['tests/Features/**/*.feature'],   
-  steps: ['tests/StepDefinitions/**/*.js', 'tests/Hooks/Hooks.js', 'tests/Fixtures/testFixtures.js'], 
+  features: ['tests/Features/**/*.feature'],
+  steps: [
+    'tests/StepDefinitions/**/*.js',
+    'tests/Hooks/Hooks.js',
+    'tests/Fixtures/testFixtures.js'
+  ],
 });
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-  const authFile = path.resolve(__dirname, 'playwright/.auth/user.json');
-  dotenv.config({ path: path.resolve(__dirname, '.env') });
-
-/**
- * @see https://playwright.dev/docs/test-configuration
- */
 export default defineConfig({
   //testDir: './tests',
   testDir,
@@ -31,7 +30,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 3 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-   reporter: [["list"],["html"], ["allure-playwright"]],
+  reporter: [["list"], ["html"], ["allure-playwright"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -42,29 +41,12 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     // video:'retain-on-failure',
     headless: true,
-    /**
-     * Use the saved storage state for all functional tests.
-     */
-    storageState: authFile,
+
   },
 
-  /* Configure projects for major browsers */
   projects: [
-    /**
-     * 1. Define the Authentication Setup project.
-     * This project will run your login script before anything else.
-     */
-    {
-      name: 'setup',
-      testMatch: /auth\.setup\.js/, 
-    },
 
-    /**
-     * 2. Main Browser Projects
-     * Each project now depends on the 'setup' project.
-     */
-    
-    {
+     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
@@ -78,6 +60,41 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
+
+    //  SETUP PROJECT (creates auth file)
+    // {
+    //   name: 'setup',
+    //   testDir: './tests',
+    //   testMatch: /auth\.setup\.js/,
+
+
+    // },
+
+    // MAIN PROJECTS (depend on setup)
+    // {
+    //   name: 'chromium',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     storageState: authFile,
+    //   },
+    //   dependencies: ['setup'],
+    // },
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     storageState: authFile,
+    //   },
+    //   dependencies: ['setup'],
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //     storageState: authFile,
+    //   },
+    //   dependencies: ['setup'],
+    // },
 
     /* Test against mobile viewports. */
     // {
@@ -106,5 +123,7 @@ export default defineConfig({
   //   url: 'http://localhost:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+
+
 });
 
